@@ -1764,3 +1764,392 @@ kbd {
     color: var(--text-primary);
     font-weight: 600;
 }
+
+/* ============================================
+   MOBILE RESPONSIVENESS OPTIMIZATION
+   Comprehensive styles for smaller screens
+   ============================================ */
+
+/* Touch Screen: Disable non-essential hover effects */
+@media (hover: none) and (pointer: coarse) {
+
+    .btn:hover,
+    .pill:hover,
+    .card:hover,
+    .scene-item:hover,
+    .dropdown-item:hover,
+    .sidebar-link:hover,
+    .hamburger-btn:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .btn-primary:hover {
+        background: var(--accent-gradient);
+    }
+
+    .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* Small Tablets and Large Phones (max-width: 768px) */
+@media (max-width: 768px) {
+
+    /* Typography Scaling */
+    h1 {
+        font-size: 1.5rem !important;
+    }
+
+    h2,
+    .gradient-text {
+        font-size: 1.4rem !important;
+    }
+
+    h3 {
+        font-size: 1.1rem !important;
+    }
+
+    h4 {
+        font-size: 1rem !important;
+    }
+
+    /* Hero Section */
+    .hero-section h2 {
+        font-size: 1.5rem !important;
+        line-height: 1.3;
+    }
+
+    .hero-section p {
+        font-size: 0.95rem;
+    }
+
+    /* Card Header - Keep in same row */
+    .card-header {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .card-actions {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    /* Button Sizing */
+    .btn {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+
+    .btn-icon {
+        width: 38px;
+        height: 38px;
+        padding: 8px;
+    }
+
+    .btn-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Pills - default no scroll on desktop */
+    .pill {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    /* Hide Main Nav on Tablets (use sidebar) */
+    .main-nav {
+        display: none;
+    }
+
+    /* Scene Items */
+    .scene-item {
+        padding: 12px 14px;
+    }
+
+    .scene-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .scene-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    /* Mode Switcher */
+    .mode-switcher {
+        transform: scale(0.9);
+        transform-origin: left center;
+    }
+
+    /* Card Padding */
+    .card {
+        padding: 16px;
+    }
+
+    .card-body {
+        padding: 12px 0;
+    }
+
+    /* Global Params Grid */
+    .params-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    /* Modal Optimization */
+    .modal-content {
+        width: 95%;
+        max-width: 95%;
+        margin: 10px;
+        padding: 16px;
+    }
+
+    .modal-header h2,
+    .modal-header h3 {
+        font-size: 1.2rem;
+    }
+
+    /* Getting Started Modal */
+    .getting-started-modal-content {
+        max-width: 95% !important;
+        padding: 20px;
+    }
+
+    .getting-started-step h2 {
+        font-size: 1.3rem !important;
+    }
+
+    .getting-started-step p {
+        font-size: 0.95rem;
+    }
+
+    .getting-started-step li {
+        font-size: 0.9rem;
+    }
+
+    .gs-footer {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .gs-footer .btn {
+        width: 100%;
+    }
+
+    /* LLM Grid */
+    .llm-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile Phones (max-width: 480px) */
+@media (max-width: 480px) {
+
+    /* Further Typography Reduction */
+    h1 {
+        font-size: 1.3rem !important;
+    }
+
+    h2,
+    .gradient-text {
+        font-size: 1.2rem !important;
+    }
+
+    h3 {
+        font-size: 1rem !important;
+    }
+
+    /* App Container */
+    .app-container {
+        padding: 12px;
+    }
+
+    /* Header Adjustments */
+    .site-header {
+        padding: 10px 12px;
+    }
+
+    .logo h1 {
+        font-size: 1.1rem;
+    }
+
+    .logo-img {
+        width: 32px;
+        height: 32px;
+    }
+
+    /* Hide Main Nav on Small Screens (use sidebar) */
+    .main-nav {
+        display: none;
+    }
+
+    /* Scene Textarea */
+    .scene-description {
+        font-size: 0.9rem;
+        min-height: 80px;
+    }
+
+    /* Pills Container Scrolling */
+    .pills-container {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 8px;
+    }
+
+    .pill {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    /* Button Vertical Stack */
+    .scene-actions {
+        gap: 6px;
+    }
+
+    /* Code Editor */
+    .code-editor,
+    #output-json {
+        font-size: 0.8rem;
+        padding: 12px;
+    }
+
+    /* Pricing Cards */
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-card {
+        padding: 20px;
+    }
+
+    /* Dictionary */
+    .dict-split-view {
+        flex-direction: column;
+    }
+
+    .dict-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+    }
+
+    /* History */
+    .history-sidebar {
+        width: 100%;
+    }
+
+    /* Button Sizing - 480px */
+    .btn {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+    }
+
+    .btn-icon {
+        width: 36px;
+        height: 36px;
+        padding: 7px;
+    }
+
+    /* Modal Typography - 480px */
+    .modal-header h2,
+    .modal-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .modal-body p {
+        font-size: 0.9rem;
+    }
+
+    .getting-started-step h2 {
+        font-size: 1.2rem !important;
+    }
+
+    .getting-started-step p {
+        font-size: 0.9rem;
+    }
+
+    .getting-started-step li {
+        font-size: 0.85rem;
+    }
+}
+
+/* Touch Screens Only - Horizontal Pills Scrolling */
+@media (hover: none) and (pointer: coarse) {
+    .pills-container {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .pills-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .pill {
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+}
+
+/* Very Small Screens (max-width: 360px) */
+@media (max-width: 360px) {
+    h1 {
+        font-size: 1.1rem !important;
+    }
+
+    h2,
+    .gradient-text {
+        font-size: 1rem !important;
+    }
+
+    .btn {
+        padding: 7px 10px;
+        font-size: 0.75rem;
+    }
+
+    .btn-icon {
+        width: 32px;
+        height: 32px;
+        padding: 6px;
+    }
+
+    .card {
+        padding: 10px;
+    }
+
+    .modal-content {
+        padding: 10px;
+    }
+
+    .modal-header h2,
+    .modal-header h3 {
+        font-size: 1rem;
+    }
+
+    .modal-body p {
+        font-size: 0.85rem;
+    }
+
+    .getting-started-modal-content {
+        padding: 14px;
+    }
+
+    .getting-started-step h2 {
+        font-size: 1.1rem !important;
+    }
+
+    .getting-started-step p {
+        font-size: 0.85rem;
+    }
+
+    .getting-started-step li {
+        font-size: 0.8rem;
+    }
+}
