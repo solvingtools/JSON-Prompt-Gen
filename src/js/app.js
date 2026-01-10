@@ -1,4 +1,25 @@
+// Core Services
+import { CryptoUtils } from './cryptoUtils.js';
+import { DictionaryService } from './dictionaryService.js';
+import { LLMService } from './llmService.js';
+import { HistoryService } from './historyService.js';
+import { AnalyticsService } from './analyticsService.js';
+import { FeedbackService } from './feedbackService.js';
+import { GettingStarted } from './gettingStarted.js';
+import { GlobalParamsService } from './globalParamsService.js';
+import { PricingManager } from './pricing.js';
+
+// Global access for services needed in callbacks
+window.CryptoUtils = CryptoUtils;
+window.AnalyticsService = AnalyticsService;
+// Initialize global services that don't need UI wait
+window.historyService = new HistoryService(); 
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize Core UI-dependent Services
+    new GettingStarted();
+    new PricingManager();
+
     const scenesContainer = document.getElementById('scenes-container');
     const addSceneBtn = document.getElementById('add-scene-btn');
     const generateBtn = document.getElementById('generate-btn');
