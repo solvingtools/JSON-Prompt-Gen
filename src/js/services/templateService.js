@@ -2,7 +2,7 @@
  * TemplateService - Manages IndexedDB storage for Prompt Templates
  * Handles CRUD operations, schema management, and data persistence.
  */
-class TemplateService {
+export class TemplateService {
     constructor() {
         this.dbName = 'JsonPromptGenDB';
         this.storeName = 'templates';
@@ -162,6 +162,4 @@ class TemplateService {
     }
 }
 
-// Export as global instance
-window.templateService = new TemplateService();
-// Global instance registered
+

@@ -8,17 +8,24 @@ import { FeedbackService } from './feedbackService.js';
 import { GettingStarted } from './gettingStarted.js';
 import { GlobalParamsService } from './globalParamsService.js';
 import { PricingManager } from './pricing.js';
+import { TemplateService } from './services/templateService.js';
+import { TemplateUI } from './templateUI.js';
 
 // Global access for services needed in callbacks
 window.CryptoUtils = CryptoUtils;
 window.AnalyticsService = AnalyticsService;
 // Initialize global services that don't need UI wait
-window.historyService = new HistoryService(); 
+window.historyService = new HistoryService();
 
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize Core UI-dependent Services
     new GettingStarted();
     new PricingManager();
+
+    // Initialize Template System
+    const templateService = new TemplateService();
+    const templateUI = new TemplateUI(templateService);
+    window.templateUI = templateUI; // Keep global for debugging/legacy access if needed
 
     const scenesContainer = document.getElementById('scenes-container');
     const addSceneBtn = document.getElementById('add-scene-btn');

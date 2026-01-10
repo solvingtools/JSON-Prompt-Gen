@@ -3,8 +3,8 @@
  * Handles Modals, Rendering, and User Interactions.
  */
 export class TemplateUI {
-    constructor() {
-        this.services = window.templateService;
+    constructor(templateService) {
+        this.services = templateService;
         this.currentPromptData = null; // Data to be saved
 
         // DOM Elements (will be initialized after DOMContentLoad)
