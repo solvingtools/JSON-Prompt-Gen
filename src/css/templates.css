@@ -76,8 +76,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--text-secondary);
@@ -119,7 +119,7 @@
     padding: 12px;
     color: var(--text-primary);
     font-family: var(--font-body);
-    transition: none;
+    transition: border-color 0.3s;
 }
 
 .template-form-input:focus,
@@ -145,9 +145,9 @@
 
 .template-modal .btn-secondary {
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 0, 0, 0.2);
     color: var(--text-secondary);
-    padding: 10px 20px;
+    padding: 10px 28px;
     border-radius: var(--radius-sm);
     font-weight: 500;
     cursor: pointer;
