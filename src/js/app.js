@@ -803,11 +803,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     renderSidebarCategories();
                     populateModalCategories();
 
-                    // Default selection: Camera Techniques
+                    // Default selection: First available category
                     setTimeout(() => {
-                        const cameraTechLi = document.querySelector('li[data-cat-id="camera_techniques"]');
-                        if (cameraTechLi) {
-                            cameraTechLi.querySelector('.category-name').click();
+                        const firstCategoryLi = dictCategoryList?.querySelector('li');
+                        if (firstCategoryLi) {
+                            firstCategoryLi.querySelector('.category-name').click();
                         }
                     }, 100);
                 });

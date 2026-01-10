@@ -1,3 +1,5 @@
+import dictionaryData from '../data/dictionary.json';
+
 export class DictionaryService {
     constructor() {
         this.data = null;
@@ -9,30 +11,20 @@ export class DictionaryService {
 
     async init() {
         if (this.isInitialized) return;
-        if (this.loadingPromise) return this.loadingPromise;
 
-        this.loadingPromise = (async () => {
-            try {
-                const response = await fetch('src/data/dictionary.json');
-                if (!response.ok) throw new Error('Failed to load dictionary data');
+        try {
+            this.data = dictionaryData;
+            this.categories = [...this.data.categories];
 
-                this.data = await response.json();
-                this.categories = [...this.data.categories];
+            // Load user-contributed data from localStorage
+            this.loadUserData();
 
-                // Load user-contributed data from localStorage
-                this.loadUserData();
-
-                this.isInitialized = true;
-                this.loadingPromise = null;
-                // DictionaryService initialized
-            } catch (error) {
-                console.error('DictionaryService Error:', error);
-                this.loadingPromise = null;
-                throw error;
-            }
-        })();
-
-        return this.loadingPromise;
+            this.isInitialized = true;
+            // DictionaryService initialized
+        } catch (error) {
+            console.error('DictionaryService Error:', error);
+            throw error;
+        }
     }
 
     // Load user data from localStorage
