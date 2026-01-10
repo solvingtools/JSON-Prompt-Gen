@@ -297,9 +297,30 @@
     flex-direction: column;
 }
 
+#history-modal .modal-header {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+#history-modal .modal-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .modal-header-actions {
     display: flex;
-    gap: 8px;
+    gap: 12px;
     align-items: center;
 }
 
