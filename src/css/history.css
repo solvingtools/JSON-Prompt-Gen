@@ -24,25 +24,28 @@
 }
 
 #history-close-btn {
-    background: rgba(255, 255, 255, 0.055);
-    color: #ffffff;
-    border: 1px solid rgba(138, 138, 138, 0.3);
-    width: 36px;
-    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    cursor: pointer;
     border-radius: 8px;
-    font-size: 22px;
-    line-height: 1;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: none;
+}
+
+#history-close-btn svg {
+    width: 18px;
+    height: 18px;
 }
 
 #history-close-btn:hover {
-    color: #f02d2d;
-    background: rgba(239, 68, 68, 0.25);
-    border-color: rgba(239, 68, 68, 0.5);
-    box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.15);
+    border-color: rgba(239, 68, 68, 0.3);
 }
 
 #history-restore-btn {
