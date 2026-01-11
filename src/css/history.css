@@ -312,7 +312,8 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     background: transparent;
     position: relative;
-    z-index: 10;
+    z-index: 110;
+    /* Above overlay (100) but below sidebar (200) */
 }
 
 #history-modal .modal-header h3 {
@@ -382,7 +383,7 @@
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     border-right: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 100;
+    z-index: 200;
     padding: 0 15px 15px 15px;
     transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
     box-shadow: 10px 0 40px rgba(0, 0, 0, 0.6);
@@ -408,7 +409,7 @@
     background: rgba(0, 0, 0, 0.4);
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
-    z-index: 90;
+    z-index: 100;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
@@ -470,6 +471,12 @@
 .history-main-card {
     background: var(--bg-elevated);
     border-radius: var(--radius-md);
+}
+
+.history-main-card .card-header {
+    position: relative;
+    z-index: 110;
+    /* Above overlay (100) */
 }
 
 /* Diff Viewer Styles */
@@ -557,7 +564,7 @@
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     border-right: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 100;
+    z-index: 200;
     padding: 0 15px 15px 15px;
     transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
     box-shadow: 10px 0 40px rgba(0, 0, 0, 0.6);
@@ -584,7 +591,7 @@
     background: rgba(0, 0, 0, 0.4);
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
-    z-index: 90;
+    z-index: 100;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
