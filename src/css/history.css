@@ -517,6 +517,7 @@
 
 .history-section-content .code-editor {
     min-height: 450px;
+    padding: 15px;
 }
 
 /* History Section Hamburger Button */
@@ -573,6 +574,13 @@
     visibility: hidden;
     pointer-events: none;
     border-radius: 12px;
+}
+
+.history-section-sidebar .sidebar-title {
+    background: linear-gradient(335deg, #697fffee, #ff3bf8ec, #ffdd1dee) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
 }
 
 .history-section-sidebar.active {
