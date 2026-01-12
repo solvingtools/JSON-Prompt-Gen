@@ -410,19 +410,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="form-group">
                     <label class="section-label">Negative Prompts</label>
-                    <div class="pills-container negative-pills mb-12">
-                        <button class="pill" data-value="blurry">Blurry</button>
-                        <button class="pill" data-value="low_res">Low Res</button>
-                        <button class="pill" data-value="deformed">Deformed</button>
-                        <button class="pill" data-value="watermark">Watermark</button>
-                        <button class="pill" data-value="flicker">Flicker</button>
-                        <button class="pill" data-value="grainy">Grainy</button>
-                        <button class="pill" data-value="overexposed">Overexposed</button>
-                        <button class="pill" data-value="extra_limbs">Extra Limbs</button>
-                        <button class="pill" data-value="distorted">Distorted</button>
-                        <button class="pill" data-value="unrealistic">Unrealistic</button>
+                    <div class="input-with-dropdown">
+                        <input type="text" class="scene-negative-prompt" 
+                            placeholder="Type elements to exclude or select from presets..."
+                            aria-label="Custom negative prompts">
+                        <div class="input-dropdown-wrapper">
+                            <button type="button" class="input-dropdown-trigger" aria-label="Open presets">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="input-dropdown-menu">
+                                <div class="dropdown-item" data-value="blurry">Blurry</div>
+                                <div class="dropdown-item" data-value="low_res">Low Res</div>
+                                <div class="dropdown-item" data-value="deformed">Deformed</div>
+                                <div class="dropdown-item" data-value="watermark">Watermark</div>
+                                <div class="dropdown-item" data-value="flicker">Flicker</div>
+                                <div class="dropdown-item" data-value="grainy">Grainy</div>
+                                <div class="dropdown-item" data-value="overexposed">Overexposed</div>
+                                <div class="dropdown-item" data-value="extra_limbs">Extra Limbs</div>
+                                <div class="dropdown-item" data-value="distorted">Distorted</div>
+                                <div class="dropdown-item" data-value="unrealistic">Unrealistic</div>
+                            </div>
+                        </div>
                     </div>
-                    <input type="text" class="scene-negative-prompt" placeholder="Or type custom elements to exclude..." style="background: rgba(0,0,0,0.2); margin-bottom: 5px;">
                 </div>
             </div>
         `;
@@ -433,29 +444,68 @@ document.addEventListener('DOMContentLoaded', () => {
         updateModelUI();
     });
 
-    // Event Delegation for Pills
+    // Event Delegation for Pills & Dropdowns
     scenesContainer.addEventListener('click', (e) => {
+        // --- Pills Logic ---
         if (e.target.classList.contains('pill')) {
             const pill = e.target;
             const container = pill.closest('.pills-container');
-            const isNegativePill = container.classList.contains('negative-pills');
+            const hiddenInput = container.previousElementSibling;
 
-            if (isNegativePill) {
-                // Multi-select for negative prompts
-                pill.classList.toggle('active');
+            // Toggle logic for single-select (camera/lighting)
+            if (pill.classList.contains('active')) {
+                pill.classList.remove('active');
+                hiddenInput.value = "";
             } else {
-                const hiddenInput = container.previousElementSibling;
-                // Toggle logic for single-select (camera/lighting)
-                if (pill.classList.contains('active')) {
-                    pill.classList.remove('active');
-                    hiddenInput.value = "";
-                } else {
-                    container.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-                    pill.classList.add('active');
-                    hiddenInput.value = pill.dataset.value;
-                }
+                container.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                hiddenInput.value = pill.dataset.value;
             }
         }
+
+        // --- Negative Prompt Dropdown Toggle ---
+        const dropdownTrigger = e.target.closest('.input-dropdown-trigger');
+        if (dropdownTrigger) {
+            e.stopPropagation();
+            const wrapper = dropdownTrigger.closest('.input-dropdown-wrapper');
+
+            // Close all other dropdowns first
+            document.querySelectorAll('.input-dropdown-wrapper.open').forEach(openWrapper => {
+                if (openWrapper !== wrapper) openWrapper.classList.remove('open');
+            });
+
+            wrapper.classList.toggle('open');
+        }
+
+        // --- Negative Prompt Dropdown Item Selection ---
+        const dropdownItem = e.target.closest('.input-dropdown-menu .dropdown-item');
+        if (dropdownItem) {
+            e.stopPropagation();
+            const wrapper = dropdownItem.closest('.input-dropdown-wrapper');
+            const input = wrapper.closest('.input-with-dropdown').querySelector('input');
+            const value = dropdownItem.textContent.trim();
+
+            let currentVal = input.value.trim();
+            if (currentVal) {
+                // Check if already contains the value
+                const items = currentVal.split(',').map(i => i.trim().toLowerCase());
+                if (!items.includes(value.toLowerCase())) {
+                    input.value = `${currentVal}, ${value}`;
+                }
+            } else {
+                input.value = value;
+            }
+
+            wrapper.classList.remove('open');
+            input.focus();
+        }
+    });
+
+    // Close all input dropdowns when clicking outside
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.input-dropdown-wrapper.open').forEach(wrapper => {
+            wrapper.classList.remove('open');
+        });
     });
 
     // Remove Scene Function (Global wrapper)
@@ -534,18 +584,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const camera = sceneEl.querySelector('.scene-camera-value').value;
                 const lighting = sceneEl.querySelector('.scene-lighting-value').value;
 
-                // Get values from active negative pills
-                const selectedNegativePills = Array.from(sceneEl.querySelectorAll('.negative-pills .pill.active'))
-                    .map(p => p.textContent);
-
-                // Get custom negative prompt
-                const customNegative = sceneEl.querySelector('.scene-negative-prompt').value.trim();
-
-                // Combine them
-                let finalNegative = selectedNegativePills.join(', ');
-                if (customNegative) {
-                    finalNegative = finalNegative ? `${finalNegative}, ${customNegative}` : customNegative;
-                }
+                // Get negative prompt from the input field (which handles both manual and presets)
+                const finalNegative = sceneEl.querySelector('.scene-negative-prompt').value.trim();
 
                 // Only add if description exists
                 if (description.trim()) {
