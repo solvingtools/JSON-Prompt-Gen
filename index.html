@@ -47,8 +47,8 @@
             // In production: Sentry.captureException(error);
         };
     </script>
-  <script type="module" crossorigin src="/JSON-Prompt-Gen/assets/index-Ba8LgmCT.js"></script>
-  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/index-CzjVbStY.css">
+  <script type="module" crossorigin src="/JSON-Prompt-Gen/assets/index-g0cW5Z4g.js"></script>
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/index-BJ8Tkuai.css">
 <link rel="manifest" href="/JSON-Prompt-Gen/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/JSON-Prompt-Gen/registerSW.js"></script></head>
 
 <body>
@@ -385,19 +385,20 @@
 
                         <div class="form-group">
                             <label class="section-label">Negative Prompts</label>
-                            <div class="input-with-dropdown">
+                            <div class="input-group">
                                 <input type="text" class="scene-negative-prompt"
                                     placeholder="Type elements to exclude or select from presets..."
                                     aria-label="Custom negative prompts">
-                                <div class="input-dropdown-wrapper" id="negative-prompt-dropdown">
-                                    <button type="button" class="input-dropdown-trigger" aria-label="Open presets">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round">
+                                <div class="custom-dropdown negative-presets-dropdown">
+                                    <div class="dropdown-trigger">
+                                        <span class="dropdown-value">Presets</span>
+                                        <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="16"
+                                            height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <polyline points="6 9 12 15 18 9"></polyline>
                                         </svg>
-                                    </button>
-                                    <div class="input-dropdown-menu">
+                                    </div>
+                                    <div class="dropdown-menu">
                                         <div class="dropdown-item" data-value="blurry">Blurry</div>
                                         <div class="dropdown-item" data-value="low_res">Low Res</div>
                                         <div class="dropdown-item" data-value="deformed">Deformed</div>
