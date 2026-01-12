@@ -410,17 +410,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="form-group">
                     <label class="section-label">Negative Prompts</label>
-                    <div class="input-with-dropdown">
+                    <div class="input-group">
                         <input type="text" class="scene-negative-prompt" 
                             placeholder="Type elements to exclude or select from presets..."
                             aria-label="Custom negative prompts">
-                        <div class="input-dropdown-wrapper">
-                            <button type="button" class="input-dropdown-trigger" aria-label="Open presets">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <div class="custom-dropdown negative-presets-dropdown">
+                            <div class="dropdown-trigger">
+                                <span class="dropdown-value">Presets</span>
+                                <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg>
-                            </button>
-                            <div class="input-dropdown-menu">
+                            </div>
+                            <div class="dropdown-menu">
                                 <div class="dropdown-item" data-value="blurry">Blurry</div>
                                 <div class="dropdown-item" data-value="low_res">Low Res</div>
                                 <div class="dropdown-item" data-value="deformed">Deformed</div>
@@ -464,13 +465,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // --- Negative Prompt Dropdown Toggle ---
-        const dropdownTrigger = e.target.closest('.input-dropdown-trigger');
+        const dropdownTrigger = e.target.closest('.negative-presets-dropdown .dropdown-trigger');
         if (dropdownTrigger) {
             e.stopPropagation();
-            const wrapper = dropdownTrigger.closest('.input-dropdown-wrapper');
+            const wrapper = dropdownTrigger.closest('.negative-presets-dropdown');
 
             // Close all other dropdowns first
-            document.querySelectorAll('.input-dropdown-wrapper.open').forEach(openWrapper => {
+            document.querySelectorAll('.negative-presets-dropdown.open').forEach(openWrapper => {
                 if (openWrapper !== wrapper) openWrapper.classList.remove('open');
             });
 
@@ -478,11 +479,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // --- Negative Prompt Dropdown Item Selection ---
-        const dropdownItem = e.target.closest('.input-dropdown-menu .dropdown-item');
+        const dropdownItem = e.target.closest('.negative-presets-dropdown .dropdown-item');
         if (dropdownItem) {
             e.stopPropagation();
-            const wrapper = dropdownItem.closest('.input-dropdown-wrapper');
-            const input = wrapper.closest('.input-with-dropdown').querySelector('input');
+            const wrapper = dropdownItem.closest('.negative-presets-dropdown');
+            const input = wrapper.closest('.input-group').querySelector('input');
             const value = dropdownItem.textContent.trim();
 
             let currentVal = input.value.trim();
@@ -503,7 +504,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close all input dropdowns when clicking outside
     document.addEventListener('click', () => {
-        document.querySelectorAll('.input-dropdown-wrapper.open').forEach(wrapper => {
+        document.querySelectorAll('.negative-presets-dropdown.open').forEach(wrapper => {
             wrapper.classList.remove('open');
         });
     });

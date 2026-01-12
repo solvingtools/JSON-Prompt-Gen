@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) navigator.serviceWorker.register('/JSON-Prompt-Gen/dev-sw.js?dev-sw', { scope: '/JSON-Prompt-Gen/', type: 'classic' })
