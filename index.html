@@ -47,8 +47,8 @@
             // In production: Sentry.captureException(error);
         };
     </script>
-  <script type="module" crossorigin src="/JSON-Prompt-Gen/assets/index-BnEKSU8_.js"></script>
-  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/index-C6hdqLDd.css">
+  <script type="module" crossorigin src="/JSON-Prompt-Gen/assets/index-Ba8LgmCT.js"></script>
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/index-CzjVbStY.css">
 <link rel="manifest" href="/JSON-Prompt-Gen/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/JSON-Prompt-Gen/registerSW.js"></script></head>
 
 <body>
@@ -385,21 +385,32 @@
 
                         <div class="form-group">
                             <label class="section-label">Negative Prompts</label>
-                            <div class="pills-container negative-pills mb-12">
-                                <button class="pill" data-value="blurry">Blurry</button>
-                                <button class="pill" data-value="low_res">Low Res</button>
-                                <button class="pill" data-value="deformed">Deformed</button>
-                                <button class="pill" data-value="watermark">Watermark</button>
-                                <button class="pill" data-value="flicker">Flicker</button>
-                                <button class="pill" data-value="grainy">Grainy</button>
-                                <button class="pill" data-value="overexposed">Overexposed</button>
-                                <button class="pill" data-value="extra_limbs">Extra Limbs</button>
-                                <button class="pill" data-value="distorted">Distorted</button>
-                                <button class="pill" data-value="unrealistic">Unrealistic</button>
+                            <div class="input-with-dropdown">
+                                <input type="text" class="scene-negative-prompt"
+                                    placeholder="Type elements to exclude or select from presets..."
+                                    aria-label="Custom negative prompts">
+                                <div class="input-dropdown-wrapper" id="negative-prompt-dropdown">
+                                    <button type="button" class="input-dropdown-trigger" aria-label="Open presets">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </button>
+                                    <div class="input-dropdown-menu">
+                                        <div class="dropdown-item" data-value="blurry">Blurry</div>
+                                        <div class="dropdown-item" data-value="low_res">Low Res</div>
+                                        <div class="dropdown-item" data-value="deformed">Deformed</div>
+                                        <div class="dropdown-item" data-value="watermark">Watermark</div>
+                                        <div class="dropdown-item" data-value="flicker">Flicker</div>
+                                        <div class="dropdown-item" data-value="grainy">Grainy</div>
+                                        <div class="dropdown-item" data-value="overexposed">Overexposed</div>
+                                        <div class="dropdown-item" data-value="extra_limbs">Extra Limbs</div>
+                                        <div class="dropdown-item" data-value="distorted">Distorted</div>
+                                        <div class="dropdown-item" data-value="unrealistic">Unrealistic</div>
+                                    </div>
+                                </div>
                             </div>
-                            <input type="text" class="scene-negative-prompt"
-                                placeholder="Or type custom elements to exclude..."
-                                aria-label="Custom negative prompts">
                         </div>
                     </div>
                 </div>
