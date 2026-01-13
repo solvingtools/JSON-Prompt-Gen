@@ -781,8 +781,9 @@ textarea:hover {
     width: 100%;
 }
 
-.scene-params-grid .form-group {
-    margin-bottom: 12px;
+.scene-params-grid .form-group,
+.scene-item .form-group:has(.scene-description) {
+    margin-bottom: 30px;
     padding-bottom: 0;
 }
 
