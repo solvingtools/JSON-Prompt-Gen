@@ -29,6 +29,65 @@
     line-height: 1.6;
 }
 
+/* Beta Notice */
+.beta-notice {
+    max-width: 800px;
+    margin: -40px auto 40px;
+    background: rgba(251, 191, 36, 0.08);
+    border: 1px solid rgba(251, 191, 36, 0.2);
+    border-radius: var(--radius-md);
+    padding: 24px 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.8s ease-out;
+}
+
+.beta-icon-wrapper {
+    background: rgba(251, 191, 36, 0.15);
+    color: #fbbf24;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.2);
+}
+
+.beta-content h4 {
+    margin: 0 0 8px;
+    color: #fbbf24;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.beta-content p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.beta-content strong {
+    color: #fff;
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .beta-notice {
+        margin: -20px 20px 40px;
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+    }
+}
+
 /* Tier Grid */
 .pricing-grid {
     display: flex;
