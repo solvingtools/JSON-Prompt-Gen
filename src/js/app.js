@@ -378,6 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <label class="section-label">Scene Description</label>
                     <textarea class="scene-description" placeholder="Describe your scene in detail..." style="min-height: 100px;"></textarea>
                 </div>
+                <div class="scene-params-grid">
                 <div class="form-group mb-30">
                     <label class="section-label">Camera Angle</label>
                     <div class="input-with-dropdown">
@@ -527,6 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                 </div>
+                </div> <!-- End scene-params-grid -->
             </div>
         `;
 
