@@ -17,6 +17,15 @@
     <link rel="stylesheet" href="src/css/theme.css">
     <link rel="stylesheet" href="src/css/main.css">
     <link rel="stylesheet" href="src/css/legal.css">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YE3QRPSE2C"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-YE3QRPSE2C');
+    </script>
 </head>
 
 <body>
@@ -318,6 +327,23 @@
             </linearGradient>
         </defs>
     </svg>
+    <!-- Tab Recovery Help -->
+    <script>
+        (function () {
+            if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(regs => {
+                        for (let reg of regs) reg.unregister();
+                    });
+                }
+            }
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible' && document.body.innerText.trim() === "") {
+                    window.location.reload();
+                }
+            });
+        })();
+    </script>
 </body>
 
 </html>

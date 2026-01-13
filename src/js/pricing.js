@@ -24,6 +24,11 @@ export class PricingManager {
                     window.showToast('Coming Soon!', `You've been added to the notify list for the ${tierName}.`, 'success', 4000);
                 }
 
+                // Analytics
+                if (window.gaTracker) {
+                    window.gaTracker.trackEvent('pricing_notify_click', { tier: tierName });
+                }
+
                 // Visual feedback on button
                 const originalText = btn.textContent;
                 btn.textContent = 'Notified!';

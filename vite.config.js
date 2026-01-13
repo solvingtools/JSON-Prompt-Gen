@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
-    base: "/JSON-Prompt-Gen/",
+    base: process.env.NODE_ENV === 'production' ? "/JSON-Prompt-Gen/" : "/",
     plugins: [
         VitePWA({
             registerType: 'autoUpdate',
@@ -41,9 +41,24 @@ export default defineConfig({
                 skipWaiting: true
             },
             devOptions: {
-                enabled: false, // Disabled to prevent caching issues in development
+                enabled: false,
                 type: 'module'
             }
         })
-    ]
+    ],
+    build: {
+        rollupOptions: {
+            input: {
+                main: 'index.html',
+                about: 'about.html',
+                contact: 'contact.html',
+                security: 'security.html',
+                documentation: 'documentation.html',
+                privacy: 'legal/privacy.html',
+                terms: 'legal/terms.html',
+                cookies: 'legal/cookies.html',
+                disclaimer: 'legal/disclaimer.html'
+            }
+        }
+    }
 });

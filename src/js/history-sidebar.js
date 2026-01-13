@@ -19,6 +19,7 @@ const initHistorySidebars = () => {
         console.log('Opening History Modal Sidebar');
         if (historySidebar) historySidebar.classList.add('active');
         if (historySidebarOverlay) historySidebarOverlay.classList.add('active');
+        if (window.gaTracker) window.gaTracker.trackEvent('history_sidebar_open', { type: 'modal' });
     }
 
     function closeHistorySidebar() {
@@ -62,6 +63,7 @@ const initHistorySidebars = () => {
         console.log('Opening History Section Sidebar');
         if (historySectionSidebar) historySectionSidebar.classList.add('active');
         if (historySectionSidebarOverlay) historySectionSidebarOverlay.classList.add('active');
+        if (window.gaTracker) window.gaTracker.trackEvent('history_sidebar_open', { type: 'section' });
     }
 
     function closeHistorySectionSidebar() {

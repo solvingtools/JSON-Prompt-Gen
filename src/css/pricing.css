@@ -33,8 +33,9 @@
 .beta-notice {
     max-width: 800px;
     margin: -40px auto 40px;
-    background: rgba(251, 191, 36, 0.08);
-    border: 1px solid rgba(251, 191, 36, 0.2);
+    background: rgba(36, 251, 47, 0.08);
+    border: 1px solid rgba(36, 251, 36, 0.3);
+    border-left: 5px solid #06af00ab;
     border-radius: var(--radius-md);
     padding: 24px 30px;
     display: flex;
@@ -46,21 +47,21 @@
 }
 
 .beta-icon-wrapper {
-    background: rgba(251, 191, 36, 0.15);
-    color: #fbbf24;
+    background: rgba(36, 251, 36, 0.15);
+    color: #06af00ab;
     width: 60px;
     height: 60px;
-    border-radius: 50%;
+    border-radius: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    box-shadow: 0 0 20px rgba(251, 191, 36, 0.2);
+    box-shadow: none;
 }
 
 .beta-content h4 {
     margin: 0 0 8px;
-    color: #fbbf24;
+    color: #06af00d5;
     font-size: 1.1rem;
     font-weight: 700;
     text-transform: uppercase;

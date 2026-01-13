@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const gaTracker = new AnalyticsService();
+    window.gaTracker = gaTracker; // Expose for other modules like Pricing and History
 
     const scenesContainer = document.getElementById('scenes-container');
     const addSceneBtn = document.getElementById('add-scene-btn');
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sidebar.classList.add('active');
         sidebarOverlay.classList.add('active');
         document.body.style.overflow = 'hidden'; // Prevent scroll
+        gaTracker.trackEvent('sidebar_open');
     }
 
     function closeSidebar() {
@@ -88,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sidebarResetBtn) {
         sidebarResetBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            gaTracker.trackEvent('sidebar_action', { action: 'reset' });
             closeSidebar();
             document.getElementById('reset-btn')?.click();
         });
@@ -96,10 +99,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sidebarExportBtn) {
         sidebarExportBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            gaTracker.trackEvent('sidebar_action', { action: 'export' });
             closeSidebar();
             document.getElementById('download-btn')?.click();
         });
     }
+
+    // Tab visibility analytics
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+            gaTracker.trackEvent('tab_wake_up');
+        }
+    });
 
 
     // Initialize Services
@@ -918,6 +929,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Navigation Switcher Logic
     function switchSection(sectionId) {
         if (!sectionId) return;
+        gaTracker.trackEvent('section_view', { section: sectionId });
 
         // Update Nav UI
         document.querySelectorAll('.main-nav a').forEach(l => {
@@ -1260,6 +1272,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const { categoryId } = result;
         if (dictionaryService.deleteTerm(categoryId, termId)) {
+            gaTracker.trackEvent('dict_delete_term', { term_id: termId, category_id: categoryId });
             // Refresh view if viewing this category
             if (activeCategoryId === categoryId) {
                 renderTermsByCategory(categoryId);
@@ -1299,6 +1312,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 dictActiveCategoryTitle.textContent = `Search: "${query}"`;
 
                 const results = dictionaryService.searchTerm(query);
+                gaTracker.trackEvent('dict_search', { query: query, result_count: results.length });
                 renderSearchResults(results);
             } else {
                 if (activeCategoryId) {
@@ -1338,6 +1352,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contributeBtn) {
         contributeBtn.addEventListener('click', () => {
             resetModal();
+            gaTracker.trackEvent('dict_contribute_click');
             contributionModal.classList.remove('hidden');
         });
     }
@@ -1770,6 +1785,12 @@ document.addEventListener('DOMContentLoaded', () => {
             keyValidationStatus.classList.replace('hidden', result.valid ? 'success' : 'error');
             if (!result.valid) keyValidationStatus.classList.add('error');
 
+            gaTracker.trackEvent('llm_setup_attempt', {
+                provider: currentSetupProvider,
+                success: result.valid,
+                model_type: selectedModelId === 'custom' ? 'custom' : 'preset'
+            });
+
             if (result.valid) {
                 await llmService.setProviderKey(currentSetupProvider, key, finalModelId);
                 setTimeout(() => {
@@ -2080,6 +2101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearAllHistory = () => {
         if (confirm('Are you sure you want to clear all history?')) {
             historyService.clear();
+            gaTracker.trackEvent('history_clear_all');
             renderHistoryView('modal');
             renderHistoryView('section');
             if (modalPreview) modalPreview.textContent = "History cleared.";
@@ -2098,6 +2120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (selectedHistoryItem) {
             outputArea.value = JSON.stringify(selectedHistoryItem.content, null, 2);
             historyModal?.classList.add('hidden');
+            gaTracker.trackEvent('history_restore_item', { item_id: selectedHistoryItem.id });
 
             // If in section view, return to generator
             const activeNav = document.querySelector('.main-nav a.active');
