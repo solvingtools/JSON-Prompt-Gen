@@ -46,8 +46,9 @@
             // In production: Sentry.captureException(error);
         };
     </script>
-  <script type="module" crossorigin src="/JSON-Prompt-Gen/assets/index-DwIpFv0C.js"></script>
-  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/index-Cxug4rjF.css">
+  <script type="module" crossorigin src="/JSON-Prompt-Gen/assets/main-CuKh4bzX.js"></script>
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/main-CuCz1y7V.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/main-D0jk5rq0.css">
 <link rel="manifest" href="/JSON-Prompt-Gen/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/JSON-Prompt-Gen/registerSW.js"></script></head>
 
 <body>
@@ -1639,6 +1640,49 @@
         </defs>
     </svg>
     <!-- Main Application Entry Point -->
+
+    <!-- Tab Recovery & Wake-up Helper -->
+    <script>
+        // Professional Recovery Script for PWAs/Vite
+        (function () {
+            // 1. Unregister any stale SW in dev (prevents blank page on version mismatch)
+            if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(regs => {
+                        for (let reg of regs) reg.unregister();
+                    });
+                }
+            }
+
+            // 2. Detect Blank Page on Wake-up
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible') {
+                    // Give Vite/Browser 500ms to recover naturally
+                    setTimeout(() => {
+                        const app = document.querySelector('.app-container');
+                        const mainSection = document.getElementById('generator-section');
+
+                        // If core UI is missing or empty, force a partial or full recover
+                        if (!app || app.innerHTML.trim() === "" || (!mainSection && !document.querySelector('.legal-content') && !document.querySelector('.docs-container'))) {
+                            console.warn('Blank page detected on wake. Recovering...');
+                            window.location.reload();
+                        }
+                    }, 500);
+                }
+            });
+
+            // 3. Global Module Error Catch
+            window.addEventListener('error', (e) => {
+                if (e.message && (e.message.includes('module') || e.message.includes('fetch'))) {
+                    console.error('Critical script failure. Recovery initiated.');
+                    // Only reload if we are indeed in a failed state
+                    if (document.body.innerHTML.trim() === "") {
+                        window.location.reload();
+                    }
+                }
+            }, true);
+        })();
+    </script>
 </body>
 
 </html>
