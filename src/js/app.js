@@ -302,17 +302,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 2. Camera Controls
         const supportsCam = service.supports(modelId, 'supportsCameraControls');
-        document.querySelectorAll('.scene-camera-value').forEach(el => {
+        document.querySelectorAll('.scene-camera-input').forEach(el => {
             const container = el.closest('.form-group');
             if (container) {
                 if (supportsCam) {
                     container.classList.remove('disabled-group');
-                    container.querySelector('.pills-container').style.pointerEvents = 'auto';
+                    el.disabled = false;
                     container.style.opacity = '1';
+                    container.style.pointerEvents = 'auto';
                 } else {
                     container.classList.add('disabled-group');
-                    container.querySelector('.pills-container').style.pointerEvents = 'none';
+                    el.disabled = true;
                     container.style.opacity = '0.5';
+                    container.style.pointerEvents = 'none';
                 }
             }
         });
@@ -377,51 +379,73 @@ document.addEventListener('DOMContentLoaded', () => {
                     <textarea class="scene-description" placeholder="Describe your scene in detail..." style="min-height: 100px; background: rgba(0,0,0,0.2);"></textarea>
                 </div>
                 <div class="form-group mb-30">
+                <div class="form-group mb-30">
                     <label class="section-label">Camera Angle</label>
-                    <input type="hidden" class="scene-camera-value" value="">
-                    <div class="pills-container camera-pills">
-                        <button class="pill" data-value="pan_left">Pan Left</button>
-                        <button class="pill" data-value="pan_right">Pan Right</button>
-                        <button class="pill" data-value="zoom_in">Zoom In</button>
-                        <button class="pill" data-value="zoom_out">Zoom Out</button>
-                        <button class="pill" data-value="dolly_zoom">Dolly Zoom</button>
-                        <button class="pill" data-value="tracking_shot">Track</button>
-                        <button class="pill" data-value="eye_level">Eye Level</button>
-                        <button class="pill" data-value="low_angle">Low Angle</button>
-                        <button class="pill" data-value="high_angle">High Angle</button>
-                        <button class="pill" data-value="aerial_view">Aerial View</button>
+                    <div class="input-with-dropdown">
+                        <input type="text" class="scene-camera-input" 
+                            placeholder="Select angle or type custom..."
+                            aria-label="Camera Angle">
+                        <div class="input-dropdown-wrapper">
+                            <button type="button" class="input-dropdown-trigger" aria-label="Open camera presets">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="input-dropdown-menu">
+                                <div class="dropdown-item" data-value="pan_left">Pan Left</div>
+                                <div class="dropdown-item" data-value="pan_right">Pan Right</div>
+                                <div class="dropdown-item" data-value="zoom_in">Zoom In</div>
+                                <div class="dropdown-item" data-value="zoom_out">Zoom Out</div>
+                                <div class="dropdown-item" data-value="dolly_zoom">Dolly Zoom</div>
+                                <div class="dropdown-item" data-value="tracking_shot">Track</div>
+                                <div class="dropdown-item" data-value="eye_level">Eye Level</div>
+                                <div class="dropdown-item" data-value="low_angle">Low Angle</div>
+                                <div class="dropdown-item" data-value="high_angle">High Angle</div>
+                                <div class="dropdown-item" data-value="aerial_view">Aerial View</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group mb-30">
                     <label class="section-label">Lighting Style</label>
-                    <input type="hidden" class="scene-lighting-value" value="">
-                    <div class="pills-container lighting-pills">
-                        <button class="pill" data-value="natural">Natural</button>
-                        <button class="pill" data-value="golden_hour">Golden Hour</button>
-                        <button class="pill" data-value="blue_hour">Blue Hour</button>
-                        <button class="pill" data-value="neon">Neon Cyberpunk</button>
-                        <button class="pill" data-value="studio">Studio</button>
-                        <button class="pill" data-value="dramatic">Dramatic</button>
-                        <button class="pill" data-value="cinematic">Cinematic</button>
-                        <button class="pill" data-value="softbox">Softbox</button>
-                        <button class="pill" data-value="backlit">Backlit</button>
-                        <button class="pill" data-value="rim_light">Rim Light</button>
+                    <div class="input-with-dropdown">
+                        <input type="text" class="scene-lighting-input" 
+                            placeholder="Select lighting or type custom..."
+                            aria-label="Lighting Style">
+                        <div class="input-dropdown-wrapper">
+                            <button type="button" class="input-dropdown-trigger" aria-label="Open lighting presets">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="input-dropdown-menu">
+                                <div class="dropdown-item" data-value="natural">Natural</div>
+                                <div class="dropdown-item" data-value="golden_hour">Golden Hour</div>
+                                <div class="dropdown-item" data-value="blue_hour">Blue Hour</div>
+                                <div class="dropdown-item" data-value="neon">Neon Cyberpunk</div>
+                                <div class="dropdown-item" data-value="studio">Studio</div>
+                                <div class="dropdown-item" data-value="dramatic">Dramatic</div>
+                                <div class="dropdown-item" data-value="cinematic">Cinematic</div>
+                                <div class="dropdown-item" data-value="softbox">Softbox</div>
+                                <div class="dropdown-item" data-value="backlit">Backlit</div>
+                                <div class="dropdown-item" data-value="rim_light">Rim Light</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="section-label">Negative Prompts</label>
-                    <div class="input-group">
+                    <div class="input-with-dropdown">
                         <input type="text" class="scene-negative-prompt" 
                             placeholder="Type elements to exclude or select from presets..."
                             aria-label="Custom negative prompts">
-                        <div class="custom-dropdown negative-presets-dropdown">
-                            <div class="dropdown-trigger">
-                                <span class="dropdown-value">Presets</span>
-                                <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <div class="input-dropdown-wrapper">
+                            <button type="button" class="input-dropdown-trigger" aria-label="Open presets">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg>
-                            </div>
-                            <div class="dropdown-menu">
+                            </button>
+                            <div class="input-dropdown-menu">
                                 <div class="dropdown-item" data-value="blurry">Blurry</div>
                                 <div class="dropdown-item" data-value="low_res">Low Res</div>
                                 <div class="dropdown-item" data-value="deformed">Deformed</div>
@@ -447,31 +471,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event Delegation for Pills & Dropdowns
     scenesContainer.addEventListener('click', (e) => {
-        // --- Pills Logic ---
-        if (e.target.classList.contains('pill')) {
-            const pill = e.target;
-            const container = pill.closest('.pills-container');
-            const hiddenInput = container.previousElementSibling;
-
-            // Toggle logic for single-select (camera/lighting)
-            if (pill.classList.contains('active')) {
-                pill.classList.remove('active');
-                hiddenInput.value = "";
-            } else {
-                container.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-                pill.classList.add('active');
-                hiddenInput.value = pill.dataset.value;
-            }
-        }
-
-        // --- Negative Prompt Dropdown Toggle ---
-        const dropdownTrigger = e.target.closest('.negative-presets-dropdown .dropdown-trigger');
+        // --- Dropdown Toggle --- //
+        const dropdownTrigger = e.target.closest('.input-dropdown-trigger');
         if (dropdownTrigger) {
             e.stopPropagation();
-            const wrapper = dropdownTrigger.closest('.negative-presets-dropdown');
+            const wrapper = dropdownTrigger.closest('.input-dropdown-wrapper');
 
             // Close all other dropdowns first
-            document.querySelectorAll('.negative-presets-dropdown.open').forEach(openWrapper => {
+            document.querySelectorAll('.input-dropdown-wrapper.open').forEach(openWrapper => {
                 if (openWrapper !== wrapper) openWrapper.classList.remove('open');
             });
 
@@ -479,11 +486,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // --- Negative Prompt Dropdown Item Selection ---
-        const dropdownItem = e.target.closest('.negative-presets-dropdown .dropdown-item');
+        const dropdownItem = e.target.closest('.input-dropdown-menu .dropdown-item');
         if (dropdownItem) {
             e.stopPropagation();
-            const wrapper = dropdownItem.closest('.negative-presets-dropdown');
-            const input = wrapper.closest('.input-group').querySelector('input');
+            const wrapper = dropdownItem.closest('.input-dropdown-wrapper');
+            const input = wrapper.closest('.input-with-dropdown').querySelector('input');
             const value = dropdownItem.textContent.trim();
 
             let currentVal = input.value.trim();
@@ -504,7 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close all input dropdowns when clicking outside
     document.addEventListener('click', () => {
-        document.querySelectorAll('.negative-presets-dropdown.open').forEach(wrapper => {
+        document.querySelectorAll('.input-dropdown-wrapper.open').forEach(wrapper => {
             wrapper.classList.remove('open');
         });
     });
@@ -581,9 +588,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             sceneElements.forEach(sceneEl => {
                 const description = sceneEl.querySelector('.scene-description').value;
-                // Get values from hidden inputs
-                const camera = sceneEl.querySelector('.scene-camera-value').value;
-                const lighting = sceneEl.querySelector('.scene-lighting-value').value;
+                // Get values from new input fields
+                const camera = sceneEl.querySelector('.scene-camera-input').value.trim();
+                const lighting = sceneEl.querySelector('.scene-lighting-input').value.trim();
 
                 // Get negative prompt from the input field (which handles both manual and presets)
                 const finalNegative = sceneEl.querySelector('.scene-negative-prompt').value.trim();
