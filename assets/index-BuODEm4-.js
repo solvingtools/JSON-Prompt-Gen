@@ -131,9 +131,8 @@ ${r}`}]}],generationConfig:{temperature:d.temperature||.7,maxOutputTokens:d.maxT
                 </div>
                 <div class="form-group mb-30">
                     <label class="section-label">Scene Description</label>
-                    <textarea class="scene-description" placeholder="Describe your scene in detail..." style="min-height: 100px; background: rgba(0,0,0,0.2);"></textarea>
+                    <textarea class="scene-description" placeholder="Describe your scene in detail..." style="min-height: 100px;"></textarea>
                 </div>
-                <div class="form-group mb-30">
                 <div class="form-group mb-30">
                     <label class="section-label">Camera Angle</label>
                     <div class="input-with-dropdown">
