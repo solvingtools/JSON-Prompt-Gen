@@ -2242,19 +2242,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
             sceneElements.forEach(sceneEl => {
                 const desc = sceneEl.querySelector('.scene-description').value;
-                const cam = sceneEl.querySelector('.scene-camera-value').value;
-                const light = sceneEl.querySelector('.scene-lighting-value').value;
-                // Save data-values for restoration
-                const negPills = Array.from(sceneEl.querySelectorAll('.negative-pills .pill.active')).map(p => p.dataset.value);
-                const custNeg = sceneEl.querySelector('.scene-negative-prompt').value;
-
-                // Camera/Light Pills are single select and stored in hidden input 'cam'/'light'
+                const cam = sceneEl.querySelector('.scene-camera-input')?.value || '';
+                const light = sceneEl.querySelector('.scene-lighting-input')?.value || '';
+                const color = sceneEl.querySelector('.scene-color-input')?.value || '';
+                const mood = sceneEl.querySelector('.scene-mood-input')?.value || '';
+                const sound = sceneEl.querySelector('.scene-sound-input')?.value || '';
+                const custNeg = sceneEl.querySelector('.scene-negative-prompt')?.value || '';
 
                 scenes.push({
                     description: desc,
                     camera: cam,
                     lighting: light,
-                    negativePills: negPills,
+                    color: color,
+                    mood: mood,
+                    sound: sound,
                     customNegative: custNeg
                 });
             });
@@ -2301,41 +2302,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const newScene = scenesContainer.lastElementChild;
                 if (newScene) {
                     newScene.querySelector('.scene-description').value = sceneData.description || '';
-
-                    // Restore Camera
-                    if (sceneData.camera) {
-                        newScene.querySelector('.scene-camera-value').value = sceneData.camera;
-                        // Activate Pill
-                        const camPills = newScene.querySelectorAll('.camera-pills .pill');
-                        camPills.forEach(p => {
-                            if (p.dataset.value === sceneData.camera) p.classList.add('active');
-                        });
-                    }
-
-                    // Restore Lighting
-                    if (sceneData.lighting) {
-                        newScene.querySelector('.scene-lighting-value').value = sceneData.lighting;
-                        // Activate Pill
-                        const lightPills = newScene.querySelectorAll('.lighting-pills .pill');
-                        lightPills.forEach(p => {
-                            if (p.dataset.value === sceneData.lighting) p.classList.add('active');
-                        });
-                    }
-
+                    newScene.querySelector('.scene-camera-input').value = sceneData.camera || '';
+                    newScene.querySelector('.scene-lighting-input').value = sceneData.lighting || '';
+                    newScene.querySelector('.scene-color-input').value = sceneData.color || '';
+                    newScene.querySelector('.scene-mood-input').value = sceneData.mood || '';
+                    newScene.querySelector('.scene-sound-input').value = sceneData.sound || '';
                     newScene.querySelector('.scene-negative-prompt').value = sceneData.customNegative || '';
-
-                    // Restore Negative Pills
-                    if (sceneData.negativePills && Array.isArray(sceneData.negativePills)) {
-                        const container = newScene.querySelector('.negative-pills');
-                        if (container) {
-                            const pills = container.querySelectorAll('.pill');
-                            pills.forEach(p => {
-                                if (sceneData.negativePills.includes(p.dataset.value)) {
-                                    p.classList.add('active');
-                                }
-                            });
-                        }
-                    }
                 }
             });
 

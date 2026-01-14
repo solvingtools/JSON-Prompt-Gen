@@ -1973,12 +1973,15 @@ kbd {
     /* Card Header - Keep in same row */
     .card-header {
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 15px;
+        justify-content: space-between;
     }
 
     .card-actions {
-        flex-wrap: wrap;
-        gap: 8px;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 10px;
+        align-items: center;
     }
 
     /* Button Sizing */
@@ -2255,6 +2258,20 @@ kbd {
         font-size: 1rem !important;
     }
 
+    /* Stack card actions vertically if very narrow */
+    .card-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 15px !important;
+    }
+
+    .card-actions {
+        width: 100% !important;
+        justify-content: flex-start !important;
+        flex-wrap: wrap !important;
+        gap: 12px !important;
+    }
+
     .btn {
         padding: 7px 10px;
         font-size: 0.75rem;
@@ -2297,5 +2314,58 @@ kbd {
 
     .getting-started-step li {
         font-size: 0.8rem;
+    }
+}
+
+/* Fix Hover Stuck State on Mobile */
+@media (hover: none) {
+    .btn:hover {
+        background: rgba(255, 255, 255, 0.05) !important;
+        color: inherit !important;
+        transform: none !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .btn-primary:hover {
+        background: var(--accent-gradient) !important;
+        filter: none !important;
+    }
+
+    .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .btn-pricing:hover {
+        background: rgba(255, 255, 255, 0.05) !important;
+        transform: none !important;
+    }
+
+    .card:hover {
+        transform: none !important;
+        box-shadow: none !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+}
+/* Additional Mobile Hover Suppression */
+@media (hover: none) {
+    .pill:hover,
+    .sidebar-link:hover,
+    .dropdown-item:hover,
+    .input-dropdown-trigger:hover,
+    .hamburger-btn:hover {
+        background: inherit !important;
+        color: inherit !important;
+        transform: none !important;
+        box-shadow: none !important;
+    }
+    
+    /* Keep active states visible */
+    .pill.active:hover {
+        background: var(--accent-gradient) !important;
+        color: white !important;
+    }
+    
+    .sidebar-link.active:hover {
+        background: rgba(255, 255, 255, 0.08) !important;
     }
 }

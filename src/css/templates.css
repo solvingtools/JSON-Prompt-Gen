@@ -231,6 +231,13 @@
     transition: opacity 0.2s;
 }
 
+/* Show actions on mobile by default since hover won't work */
+@media (hover: none) {
+    .template-actions {
+        opacity: 1;
+    }
+}
+
 .template-card:hover .template-actions {
     opacity: 1;
 }
