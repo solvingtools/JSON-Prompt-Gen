@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON Prompt Gen</title>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>JSON Prompt Generator | Technical Video Prompting for Veo & Sora</title>
+    <meta name="description"
+        content="The professional IDE for AI video prompting. Create validated JSON prompts, manage camera controls, and save credits.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,17 +17,10 @@
 
     <!-- Styles -->
 
-    <!-- PWA (Managed by vite-plugin-pwa) -->
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.webmanifest">
     <link rel="icon" type="image/png" href="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png">
     <link rel="apple-touch-icon" href="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="JSON Prompt Gen">
-    <meta property="og:description" content="Generate professional JSON prompts for AI video generation.">
-    <meta property="og:image" content="src/assets/icon-512.png">
-    <meta property="og:url" content="https://json-prompt-gen.app/">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XN8KY5PPLK"></script>
@@ -35,1654 +28,624 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-XN8KY5PPLK');
     </script>
-
-    <!-- Error Tracking (Sentry Placeholder) -->
-    <script>
-        window.onerror = function (message, source, lineno, colno, error) {
-            console.warn('Sentry Event (Placeholder):', { message, source, lineno, colno, error });
-            // In production: Sentry.captureException(error);
-        };
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "JSON Prompt Gen",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "The professional IDE for AI video prompting. Create validated JSON prompts for Veo 3.1, Sora, and Kling.",
+      "featureList": "JSON Validation, Cinematic Dictionary, Multi-Model Support"
+    }
     </script>
-  <script type="module" crossorigin src="/JSON-Prompt-Gen/assets/main-DitZq-Hq.js"></script>
-  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/main-8Z7fc9Xg.css">
-  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/main-2rsbtlUy.css">
+  <script type="module" crossorigin src="/JSON-Prompt-Gen/assets/main-C8BWxlJ4.js"></script>
+  <link rel="modulepreload" crossorigin href="/JSON-Prompt-Gen/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/main-TV_rwV0_.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/theme-BLCvdzzT.css">
 <link rel="manifest" href="/JSON-Prompt-Gen/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/JSON-Prompt-Gen/registerSW.js"></script></head>
 
 <body>
-    <!-- Sidebar Menu -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <span class="sidebar-title gradient-text">Menu</span>
-            <button class="sidebar-close" id="sidebar-close" aria-label="Close menu">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
+    <!-- Navbar -->
+    <nav class="landing-nav">
+        <div class="nav-content">
+            <div class="logo">
+                <img src="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png" alt="JSON Prompt Gen Logo" class="logo-img">
+                <span class="gradient-text">JSON Prompt Gen</span>
+            </div>
+            <div class="nav-links">
+                <a href="#blog">Blog</a>
+                <a href="#pricing">Pricing</a>
+                <!--<a href="app.html" class="btn btn-secondary">Login</a>-->
+                <a href="app.html" class="btn-launch-beta">Launch Beta</a>
+            </div>
         </div>
+    </nav>
 
-        <nav class="sidebar-nav">
-            <div class="sidebar-section">
-                <h4 class="sidebar-section-title">Navigation</h4>
-                <ul>
-                    <li><a href="#" data-section="generator-section" class="sidebar-link active">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="sidebar-icon">
-                                <rect width="20" height="20" x="2" y="2" rx="2.18" ry="2.18" />
-                                <line x1="7" x2="7" y1="2" y2="22" />
-                                <line x1="17" x2="17" y1="2" y2="22" />
-                                <line x1="2" x2="22" y1="12" y2="12" />
-                                <line x1="2" x2="7" y1="7" y2="7" />
-                                <line x1="2" x2="7" y1="17" y2="17" />
-                                <line x1="17" x2="22" y1="17" y2="17" />
-                                <line x1="17" x2="22" y1="7" y2="7" />
-                            </svg> JSON Generator
-                        </a></li>
-                    <li><a href="#" data-section="dictionary-section" class="sidebar-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="sidebar-icon">
-                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-                            </svg> Dictionary
-                        </a></li>
-                    <li><a href="#" data-section="llm-section" class="sidebar-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="sidebar-icon">
-                                <path d="M12 8V4H8" />
-                                <rect width="16" height="12" x="4" y="8" rx="2" />
-                                <path d="M2 14h2" />
-                                <path d="M20 14h2" />
-                                <path d="M15 13v2" />
-                                <path d="M9 13v2" />
-                            </svg> LLM Integration
-                        </a></li>
-                    <li><a href="#" data-section="history-section" class="sidebar-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="sidebar-icon">
-                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                                <path d="M3 3v5h5" />
-                                <path d="M12 7v5l4 2" />
-                            </svg> History
-                        </a></li>
-                    <li><a href="#" data-section="pricing-section" class="sidebar-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="sidebar-icon">
-                                <rect width="20" height="14" x="2" y="5" rx="2" />
-                                <line x1="2" x2="22" y1="10" y2="10" />
-                            </svg> Pricing
-                        </a></li>
-                </ul>
+    <!-- 3D Background -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-centered">
+            <!-- Beta Badge -->
+            <div class="beta-badge fade-in-up">
+                <span class="beta-icon">🚀</span> Public Beta Open
             </div>
 
-            <div class="sidebar-section">
-                <h4 class="sidebar-section-title">Quick Actions</h4>
-                <ul>
-                    <li><a href="#" id="sidebar-reset-btn" class="sidebar-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="sidebar-icon">
-                                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
-                                <path d="M21 3v5h-5" />
-                                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
-                                <path d="M8 16H3v5" />
-                            </svg> Reset Generator
-                        </a></li>
-                    <li><a href="#" id="sidebar-export-btn" class="sidebar-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="sidebar-icon">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                <polyline points="7 10 12 15 17 10" />
-                                <line x1="12" x2="12" y1="15" y2="3" />
-                            </svg> Export JSON
-                        </a></li>
-                </ul>
-            </div>
+            <h1 class="hero-title">
+                Stop Burning Credits.<br>
+                <span class="gradient-text-anim">Generate Precision JSON</span>
+            </h1>
+            <p class="hero-subtitle">
+                The technical JSON Prompt I.D.E. for professional, cinematic AI video. Validate schemas for Veo 3.1,
+                Sora 2, Runway, Luma Dream Machine, and Kling in seconds — offline & zero-server.
+            </p>
 
-            <div class="sidebar-section">
-                <h4 class="sidebar-section-title">Resources</h4>
-                <ul>
-                    <li><a href="about.html" class="sidebar-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="sidebar-icon">
-                                <circle cx="12" cy="12" r="10" />
-                                <path d="M12 16v-4" />
-                                <path d="M12 8h.01" />
-                            </svg> About Us
-                        </a></li>
-                    <li><a href="contact.html" class="sidebar-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="sidebar-icon">
-                                <rect width="20" height="16" x="2" y="4" rx="2" />
-                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                            </svg> Contact
-                        </a></li>
-                    <li><a href="security.html" class="sidebar-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="sidebar-icon">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-                                <path d="m9 12 2 2 4-4" />
-                            </svg> Security
-                        </a></li>
-                </ul>
-            </div>
-
-            <div class="sidebar-section">
-                <h4 class="sidebar-section-title">Support</h4>
-                <ul>
-                    <li><a href="documentation.html" class="sidebar-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="sidebar-icon">
-                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-                            </svg> Documentation
-                        </a></li>
-                    <li><a href="documentation.html#faq" class="sidebar-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="sidebar-icon">
-                                <circle cx="12" cy="12" r="10" />
-                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-                                <path d="M12 17h.01" />
-                            </svg> FAQ
-                        </a></li>
-                    <li><button id="sidebar-feedback-btn" class="sidebar-link btn-reset-style" type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="sidebar-icon">
-                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                            </svg> Send Feedback
-                        </button></li>
-                </ul>
-            </div>
-        </nav>
-
-        <div class="sidebar-footer">
-            <p>&copy; 2026 JSON Prompt Gen</p>
-        </div>
-    </aside>
-
-    <!-- Sidebar Overlay -->
-    <div class="sidebar-overlay" id="sidebar-overlay"></div>
-
-
-    <!-- Header separated from app-container -->
-    <header class="site-header">
-        <div class="header-inner">
-            <div class="header-left">
-                <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </button>
-                <div class="logo">
-                    <img src="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png" alt="JSON Prompt Gen Logo" class="logo-img">
-                    <h1 class="gradient-text">JSON Prompt Gen</h1>
-                </div>
-            </div>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#" data-section="generator-section" class="active">JSON Generator</a></li>
-                    <li><a href="#" data-section="dictionary-section">Dictionary</a></li>
-                    <li><a href="#" data-section="llm-section">LLM Integration</a></li>
-                    <li><a href="#" data-section="history-section">History</a></li>
-                    <li><a href="#" data-section="pricing-section">Pricing</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <div class="app-container">
-        <main>
-            <!-- Hero Section -->
-            <section class="hero-section text-center">
-                <h2 class="gradient-text">
-                    Professional JSON Prompt Generator</h2>
-                <div class="section-underline"></div>
-                <p>
-                    Create cinematic AI video prompts for platforms like VEO with precision and ease
-                </p>
-            </section>
-
-
-
-            <!-- Generator Section -->
-
-            <section id="generator-section" class="card">
-                <div class="card-header">
-                    <h3>Prompt Generator</h3>
-                    <div class="card-actions">
-                        <!-- Mode Switcher -->
-                        <div class="mode-switcher">
-                            <input type="radio" id="mode-json" name="gen-mode" value="json" checked>
-                            <label for="mode-json" title="Standard JSON Output">JSON</label>
-
-                            <input type="radio" id="mode-ai" name="gen-mode" value="ai">
-                            <label for="mode-ai" title="AI Enhanced JSON Output">AI Mode</label>
-
-                            <div class="mode-bg"></div>
-                        </div>
-                        <button class="btn btn-secondary btn-icon" id="reset-btn" type="button" title="Reset">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                                <path d="M3 3v5h5" />
-                            </svg>
-                        </button>
-                        <button id="generate-btn" class="btn btn-primary btn-icon" type="button" title="Generate JSON">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path
-                                    d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-                <div id="scenes-container">
-                    <!-- Scenes will be added here dynamically -->
-                    <div class="scene-item" data-scene-id="1">
-                        <div class="scene-header">
-                            <h4 class="scene-title">
-                                Scene 1</h4>
-                            <div class="scene-actions">
-                                <button class="scene-undo-btn hidden" title="Undo AI Enhancement">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M3 10h10a5 5 0 0 1 5 5v2" />
-                                        <path d="m3 10 6 6" />
-                                        <path d="m3 10 6-6" />
-                                    </svg>
-                                </button>
-                                <button class="scene-redo-btn hidden" title="Redo AI Enhancement">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M21 10H11a5 5 0 0 0-5 5v2" />
-                                        <path d="m21 10-6 6" />
-                                        <path d="m21 10-6-6" />
-                                    </svg>
-                                </button>
-                                <button class="scene-enhance-btn" title="Enhance with AI">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        class="enhance-stars-icon">
-                                        <path
-                                            d="M15.5 5.5 L16.8 10.2 L21.5 11.5 L16.8 12.8 L15.5 17.5 L14.2 12.8 L9.5 11.5 L14.2 10.2 Z" />
-                                        <path
-                                            d="M5.5 2.5 L6.2 4.8 L8.5 5.5 L6.2 6.2 L5.5 8.5 L4.8 6.2 L2.5 5.5 L4.8 4.8 Z" />
-                                        <path
-                                            d="M6.5 15.5 L7.2 17.8 L9.5 18.5 L7.2 19.2 L6.5 21.5 L5.8 19.2 L3.5 18.5 L5.8 17.8 Z" />
-                                    </svg>
-                                </button>
-                                <button class="remove-scene-btn" onclick="removeScene(this)" title="Remove Scene">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                        <path
-                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                        </path>
-                                        <line x1="10" y1="11" x2="10" y2="17"></line>
-                                        <line x1="14" y1="11" x2="14" y2="17"></line>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="section-label">Scene Description</label>
-                            <textarea class="scene-description"
-                                placeholder="Describe your scene in detail..."></textarea>
-                        </div>
-                        <div class="scene-params-grid">
-                            <div class="form-group">
-                                <label class="section-label">Camera Angle</label>
-                                <div class="input-with-dropdown">
-                                    <input type="text" class="scene-camera-input"
-                                        placeholder="Select angle or type custom..." aria-label="Camera Angle">
-                                    <div class="input-dropdown-wrapper">
-                                        <button type="button" class="input-dropdown-trigger"
-                                            aria-label="Open camera presets">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <polyline points="6 9 12 15 18 9"></polyline>
-                                            </svg>
-                                        </button>
-                                        <div class="input-dropdown-menu">
-                                            <div class="dropdown-item" data-value="pan_left">Pan Left</div>
-                                            <div class="dropdown-item" data-value="pan_right">Pan Right</div>
-                                            <div class="dropdown-item" data-value="zoom_in">Zoom In</div>
-                                            <div class="dropdown-item" data-value="zoom_out">Zoom Out</div>
-                                            <div class="dropdown-item" data-value="dolly_zoom">Dolly Zoom</div>
-                                            <div class="dropdown-item" data-value="tracking_shot">Track</div>
-                                            <div class="dropdown-item" data-value="eye_level">Eye Level</div>
-                                            <div class="dropdown-item" data-value="low_angle">Low Angle</div>
-                                            <div class="dropdown-item" data-value="high_angle">High Angle</div>
-                                            <div class="dropdown-item" data-value="aerial_view">Aerial View</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="section-label">Lighting Style</label>
-                                <div class="input-with-dropdown">
-                                    <input type="text" class="scene-lighting-input"
-                                        placeholder="Select lighting or type custom..." aria-label="Lighting Style">
-                                    <div class="input-dropdown-wrapper">
-                                        <button type="button" class="input-dropdown-trigger"
-                                            aria-label="Open lighting presets">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <polyline points="6 9 12 15 18 9"></polyline>
-                                            </svg>
-                                        </button>
-                                        <div class="input-dropdown-menu">
-                                            <div class="dropdown-item" data-value="natural">Natural</div>
-                                            <div class="dropdown-item" data-value="golden_hour">Golden Hour</div>
-                                            <div class="dropdown-item" data-value="blue_hour">Blue Hour</div>
-                                            <div class="dropdown-item" data-value="neon">Neon Cyberpunk</div>
-                                            <div class="dropdown-item" data-value="studio">Studio</div>
-                                            <div class="dropdown-item" data-value="dramatic">Dramatic</div>
-                                            <div class="dropdown-item" data-value="cinematic">Cinematic</div>
-                                            <div class="dropdown-item" data-value="softbox">Softbox</div>
-                                            <div class="dropdown-item" data-value="backlit">Backlit</div>
-                                            <div class="dropdown-item" data-value="rim_light">Rim Light</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="section-label">Color Palettes</label>
-                                <div class="input-with-dropdown">
-                                    <input type="text" class="scene-color-input"
-                                        placeholder="Select palette or type custom..." aria-label="Color Palette">
-                                    <div class="input-dropdown-wrapper">
-                                        <button type="button" class="input-dropdown-trigger"
-                                            aria-label="Open color presets">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <polyline points="6 9 12 15 18 9"></polyline>
-                                            </svg>
-                                        </button>
-                                        <div class="input-dropdown-menu">
-                                            <div class="dropdown-item" data-value="monochromatic">Monochromatic</div>
-                                            <div class="dropdown-item" data-value="complementary">Complementary</div>
-                                            <div class="dropdown-item" data-value="analogous">Analogous</div>
-                                            <div class="dropdown-item" data-value="teal_orange">Cinematic Teal & Orange
-                                            </div>
-                                            <div class="dropdown-item" data-value="cyberpunk">Cyberpunk Glow</div>
-                                            <div class="dropdown-item" data-value="sepia">Sepia Tone</div>
-                                            <div class="dropdown-item" data-value="vibrant">High Saturation</div>
-                                            <div class="dropdown-item" data-value="desaturated">Moody Desaturated</div>
-                                            <div class="dropdown-item" data-value="pastel">Pastel Tones</div>
-                                            <div class="dropdown-item" data-value="bw">Classic B&W</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="section-label">Mood Descriptors</label>
-                                <div class="input-with-dropdown">
-                                    <input type="text" class="scene-mood-input"
-                                        placeholder="Select mood or type custom..." aria-label="Mood Descriptors">
-                                    <div class="input-dropdown-wrapper">
-                                        <button type="button" class="input-dropdown-trigger"
-                                            aria-label="Open mood presets">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <polyline points="6 9 12 15 18 9"></polyline>
-                                            </svg>
-                                        </button>
-                                        <div class="input-dropdown-menu">
-                                            <div class="dropdown-item" data-value="ethereal">Ethereal/Dreamy</div>
-                                            <div class="dropdown-item" data-value="ominous">Dark/Ominous</div>
-                                            <div class="dropdown-item" data-value="energetic">High Energy</div>
-                                            <div class="dropdown-item" data-value="calm">Calm/Peaceful</div>
-                                            <div class="dropdown-item" data-value="nostalgic">Nostalgic</div>
-                                            <div class="dropdown-item" data-value="cyberpunk">Cyberpunk/Neon</div>
-                                            <div class="dropdown-item" data-value="epic">Epic/Cinematic</div>
-                                            <div class="dropdown-item" data-value="suspenseful">Suspenseful</div>
-                                            <div class="dropdown-item" data-value="melancholic">Melancholic</div>
-                                            <div class="dropdown-item" data-value="whimsical">Whimsical</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="section-label">Sound Design</label>
-                                <div class="input-with-dropdown">
-                                    <input type="text" class="scene-sound-input"
-                                        placeholder="Describe sound or select presets..." aria-label="Sound Design">
-                                    <div class="input-dropdown-wrapper">
-                                        <button type="button" class="input-dropdown-trigger"
-                                            aria-label="Open sound presets">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <polyline points="6 9 12 15 18 9"></polyline>
-                                            </svg>
-                                        </button>
-                                        <div class="input-dropdown-menu">
-                                            <div class="dropdown-item" data-value="ambient_wind">Ambient Wind</div>
-                                            <div class="dropdown-item" data-value="orchestral">Cinematic Orchestral
-                                            </div>
-                                            <div class="dropdown-item" data-value="low_hum">Low Hum</div>
-                                            <div class="dropdown-item" data-value="nature">Nature Sounds</div>
-                                            <div class="dropdown-item" data-value="urban_traffic">Urban Traffic</div>
-                                            <div class="dropdown-item" data-value="synthwave">80s Synth</div>
-                                            <div class="dropdown-item" data-value="industrial">Heavy Industrial</div>
-                                            <div class="dropdown-item" data-value="silence">Deep Silence</div>
-                                            <div class="dropdown-item" data-value="asmr">ASMR Rustle</div>
-                                            <div class="dropdown-item" data-value="glitch">Glitchy Beats</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="section-label">Negative Prompts</label>
-                                <div class="input-with-dropdown">
-                                    <input type="text" class="scene-negative-prompt"
-                                        placeholder="Type elements to exclude or select from presets..."
-                                        aria-label="Custom negative prompts">
-                                    <div class="input-dropdown-wrapper" id="negative-prompt-dropdown">
-                                        <button type="button" class="input-dropdown-trigger" aria-label="Open presets">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <polyline points="6 9 12 15 18 9"></polyline>
-                                            </svg>
-                                        </button>
-                                        <div class="input-dropdown-menu">
-                                            <div class="dropdown-item" data-value="blurry">Blurry</div>
-                                            <div class="dropdown-item" data-value="low_res">Low Res</div>
-                                            <div class="dropdown-item" data-value="deformed">Deformed</div>
-                                            <div class="dropdown-item" data-value="watermark">Watermark</div>
-                                            <div class="dropdown-item" data-value="flicker">Flicker</div>
-                                            <div class="dropdown-item" data-value="grainy">Grainy</div>
-                                            <div class="dropdown-item" data-value="overexposed">Overexposed</div>
-                                            <div class="dropdown-item" data-value="extra_limbs">Extra Limbs</div>
-                                            <div class="dropdown-item" data-value="distorted">Distorted</div>
-                                            <div class="dropdown-item" data-value="unrealistic">Unrealistic</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="add-scene-area">
-                    <button id="add-scene-btn" class="btn btn-secondary dashed-border btn-icon" title="Add Scene">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="12" y1="5" x2="12" y2="19">
-                            </line>
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                        </svg>
+            <div class="hero-cta">
+                <div class="cta-group">
+                    <a href="app.html" class="btn btn-lg btn-beam">
+                        <span class="btn-beam-text">Try Beta Now</span>
+                        <div class="btn-beam-glow"></div>
+                    </a>
+                    <button id="hero-notify-btn" class="btn btn-lg btn-secondary btn-icon">
+                        <span class="bell-icon">🔔</span> Get Launch Updates
                     </button>
                 </div>
-            </section>
 
-            <!-- Dictionary Section (Hidden by Default) -->
-            <section id="dictionary-section" class="dictionary-page hidden">
-                <!-- Dictionary Hero -->
-                <div class="dict-hero">
-                    <h2 class="gradient-text">Cinematic Dictionary</h2>
-                    <div class="section-underline"></div>
-                    <p class="dict-subtitle">Explore professional cinematic terms to enhance your AI video prompts</p>
+                <div class="trust-metrics mt-24">
+                    <div class="avatar-group">
+                        <div class="avatar-sm"></div>
+                        <div class="avatar-sm"></div>
+                        <div class="avatar-sm"></div>
+                    </div>
+                    <p class="trust-text">Joined by <strong>1000+ Ai Video Creators, UGC Ads Creators, Filmmakers, and
+                            more</strong> using validated JSON.</p>
                 </div>
 
-                <!-- Dictionary Main Card -->
-                <div class="card dict-main-card">
-                    <div class="card-header">
-                        <div class="header-left-group">
-                            <button class="hamburger-btn" id="dict-hamburger-btn" aria-label="Open categories">
-                                <span class="hamburger-line"></span>
-                                <span class="hamburger-line"></span>
-                                <span class="hamburger-line"></span>
-                            </button>
-                            <h3>Cinematic Dictionary</h3>
-                        </div>
-                        <div class="dict-header-actions">
-                            <button class="btn btn-primary" id="dict-contribute-btn">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                </svg>
-                                Add Terms
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Dictionary Sidebar (Collapsible) -->
-                    <aside class="dict-sidebar" id="dict-sidebar">
-                        <div class="sidebar-header">
-                            <span class="sidebar-title gradient-text">Categories</span>
-                            <button class="sidebar-close" id="dict-sidebar-close" aria-label="Close menu">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                </svg>
-                            </button>
-                        </div>
-                        <ul id="dict-category-list" class="category-list">
-                            <!-- Injected via JS -->
-                        </ul>
-                    </aside>
-
-                    <!-- Dictionary Sidebar Overlay -->
-                    <div class="sidebar-overlay" id="dict-sidebar-overlay"></div>
-
-                    <div class="dict-split-view">
-                        <!-- Main Content: Terms -->
-                        <div class="dict-main-content">
-                            <div class="dict-content-header">
-                                <h3 id="dict-active-category-title">Select a Category</h3>
-                                <div class="dictionary-search-container">
-                                    <svg class="search-icon-inside" xmlns="http://www.w3.org/2000/svg" width="18"
-                                        height="18" viewBox="0 0 24 24" fill="none" stroke-width="2.5"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <defs>
-                                            <linearGradient id="search-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                                <stop offset="0%" stop-color="#697fff" />
-                                                <stop offset="50%" stop-color="#ff3bf8" />
-                                                <stop offset="100%" stop-color="#ffdd1d" />
-                                            </linearGradient>
-                                        </defs>
-                                        <circle cx="11" cy="11" r="8" stroke="url(#search-grad)"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="url(#search-grad)"></line>
-                                    </svg>
-                                    <input type="text" id="dict-search" placeholder="Search cinematic terms..."
-                                        aria-label="Search cinematic terms">
-                                </div>
-                            </div>
-                            <div id="dict-content" class="dict-terms-list">
-                                <!-- Terms injected here -->
-                                <div class="empty-state">Select a category from the sidebar to view terms</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- LLM Integration Section (Hidden by Default) -->
-            <section id="llm-section" class="llm-page hidden">
-                <div class="llm-hero">
-                    <h2 class="gradient-text">AI Integration Hub</h2>
-                    <div class="section-underline"></div>
-                    <p class="llm-subtitle">Select and configure your preferred AI providers to supercharge your prompts
-                    </p>
+                <!-- Beta Note -->
+                <div class="beta-note mb-32 fade-in-up delay-1">
+                    <span class="highlight-text-cyber-yellow">Note:</span> Completely FREE during Beta, you can
+                    configure
+                    your own API Keys to use advanced Ai Features.
                 </div>
 
-                <div class="llm-grid">
-                    <!-- Provider Cards -->
-                    <div class="card provider-card" data-provider="openai">
-                        <div class="provider-badge">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="OpenAI"
-                                width="40">
-                        </div>
-                        <div class="provider-setup-status">NOT CONFIGURED</div>
-                        <p>Power your prompts with GPT-4o, the industry standard for reasoning and cinematic depth.</p>
-                        <button class="btn btn-secondary setup-key-btn">Setup API Key</button>
-                    </div>
-
-                    <div class="card provider-card" data-provider="anthropic">
-                        <div class="provider-badge">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg"
-                                alt="Anthropic" width="40">
-                        </div>
-                        <div class="provider-setup-status">NOT CONFIGURED</div>
-                        <p>Claude 3.5 Sonnet offers exceptional creative writing and adherence to complex cinematic
-                            instructions.</p>
-                        <button class="btn btn-secondary setup-key-btn">Setup API Key</button>
-                    </div>
-
-                    <div class="card provider-card" data-provider="gemini">
-                        <div class="provider-badge">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg"
-                                alt="Gemini" width="70">
-                        </div>
-                        <div class="provider-setup-status">NOT CONFIGURED</div>
-                        <p>Leverage Google's Gemini 1.5 Pro for massive context windows and rapid iterations.</p>
-                        <button class="btn btn-secondary setup-key-btn">Setup API Key</button>
-                    </div>
-                </div>
-
-                <!-- Usage Dashboard -->
-                <div class="card usage-dashboard hidden">
-                    <div class="card-header">
-                        <h3>Usage Stats</h3>
-                        <div class="usage-total-tokens">0 Total Tokens</div>
-                    </div>
-                    <div class="usage-stats-grid">
-                        <!-- Stats injected via JS -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- History Section (Hidden by Default) -->
-            <section id="history-section" class="history-page hidden">
-                <div class="llm-hero">
-                    <h2 class="gradient-text">Version History</h2>
-                    <div class="section-underline"></div>
-                    <p class="llm-subtitle">Retrace your creative process and restore previous iterations of your
-                        prompts</p>
-                </div>
-
-                <div class="card history-main-card">
-                    <div class="card-header">
-                        <div class="header-left-group">
-                            <button class="hamburger-btn" id="history-section-hamburger-btn" aria-label="Open timeline">
-                                <span class="hamburger-line"></span>
-                                <span class="hamburger-line"></span>
-                                <span class="hamburger-line"></span>
-                            </button>
-                            <h3>All Versions</h3>
-                        </div>
-                        <div class="history-actions hidden" id="history-section-preview-actions">
-                            <button class="btn btn-primary" id="history-section-restore-btn"
-                                title="Restore for Editing">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="btn-icon-svg">
-                                    <polyline points="1 4 1 10 7 10"></polyline>
-                                    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
-                                </svg>
-                                Restore
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Main Content: Preview & Diff -->
-                    <div class="history-section-content">
-                        <div class="code-wrapper">
-                            <div class="code-editor" id="history-section-preview-code">
-                                <div class="placeholder-content"></div>Select an item from the sidebar...
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- History Section Sidebar Overlay -->
-                    <div id="history-section-sidebar-overlay" class="sidebar-overlay"></div>
-
-                    <!-- History Section Sidebar -->
-                    <aside class="history-section-sidebar" id="history-section-sidebar">
-                        <div class="sidebar-header">
-                            <span class="sidebar-title gradient-text">History</span>
-                            <div class="sidebar-header-actions">
-                                <button class="btn-icon-small" id="history-section-clear-btn" title="Clear All History"
-                                    aria-label="Clear All History">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                        <path
-                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                        </path>
-                                    </svg>
-                                </button>
-                                <button class="sidebar-close" id="history-section-sidebar-close"
-                                    aria-label="Close timeline">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                        <div id="history-section-list" class="history-list">
-                            <!-- Injected via JS -->
-                            <div class="empty-state">No history recorded yet.</div>
-                        </div>
-                    </aside>
-                </div>
-            </section>
-
-            <!-- API Key Setup Modal -->
-            <div id="llm-key-modal" class="modal-overlay hidden">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 id="modal-provider-name">Setup API Key</h3>
-                        <button class="modal-close-btn" id="llm-modal-close-btn">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Provider Selection (Hidden, set automatically) -->
-                        <div class="form-group pos-relative hidden">
-                            <label>Service Provider</label>
-                            <div class="custom-dropdown" id="llm-provider-dropdown">
-                                <div class="dropdown-trigger" id="provider-dropdown-trigger">
-                                    <span class="dropdown-value">Select Provider</span>
-                                    <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
-                                </div>
-                                <div class="dropdown-menu hidden" id="provider-dropdown-menu">
-                                    <div class="dropdown-item" data-provider-id="openai">OpenAI</div>
-                                    <div class="dropdown-item" data-provider-id="anthropic">Anthropic</div>
-                                    <div class="dropdown-item" data-provider-id="gemini">Gemini</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group pos-relative">
-                            <label>Default Model</label>
-                            <div class="custom-dropdown" id="llm-model-dropdown">
-                                <div class="dropdown-trigger" id="model-dropdown-trigger">
-                                    <span class="dropdown-value">Select Model</span>
-                                    <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
-                                </div>
-                                <div class="dropdown-menu hidden" id="model-dropdown-menu">
-                                    <!-- Models injected via JS -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Custom Model ID (Hidden by default) -->
-                        <div class="form-group hidden" id="custom-model-group">
-                            <label>Custom Model ID</label>
-                            <input type="text" id="custom-model-id" placeholder="e.g. gpt-4.5-turbo">
-                            <small class="form-help">Enter the exact model string required by the provider.</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label>API Key</label>
-                            <div class="password-input-wrapper">
-                                <input type="password" id="provider-api-key" placeholder="Paste your API key here...">
-                                <button type="button" id="toggle-api-key" class="password-toggle-btn"
-                                    title="Toggle Visibility">
-                                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                        <circle cx="12" cy="12" r="3"></circle>
-                                    </svg>
-                                    <svg class="eye-off-icon hidden" xmlns="http://www.w3.org/2000/svg" width="18"
-                                        height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path
-                                            d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
-                                        </path>
-                                        <line x1="1" y1="1" x2="23" y2="23"></line>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="security-privacy-note">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                            </svg>
-                            <span>Your data stays yours. Keys are stored locally with AES-256 encryption and are only
-                                used for direct API communication.</span>
-                        </div>
-
-                        <div id="key-validation-status" class="validation-status hidden">
-                            <div class="loader-small"></div>
-                            <span>Validating key...</span>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" id="key-modal-cancel">Cancel</button>
-                        <button class="btn btn-primary" id="key-modal-save">Save & Connect</button>
-                    </div>
+                <!--<div class="trust-badge-row centered">
+                    <span class="trust-badge"><i class="fas fa-bolt"></i> Speed &lt;100ms</span>
+                    <span class="trust-badge"><i class="fas fa-lock"></i> AES-256</span>
+                    <span class="trust-badge"><i class="fas fa-wifi-slash"></i> Offline Capable</span>
                 </div>
             </div>
 
-            <!-- Contribution Modal -->
-            <div id="contribution-modal" class="modal-overlay hidden">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3>Contribute a Term</h3>
-                        <button class="modal-close-btn" id="modal-close-btn">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Your Username</label>
-                            <input type="text" id="contrib-username" placeholder="@yourname">
-                        </div>
-                        <div class="form-group">
-                            <label>Category</label>
-                            <div class="custom-dropdown" id="custom-category-dropdown">
-                                <div class="dropdown-trigger" id="dropdown-trigger">
-                                    <span class="dropdown-value">Select a category</span>
-                                    <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
-                                </div>
-                                <div class="dropdown-menu hidden" id="dropdown-menu">
-                                    <!-- Categories populated via JS -->
-                                    <div class="dropdown-item new-category-btn" data-action="new">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                                            stroke-linecap="round" stroke-linejoin="round">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                        <span>Create New Category</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <input type="text" id="new-category-name" class="hidden" placeholder="Enter category name">
-                        </div>
-                        <div class="form-group">
-                            <label>Term Name</label>
-                            <input type="text" id="contrib-term-name" placeholder="e.g., Long Take">
-                        </div>
-                        <div class="form-group">
-                            <label>Definition</label>
-                            <textarea id="contrib-definition" placeholder="A clear, concise definition..."></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Difficulty</label>
-                            <div class="pills-container" id="contrib-difficulty-pills">
-                                <button class="pill" data-value="beginner">Beginner</button>
-                                <button class="pill" data-value="intermediate">Intermediate</button>
-                                <button class="pill" data-value="advanced">Advanced</button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Examples (comma-separated)</label>
-                            <input type="text" id="contrib-examples"
-                                placeholder="e.g., Example 1, Example 2, Example 3">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" id="modal-cancel-btn">Cancel</button>
-                        <button class="btn btn-primary" id="modal-submit-btn">Submit Term</button>
-                    </div>
+             Featured In (Visual only for now) 
+            <div class="featured-in mt-100 fade-in">
+                <p class="featured-label">AS SEEN IN</p>
+                <div class="logo-row opacity-50">
+                    <span class="logo-text">TECHCRUNCH</span>
+                    <span class="logo-text">WIRED</span>
+                    <span class="logo-text">THE VERGE</span>
+                    <span class="logo-text">NoFilmSchool</span>
                 </div>
+            </div>-->
             </div>
+    </section>
 
-            <!-- History Modal -->
-            <div id="history-modal" class="modal-overlay hidden">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="header-left-group">
-                            <button class="hamburger-btn" id="history-hamburger-btn" aria-label="Open timeline">
-                                <span class="hamburger-line"></span>
-                                <span class="hamburger-line"></span>
-                                <span class="hamburger-line"></span>
-                            </button>
-                            <h3>Version History</h3>
-                        </div>
-                        <div class="modal-header-actions">
-                            <div class="history-actions hidden" id="history-preview-actions">
-                                <button class="btn btn-secondary btn-icon" id="history-restore-btn"
-                                    title="Restore This Version">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                                        <path d="M3 3v5h5" />
-                                    </svg>
-                                </button>
-                            </div>
-                            <button class="modal-close-btn" id="history-close-btn" title="Close Version History"
-                                aria-label="Close Version History">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                                </svg>
-                            </button>
-                        </div>
+    <!-- Visual Proof Section -->
+    <section class="proof-section mt-120">
+        <div class="container">
+            <h2 class="section-title text-center">Prompting is Engineering</h2>
+            <p class="section-subtitle text-center">Natural language is ambiguous. JSON is absolute. See the difference.
+            </p>
+
+            <div class="visual-proof-grid">
+                <!-- Bad Prompt -->
+                <div class="proof-card failure glass-panel">
+                    <div class="card-header-sm">
+                        <span class="status-dot red"></span> Vague Input
                     </div>
-                    <div class="modal-body">
-                        <!-- Main Preview Area -->
-                        <div class="history-main">
-                            <div id="history-content-area" class="code-wrapper">
-                                <div class="code-editor" id="history-preview-code">
-                                    <div class="placeholder-content"></div>Select an item from the sidebar...
-                                </div>
-                            </div>
-                        </div>
+                    <div class="code-block-sm">
+                        "Cinematic shot of a robot in the rain, cool lighting."
                     </div>
-
-                    <!-- History Sidebar Overlay (covers entire modal) -->
-                    <div id="history-sidebar-overlay" class="sidebar-overlay"></div>
-
-                    <!-- Sidebar List (spans entire modal height) -->
-                    <div class="history-sidebar" id="history-sidebar">
-                        <div class="sidebar-header">
-                            <span class="sidebar-title gradient-text">Timeline</span>
-                            <div class="sidebar-header-actions">
-                                <button class="btn-icon-small" id="history-clear-btn" title="Clear All History">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <polyline points="3 6 5 6 21 6"></polyline>
-                                        <path
-                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                        </path>
-                                    </svg>
-                                </button>
-                                <button class="sidebar-close" id="history-sidebar-close" aria-label="Close timeline">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                        <div id="history-list" class="history-list">
-                            <!-- Items injected here -->
-                            <div class="empty-state">No history found.</div>
-                        </div>
+                    <div class="result-feedback failure">
+                        Result: ⚠️ Hallucinated camera movement.
+                        <div class="cost-pill failure">Cost: $2.47 per usable shot</div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Global Parameters Section -->
-            <section id="global-params-section" class="card">
-                <div class="card-header">
-                    <h3>Global Parameters</h3>
-                    <div class="card-actions">
-                        <button class="btn btn-secondary btn-icon" id="reset-global-params" type="button"
-                            title="Reset all global parameters to defaults">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-                                <path d="M3 3v5h5" />
-                            </svg>
-                        </button>
-                        <button class="btn btn-secondary btn-icon" id="save-as-template" type="button"
-                            title="Save Configuration as Template">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
-                                <polyline points="17 21 17 13 7 13 7 21"></polyline>
-                                <polyline points="7 3 7 8 15 8"></polyline>
-                            </svg>
-                        </button>
-                        <button class="btn btn-secondary btn-icon" id="open-template-gallery" type="button"
-                            title="Load Template from Gallery">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="3" y="3" width="7" height="7"></rect>
-                                <rect x="14" y="3" width="7" height="7"></rect>
-                                <rect x="14" y="14" width="7" height="7"></rect>
-                                <rect x="3" y="14" width="7" height="7"></rect>
-                            </svg>
-                        </button>
+                <!-- Arrow -->
+                <div class="proof-arrow">➔</div>
+
+                <!-- Good Prompt -->
+                <div class="proof-card success glass-panel">
+                    <div class="card-header-sm">
+                        <span class="status-dot green"></span> JSON Structure
                     </div>
-                </div>
-                <div class="card-body">
-                    <div class="params-grid">
-                        <!-- Aspect Ratio -->
-                        <div class="global-param-group">
-                            <label class="global-param-label">
-                                Aspect Ratio
-                                <span class="info-icon" title="Sets the aspect ratio for all scenes unless overridden.">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <line x1="12" y1="16" x2="12" y2="12"></line>
-                                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                                    </svg>
-                                </span>
-                            </label>
-                            <div class="custom-dropdown" id="global-aspect-ratio-dropdown">
-                                <div class="dropdown-trigger">
-                                    <span class="dropdown-value" id="global-aspect-ratio-display">16:9
-                                        (Widescreen)</span>
-                                    <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
-                                </div>
-                                <div class="dropdown-menu">
-                                    <div class="dropdown-item selected" data-value="16:9">16:9 (Widescreen)</div>
-                                    <div class="dropdown-item" data-value="9:16">9:16 (Vertical)</div>
-                                    <div class="dropdown-item" data-value="1:1">1:1 (Square)</div>
-                                    <div class="dropdown-item" data-value="4:3">4:3 (Standard)</div>
-                                    <div class="dropdown-item" data-value="21:9">21:9 (Ultrawide)</div>
-                                </div>
-                                <input type="hidden" id="global-aspect-ratio" value="16:9">
-                            </div>
-                        </div>
-
-                        <!-- Resolution -->
-                        <div class="global-param-group">
-                            <label class="global-param-label">Resolution</label>
-                            <div class="custom-dropdown" id="global-resolution-dropdown">
-                                <div class="dropdown-trigger">
-                                    <span class="dropdown-value" id="global-resolution-display">1080p (HD)</span>
-                                    <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
-                                </div>
-                                <div class="dropdown-menu">
-                                    <div class="dropdown-item selected" data-value="1080p">1080p (HD)</div>
-                                    <div class="dropdown-item" data-value="4K">4K (UHD)</div>
-                                    <div class="dropdown-item" data-value="720p">720p (HD)</div>
-                                </div>
-                                <input type="hidden" id="global-resolution" value="1080p">
-                            </div>
-                        </div>
-
-                        <!-- Frame Rate -->
-                        <div class="global-param-group">
-                            <label class="global-param-label">Frame Rate</label>
-                            <div class="custom-dropdown" id="global-frame-rate-dropdown">
-                                <div class="dropdown-trigger">
-                                    <span class="dropdown-value" id="global-frame-rate-display">24 fps
-                                        (Cinematic)</span>
-                                    <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
-                                </div>
-                                <div class="dropdown-menu">
-                                    <div class="dropdown-item selected" data-value="24">24 fps (Cinematic)</div>
-                                    <div class="dropdown-item" data-value="30">30 fps (Standard)</div>
-                                    <div class="dropdown-item" data-value="60">60 fps (Smooth)</div>
-                                </div>
-                                <input type="hidden" id="global-frame-rate" value="24">
-                            </div>
-                        </div>
-
-                        <!-- Platform -->
-                        <div class="global-param-group">
-                            <label class="global-param-label">Target Model</label>
-                            <div class="custom-dropdown" id="global-platform-dropdown">
-                                <div class="dropdown-trigger">
-                                    <span class="dropdown-value" id="global-platform-display">Google Veo</span>
-                                    <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
-                                </div>
-                                <div class="dropdown-menu">
-                                    <div class="dropdown-item selected" data-value="veo">Google Veo</div>
-                                    <div class="dropdown-item" data-value="sora">OpenAI Sora</div>
-                                    <div class="dropdown-item" data-value="runway">Runway Gen-3</div>
-                                    <div class="dropdown-item" data-value="luma">Luma Dream Machine</div>
-                                    <div class="dropdown-item" data-value="kling">Kling</div>
-                                </div>
-                                <input type="hidden" id="global-platform" value="veo">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Output Section -->
-
-            <section id="output-section" class="card">
-                <div class="card-header">
-                    <h3>Output JSON</h3>
-                    <div class="card-actions">
-                        <button class="btn btn-secondary btn-icon" id="history-trigger-btn" title="View History">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                            </svg>
-                        </button>
-                        <button class="btn btn-secondary btn-icon" id="copy-btn" title="Copy to Clipboard">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                            </svg>
-                        </button>
-                        <button class="btn btn-primary btn-icon" id="download-btn" title="Download JSON">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="7 10 12 15 17 10"></polyline>
-                                <line x1="12" y1="15" x2="12" y2="3"></line>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="code-wrapper">
-                    <textarea id="output-json" class="code-editor" readonly aria-label="Generated JSON Output">
-{
-  "platform": "veo",
-  "prompt": "Waiting for input...",
-  "parameters": {
-    "aspect_ratio": "16:9",
-    "resolution": "1080p"
+                    <pre><code class="language-json">{
+  <span class="key">"subject"</span>: <span class="string">"robot_model_x"</span>,
+  <span class="key">"environment"</span>: <span class="string">"neon_rainy_city"</span>,
+  <span class="key">"camera"</span>: {
+    <span class="key">"type"</span>: <span class="string">"dolly_zoom"</span>,
+    <span class="key">"lens"</span>: <span class="string">"35mm_anamorphic"</span>
   }
-}
-                    </textarea>
-                </div>
-            </section>
-
-            <!-- Pricing Section (Hidden by Default) -->
-            <section id="pricing-section" class="pricing-page hidden">
-                <div class="pricing-hero">
-                    <h2 class="gradient-text">Scale Your Cinematic Vision</h2>
-                    <div class="section-underline"></div>
-                    <p class="pricing-subtitle">
-                        From solo creators to professional directors, choose the precision level that fits your
-                        workflow.
-                        Anticipate the next generation of AI video prompting.
-                    </p>
-                </div>
-
-                <div class="beta-notice">
-                    <div class="beta-icon-wrapper">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="beta-content">
-                        <h4>Public Beta is Live!</h4>
-                        <p>JSON Prompt Gen is currently in open beta. You can configure your own <strong>API
-                                Keys</strong> via the Integration Hub and use all features with <strong>no limits—100%
-                                free</strong> until our full launch.</p>
+}</code></pre>
+                    <div class="result-feedback success">
+                        Result: ✅ Consistent verified output.
+                        <div class="cost-pill success">Cost: $0.63 per usable shot</div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="pricing-grid">
-                    <!-- Tier 1: Creator (Free) -->
-                    <div class="pricing-card tier-free">
-                        <div class="pricing-header">
-                            <h3 class="tier-name">
-                                Creator
-                                <span class="pricing-badge">Free</span>
-                            </h3>
-                            <div class="pricing-price">
-                                <span class="price-amount">$0</span>
-                                <span class="price-period">/month</span>
-                            </div>
-                            <p class="price-desc">The essential toolkit for solo creators. Transform vague concepts into
-                                production-ready JSON in seconds.</p>
-                        </div>
-                        <ul class="pricing-features">
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> 20 JSON Prompt Generations per month</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Cinematic Dictionary Engine</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> BYOK LLM Integration</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Master Modes + Guardrails</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Global Parameter Suite</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Version History + Diff Viewer</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Basic Negative & Camera Controls</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Basic Lighting Palette</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> 10 Prompt Templates Saving</li>
-                        </ul>
-                        <div class="pricing-action">
-                            <button class="btn-pricing coming-soon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                                Coming Soon
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Tier 2: Style & Consistency Pro -->
-                    <div class="pricing-card tier-pro">
-                        <div class="pricing-header">
-                            <h3 class="tier-name">
-                                Director
-                                <span class="pricing-badge">Pro</span>
-                            </h3>
-                            <div class="pricing-price">
-                                <span class="price-amount">$9</span>
-                                <span class="price-period">/month</span>
-                            </div>
-                            <p class="price-desc">Unmatched consistency for professional marketers and directors. Unlock
-                                advanced creative shifting tools.</p>
-                        </div>
-                        <ul class="pricing-features">
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> <strong>Everything in Free</strong></li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Unlimited Prompt Generations</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Smart Negative Prompt Builder</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Pro Camera & Lighting Suite</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Style Shifter Engine</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Character Bible + Ref Upload</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Atomic Scene + Global Locks</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Visual Pre-Visualization</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Consistency Score Preview</li>
-                            <!--<li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Real-Time Cost Calculator</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Gemini/Claude Expansion</li>-->
-                        </ul>
-                        <div class="pricing-action">
-                            <button class="btn-pricing coming-soon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                                Coming Soon
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Tier 3: Studio Scale (Enterprise) 
-                    <div class="pricing-card tier-enterprise">
-                        <div class="pricing-header">
-                            <h3 class="tier-name">
-                                Studio
-                                <span class="pricing-badge">Team</span>
-                            </h3>
-                            <div class="pricing-price">
-                                <span class="price-amount">$79</span>
-                                <span class="price-period">/month</span>
-                            </div>
-                            <p class="price-desc">The industry standard for agencies. Enterprise-grade security,
-                                collaboration, and temporal logic.</p>
-                        </div>
-                        <ul class="pricing-features">
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> <strong>Everything in Pro</strong></li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Brand DNA Lock</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Team Collab + Library</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Advanced Physics Engine</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Prompt Feedback Loop Analyzer</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Multi-Scene Timeline Builder</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Community Marketplace (Rev Share)</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Audio Cue Integration</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> One-Click Export Suite</li>
-                        </ul>
-                        <div class="pricing-action">
-                            <button class="btn-pricing coming-soon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                                Coming Soon
-                            </button>
-                        </div>
-                    </div> -->
+    <!-- Audience Segmentation -->
+    <div class="audience-section mt-120">
+        <div class="container">
+            <h2 class="section-title text-center">Built for Your Workflow</h2>
+            <div class="audience-grid">
+                <div class="audience-card glass-panel">
+                    <svg class="audience-icon-large" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18 3H6C4.34 3 3 4.34 3 6V18C3 19.66 4.34 21 6 21H18C19.66 21 21 19.66 21 18V6C21 4.34 19.66 3 18 3ZM19 18C19 18.55 18.55 19 18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H7V7H9V5H11V7H13V5H15V7H17V5H18C18.55 5 19 5.45 19 6V18Z" />
+                    </svg>
+                    <h3>Filmmakers</h3>
+                    <p>Stop fighting AI inconsistencies. Achieve shot-list precision with professional cinematography
+                        terms built-in.</p>
                 </div>
-            </section>
-        </main>
+                <div class="audience-card glass-panel">
+                    <svg class="audience-icon-large" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M16,6L18.29,8.29L13.41,13.17L9.41,9.17L2,16.59L3.41,18L9.41,12L13.41,16L19.71,9.71L22,12V6H16Z" />
+                    </svg>
+                    <h3>Marketers</h3>
+                    <p>Generate brand-consistent video ads 5x faster with repeatable JSON templates that maintain visual
+                        identity.</p>
+                </div>
+                <div class="audience-card glass-panel">
+                    <svg class="audience-icon-large" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                    </svg>
+                    <h3>Developers</h3>
+                    <p>Integrate cinematic video generation into your pipelines with schema-validated JSON that works on
+                        first try.</p>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- Social Proof (Impact Metrics) -->
+    <div class="impact-section mt-120">
+        <div class="container text-center">
+            <h2 class="section-title">Built for Production Quality</h2>
+            <div class="metrics-bar glass-panel">
+                <div class="metric-item">
+                    <div class="metric-value gradient-text">12.5k+</div>
+                    <div class="metric-label">Prompts Generated</div>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric-item">
+                    <div class="metric-value gradient-text">60%</div>
+                    <div class="metric-label">Token Savings</div>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric-item">
+                    <div class="metric-value gradient-text">0s</div>
+                    <div class="metric-label">Server Latency</div>
+                </div>
+            </div>
+
+            <div class="testimonials-grid mt-40">
+                <div class="testimonial-card glass-panel">
+                    <div class="author-header">
+                        <div class="author-avatar color-1">DK</div>
+                        <div class="author-info">
+                            <strong>David K.</strong>
+                            <span>Commercial Director</span>
+                        </div>
+                    </div>
+                    <p class="quote">"Reduced my Veo token burn by 60%. The schema validation checks save me from paying
+                        for hallucinations."</p>
+                </div>
+                <div class="testimonial-card glass-panel">
+                    <div class="author-header">
+                        <div class="author-avatar color-2">SJ</div>
+                        <div class="author-info">
+                            <strong>Sara J.</strong>
+                            <span>VFX Lead @ Indiestudio</span>
+                        </div>
+                    </div>
+                    <p class="quote">"Finally, a tool that speaks 'Cinematographer'. The dictionary terms are industry
+                        standard, not AI gibberish."</p>
+                </div>
+                <div class="testimonial-card glass-panel">
+                    <div class="author-header">
+                        <div class="author-avatar color-3">MR</div>
+                        <div class="author-info">
+                            <strong>Mike R.</strong>
+                            <span>Drone Operator</span>
+                        </div>
+                    </div>
+                    <p class="quote">"The offline PWA mode saved me on a remote shoot. Generated complex camera moves
+                        without wifi."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Platform Guardrails -->
+    <div id="models" class="guardrails-block text-center mt-120">
+        <h2 class="section-title">Strict Model Guardrails</h2>
+        <p class="section-subtitle">We enforce hard limits for every major AI video model so you never burn credits on
+            invalid prompts.</p>
+        <div class="guardrails-grid five-col">
+            <!-- Veo -->
+            <div class="guardrail-card glass-panel">
+                <div class="model-logo-placeholder veo-glow">V</div>
+                <h3>Veo 3.1</h3>
+                <ul class="specs-list">
+                    <li>✅ 60s Duration</li>
+                    <li>✅ 1080p Native</li>
+                    <li>⚠️ Aspect Ratio Locks</li>
+                </ul>
+            </div>
+            <!-- Sora -->
+            <div class="guardrail-card glass-panel">
+                <div class="model-logo-placeholder sora-glow">S</div>
+                <h3>Sora</h3>
+                <ul class="specs-list">
+                    <li>✅ Physics Logic</li>
+                    <li>✅ Multi-Shot</li>
+                    <li>⚠️ High Cost/Sec</li>
+                </ul>
+            </div>
+            <!-- Runway -->
+            <div class="guardrail-card glass-panel">
+                <div class="model-logo-placeholder runway-glow">R</div>
+                <h3>Runway</h3>
+                <ul class="specs-list">
+                    <li>✅ Gen-3 Alpha</li>
+                    <li>✅ Motion Brush</li>
+                    <li>⚠️ 10s Limit</li>
+                </ul>
+            </div>
+            <!-- Luma -->
+            <div class="guardrail-card glass-panel">
+                <div class="model-logo-placeholder luma-glow">L</div>
+                <h3>Luma</h3>
+                <ul class="specs-list">
+                    <li>✅ Dream Machine</li>
+                    <li>✅ End Frame Ref</li>
+                    <li>⚠️ 5s Ext. Limit</li>
+                </ul>
+            </div>
+            <!-- Kling -->
+            <div class="guardrail-card glass-panel">
+                <div class="model-logo-placeholder kling-glow">K</div>
+                <h3>Kling</h3>
+                <ul class="specs-list">
+                    <li>✅ 1.5 Pro</li>
+                    <li>✅ 1080p 60fps</li>
+                    <li>⚠️ Strict NSFW</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cinematic Dictionary -->
+    <div class="dictionary-block text-center mt-100">
+        <h2 class="section-title">The Cinematic Dictionary</h2>
+        <p class="section-subtitle">Access 100+ professional camera and lighting terms defined in JSON.</p>
+        <div class="dictionary-grid-cards">
+            <div class="dict-card glass-panel">
+                <h3>Dolly Zoom</h3>
+                <p>The "Vertigo" effect. Investigates background while keeping subject size constant.</p>
+                <span class="mini-code">"camera": "dolly_zoom"</span>
+            </div>
+            <div class="dict-card glass-panel">
+                <h3>Rack Focus</h3>
+                <p>Cinematic focus shift from foreground object to background subject.</p>
+                <span class="mini-code">"focus": "rack_fg_to_bg"</span>
+            </div>
+            <div class="dict-card glass-panel">
+                <h3>Dutch Angle</h3>
+                <p>Tilted camera axis (roll) creating psychological unease or tension.</p>
+                <span class="mini-code">"roll": 15</span>
+            </div>
+            <div class="dict-card glass-panel">
+                <h3>Volumetric Fog</h3>
+                <p>Render atmospheric depth with light scattering properties.</p>
+                <span class="mini-code">"lighting": "volumetric"</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- BYOK Architecture Showcase -->
+    <div class="byok-block text-center mt-100">
+        <h2 class="section-title">Your Keys. Your Control.</h2>
+        <p class="section-subtitle">We use a Zero-Server architecture. Your API keys are encrypted locally and never
+            touch our servers.</p>
+
+        <div class="architecture-visual glass-panel">
+            <div class="arch-node user-node">
+                <span class="node-icon">👤</span>
+                <span class="node-label">Your Browser</span>
+            </div>
+            <div class="arch-connection">
+                <div class="connection-line"></div>
+                <span class="connection-status locked">
+                    🔒 AES-256 <br> Direct Request
+                </span>
+                <div class="connection-line"></div>
+            </div>
+            <div class="arch-node api-node">
+                <span class="node-icon">☁️</span>
+                <span class="node-label">AI Model API</span>
+                <div class="model-badges">
+                    <span class="mini-badge">Veo</span>
+                    <span class="mini-badge">Sora</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Demo -->
+    <section id="demo" class="demo-section mt-120 text-center">
+        <div class="container">
+            <h2 class="section-title">Generative IDE Demo</h2>
+            <p class="section-subtitle">Tweak cinematic parameters anytime. Watch the JSON compile in real-time.</p>
+
+            <div class="demo-interface glass-panel">
+                <div class="controls-panel text-left">
+                    <div class="control-group">
+                        <label>Target Model</label>
+                        <select id="demo-platform" class="glass-select" title="Select AI Video Model">
+                            <option value="veo">Google Veo 3.1</option>
+                            <option value="sora">OpenAI Sora</option>
+                            <option value="kling">Kling AI</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Camera Movement</label>
+                        <select id="demo-camera" class="glass-select" title="Select Camera Movement">
+                            <option value="dolly_push">Dolly Push</option>
+                            <option value="dolly_zoom">Dolly Zoom</option>
+                            <option value="truck_left">Truck Left</option>
+                            <option value="orbit_cw">Orbit Clockwise</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Lighting Mood</label>
+                        <select id="demo-mood" class="glass-select" title="Select Lighting Mood">
+                            <option value="cyberpunk">Cyberpunk Neon</option>
+                            <option value="noir">Film Noir</option>
+                            <option value="golden">Golden Hour</option>
+                            <option value="solar">Solar Punk</option>
+                        </select>
+                    </div>
+                    <button id="demo-export-btn" class="btn btn-primary full-width mt-24">
+                        Copy JSON Payload
+                    </button>
+                </div>
+
+                <div class="demo-preview">
+                    <div class="code-header">
+                        <div class="dot red"></div>
+                        <div class="dot yellow"></div>
+                        <div class="dot green"></div>
+                        <span class="code-filename">prompt_payload.json</span>
+                    </div>
+                    <pre id="demo-code-block"><code class="language-json">{
+  <span class="key">"platform"</span>: <span class="string">"veo_3.1"</span>,
+  <span class="key">"camera"</span>: <span class="string">"dolly_push"</span>,
+  <span class="key">"mood"</span>: <span class="string">"cyberpunk"</span>,
+  <span class="key">"seed"</span>: <span class="number">847291</span>
+}</code></pre>
+                    <div class="scanning-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo -->
+    <section id="demo" class="demo-section mt-120 text-center">
+        <!-- ... existing content ... -->
+    </section>
+
+    <!-- Results Showcase (Case Studies) -->
+    <div class="results-section mt-120">
+        <div class="container">
+            <h2 class="section-title text-center">Real Production Impact</h2>
+            <div class="case-study-grid">
+                <div class="case-card glass-panel">
+                    <div class="case-header">
+                        <span class="case-tag indie">Indie Film</span>
+                        <h3>The "One-Shot" Short</h3>
+                    </div>
+                    <div class="case-stat">
+                        <span class="stat-big">12 -> 1</span>
+                        <span class="stat-desc">Attempts to Final Shot</span>
+                    </div>
+                    <p class="case-desc">"I used to burn $30 trying to get a specific camera move. With JSON Prompt Gen,
+                        I got it on the first try."</p>
+                </div>
+                <div class="case-card glass-panel">
+                    <div class="case-header">
+                        <span class="case-tag agency">Agency</span>
+                        <h3>50-Asset Campaign</h3>
+                    </div>
+                    <div class="case-stat">
+                        <span class="stat-big">3 Hours</span>
+                        <span class="stat-desc">Total Production Time</span>
+                    </div>
+                    <p class="case-desc">"Generated brand-consistent assets for a national campaign. The consistency
+                        across 50 videos was impossible before."</p>
+                </div>
+                <div class="case-card glass-panel">
+                    <div class="case-header">
+                        <span class="case-tag creator">Creator</span>
+                        <h3>TikTok Growth</h3>
+                    </div>
+                    <div class="case-stat">
+                        <span class="stat-big">500K</span>
+                        <span class="stat-desc">Followers Gained</span>
+                    </div>
+                    <p class="case-desc">"My viewers love the consistent 'Dark Sci-Fi' aesthetic. I use the same JSON
+                        template key for every video."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Clarity 
+    <div id="pricing" class="pricing-section mt-120 text-center">
+        <div class="container">
+            <h2 class="section-title">Professional Pricing</h2>
+            <p class="section-subtitle">Start for free. Upgrade for team collaboration.</p>
+
+            <div class="pricing-grid">-->
+    <!-- Free Tier 
+                <div class="pricing-card free glass-panel">
+                    <div class="card-badge">Current Version</div>
+                    <h3>Professional Starter</h3>
+                    <div class="price">Free</div>
+                    <p class="price-sub">Forever</p>
+                    <ul class="pricing-features">
+                        <li>✅ 40 Validated Prompts/Mo</li>
+                        <li>✅ Core Cinematic Dictionary</li>
+                        <li>✅ Offline PWA Access</li>
+                        <li>✅ Community Support</li>
+                    </ul>
+                    <a href="app.html" class="btn btn-primary full-width">Launch App</a>
+                </div>-->
+
+    <!-- Pro Tier (Waitlist) 
+                <div class="pricing-card pro glass-panel">
+                    <div class="card-badge">Coming Q2 2026</div>
+                    <h3>Team Pro</h3>
+                    <div class="price">$12<span class="month">/mo</span></div>
+                    <p class="price-sub">per user</p>
+                    <ul class="pricing-features icon-dim">
+                        <li>🔒 Shared Team Libraries</li>
+                        <li>🔒 Custom Schema Validation</li>
+                        <li>🔒 API Integration</li>
+                        <li>🔒 Priority Support</li>
+                    </ul>
+                    <button class="btn btn-secondary full-width" disabled>Join Waitlist</button>
+                    <p class="small-text mt-4">Notify me when available</p>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <!-- FAQ Section -->
+    <div class="faq-block text-center mt-120">
+        <h2 class="section-title">Common Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-card glass-panel">
+                <h3>Is my API key safe?</h3>
+                <p>Yes. Keys are stored locally in your browser using AES-256 encryption. We never see them.</p>
+            </div>
+            <div class="faq-card glass-panel">
+                <h3>Does it work offline?</h3>
+                <p>Absolutely. The app is a PWA (Progressive Web App). Install it on your desktop or mobile.</p>
+            </div>
+            <div class="faq-card glass-panel">
+                <h3>Can I export to ComfyUI?</h3>
+                <p>Yes. The JSON output is standards-compliant and can be pasted directly into ComfyUI nodes.</p>
+            </div>
+            <div class="faq-card glass-panel">
+                <h3>Is it really free?</h3>
+                <p>The Core IDE is free forever. We only charge for upcoming premium cloud sync features.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button (FAB) 
+    <a href="app.html" id="fab-cta" class="fab-cta hidden" title="Launch App">
+        <span class="fab-icon">🚀</span>
+    </a>
+    -->
 
     <!-- Footer -->
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-col">
-                <div class="footer-logo">
-                    <img src="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png" alt="JSON Prompt Gen Logo" class="logo-img">
-                    <h1 class="gradient-text">JSON Prompt Gen</h1>
+    <footer class="landing-footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="footer-brand">JSON Prompt Gen</div>
+                <div class="footer-version">v1.0.4 (Stable)</div>
+            </div>
+            <div class="footer-columns">
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="#models">Models</a>
+                    <a href="#demo">Demo</a>
+                    <a href="app.html">Pricing</a>
                 </div>
-                <p>
-                    Professional AI video prompt generator. <br>Design cinematic shots with code.
-                </p>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="documentation.html">Documentation</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Community</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Security</a>
+                </div>
             </div>
-            <div class="footer-col">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="security.html">Security</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="legal/privacy.html">Privacy Policy</a></li>
-                    <li><a href="legal/terms.html">Terms of Service</a></li>
-                    <li><a href="legal/cookies.html">Cookie Policy</a></li>
-                    <li><a href="legal/disclaimer.html">Disclaimer</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="documentation.html">Documentation</a></li>
-                    <li><a href="documentation.html#faq">FAQ</a></li>
-                </ul>
+            <div class="footer-right">
+                <a href="#" class="footer-icon-link" aria-label="Privacy"><i class="fas fa-shield-alt"></i></a>
+                <a href="#" class="footer-icon-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" class="footer-icon-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 JSON Prompt Gen. All rights reserved.</p>
+        <div class="footer-copyright">
+            <p class="footer-text">&copy; 2026 JSON Prompt Gen. Built for the new era of filmmaking.</p>
         </div>
     </footer>
+    </div>
+    </section>
 
-    <!-- Getting Started Modal -->
-    <div id="getting-started-modal" class="modal hidden">
-        <div class="modal-content getting-started-modal-content">
-            <div class="modal-header">
-                <h2 class="gradient-text">Welcome to JSON Prompt Gen</h2>
-                <button class="gs-close-btn" id="getting-started-close-btn" aria-label="Close">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
-            </div>
+    </section>
 
-            <div class="modal-body">
-                <div class="getting-started-step" data-step="1">
-                    <h3>Create Professional Prompts</h3>
-                    <p>Build structured JSON prompts for AI video platforms like Veo, Sora, Runway, Kling, Luma.
-                        Add scenes, configure camera angles, lighting, and more.</p>
-                    <ul class="gs-step-list">
-                        <li><strong>Add Scenes:</strong> Click "+ Add Scene" to create multiple shots</li>
-                        <li><strong>Camera & Lighting:</strong> Select from cinematic presets</li>
-                        <li><strong>Negative Prompts:</strong> Specify what to avoid in your video</li>
-                    </ul>
-                </div>
-                <div class="getting-started-step hidden" data-step="2">
-                    <h3>AI Enhancement</h3>
-                    <p>Connect your preferred LLM (Claude, GPT-4, Gemini) to enhance your prompts with professional
-                        cinematic language and technical details.</p>
-                    <ul class="gs-step-list">
-                        <li><strong>Setup:</strong> Go to "LLM Integration" to configure your API key</li>
-                        <li><strong>Enhance:</strong> Click the sparkle icon on any scene</li>
-                        <li><strong>Security:</strong> Keys are encrypted locally with AES-256</li>
-                    </ul>
-                </div>
-                <div class="getting-started-step hidden" data-step="3">
-                    <h3>Cinematic Dictionary</h3>
-                    <p>Access a comprehensive library of film terminology, camera techniques, and lighting styles to
-                        elevate your prompts.</p>
-                    <ul class="gs-step-list">
-                        <li><strong>Browse:</strong> Explore categories like Camera Techniques, Lighting Styles</li>
-                        <li><strong>Learn:</strong> Each term includes definitions and examples</li>
-                        <li><strong>Copy:</strong> One-click to add terms to your prompts</li>
-                    </ul>
-                </div>
-                <div class="getting-started-step hidden" data-step="4">
-                    <h3>History & Export</h3>
-                    <p>Your work is automatically saved. Access history, restore previous prompts, and export to
-                        multiple formats.</p>
-                    <ul class="gs-step-list">
-                        <li><strong>Auto-save:</strong> Every generation is saved locally</li>
-                        <li><strong>Export:</strong> Download as JSON for direct API use</li>
-                        <li><strong>Privacy:</strong> Everything stays in your browser</li>
-                    </ul>
-                </div>
-                <div class="getting-started-progress gs-progress-dots">
-                    <span class="progress-dot active" data-dot="1"></span>
-                    <span class="progress-dot" data-dot="2"></span>
-                    <span class="progress-dot" data-dot="3"></span>
-                    <span class="progress-dot" data-dot="4"></span>
-                </div>
+    <div id="waitlist-modal" class="modal hidden">
+        <div class="modal-content glass-panel">
+            <h2 class="modal-title section-title">Get 5 Free Cinematic Prompts</h2>
+            <p class="modal-subtitle">Join the waitlist to unlock our
+                "Directors Cut" prompt pack for Veo & Sora.</p>
+            <form id="waitlist-form" action="https://docs.google.com/forms/u/0/d/e/YOUR_FORM_ID/formResponse"
+                method="POST" target="hidden_iframe">
+                <input type="email" name="entry.123456789" placeholder="Enter your email" required class="glass-input">
+                <input type="hidden" id="form-source" name="entry.source" value="landing_page_demo">
+                <button type="submit" class="btn btn-primary full-width">Unlock Prompts</button>
+            </form>
+            <button id="close-modal" class="btn-text">No thanks, I'll pay for credits</button>
+        </div>
+    </div>
+    <iframe name="hidden_iframe" class="hidden-iframe" title="Hidden Form Submission Target"></iframe>
+
+    <!-- PWA Install Toast -->
+    <div id="pwa-toast" class="pwa-toast hidden">
+        <div class="pwa-content">
+            <img src="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png" alt="App Icon" class="pwa-icon">
+            <div class="pwa-text">
+                <strong>Install App</strong>
+                <span>Add to Home Screen for best experience</span>
             </div>
-            <div class="modal-footer gs-footer">
-                <button class="btn btn-secondary" id="getting-started-prev">Previous</button>
-                <label class="gs-dont-show-label">
-                    <div class="custom-checkbox-container">
-                        <input type="checkbox" id="dont-show-again" class="gs-checkbox">
-                        <span class="custom-checkbox">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"
-                                stroke-linecap="round" stroke-linejoin="round" class="check-icon">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                        </span>
-                    </div>
-                    Don't show again
-                </label>
-                <button class="btn btn-primary" id="getting-started-next">Next</button>
-            </div>
+        </div>
+        <div class="pwa-actions">
+            <button id="pwa-dismiss-btn" class="btn-text pwa-dismiss-btn">Not
+                Now</button>
+            <button id="pwa-install-btn" class="btn btn-primary pwa-install-btn">Install</button>
         </div>
     </div>
 
-    <!-- Feedback Modal -->
-
-    <div id="feedback-modal" class="modal hidden">
-        <div class="modal-content feedback-modal-content">
-            <div class="modal-header">
-                <h2 class="gradient-text">Send Feedback</h2>
-                <button class="modal-close" id="feedback-close-btn" aria-label="Close">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p>Help us improve JSON Prompt Gen. Report bugs or suggest features.</p>
-                <div class="form-group">
-                    <label>Feedback Type</label>
-                    <div class="chip-group" id="feedback-type-chips">
-                        <button class="chip active" data-value="bug">🐛 Bug Report</button>
-                        <button class="chip" data-value="feature">✨ Feature Request</button>
-                        <button class="chip" data-value="other">📝 Other</button>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="feedback-message">Message</label>
-                    <textarea id="feedback-message" class="code-textarea" rows="5"
-                        placeholder="Describe the issue or idea..."></textarea>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" id="feedback-cancel-btn">Cancel</button>
-                <button class="btn btn-primary" id="feedback-submit-btn">Submit Feedback</button>
-            </div>
-        </div>
-    </div>
-    <div id="toast-container" class="toast-container"></div>
-    <!-- Global SVG Assets -->
-    <svg class="svg-asset-container" aria-hidden="true" focusable="false">
-        <defs>
-            <linearGradient id="enhanceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" class="enhance-gradient-start" />
-                <stop offset="100%" class="enhance-gradient-end" />
-            </linearGradient>
-            <linearGradient id="sidebarIconGradient" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"
-                gradientTransform="rotate(345, 12, 12)">
-                <stop offset="0%" stop-color="#697fef" />
-                <stop offset="50%" stop-color="#ff3bf8" />
-                <stop offset="100%" stop-color="#ffdd1d" />
-            </linearGradient>
-        </defs>
-    </svg>
-    <!-- Main Application Entry Point -->
-
-    <!-- Tab Recovery & Wake-up Helper -->
-    <script>
-        // Professional Recovery Script for PWAs/Vite
-        (function () {
-            // 1. Unregister any stale SW in dev (prevents blank page on version mismatch)
-            if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
-                if ('serviceWorker' in navigator) {
-                    navigator.serviceWorker.getRegistrations().then(regs => {
-                        for (let reg of regs) reg.unregister();
-                    });
-                }
-            }
-
-            // 2. Detect Blank Page on Wake-up
-            document.addEventListener('visibilitychange', () => {
-                if (document.visibilityState === 'visible') {
-                    // Give Vite/Browser 500ms to recover naturally
-                    setTimeout(() => {
-                        const app = document.querySelector('.app-container');
-                        const mainSection = document.getElementById('generator-section');
-
-                        // If core UI is missing or empty, force a partial or full recover
-                        if (!app || app.innerHTML.trim() === "" || (!mainSection && !document.querySelector('.legal-content') && !document.querySelector('.docs-container'))) {
-                            console.warn('Blank page detected on wake. Recovering...');
-                            window.location.reload();
-                        }
-                    }, 500);
-                }
-            });
-
-            // 3. Global Module Error Catch
-            window.addEventListener('error', (e) => {
-                if (e.message && (e.message.includes('module') || e.message.includes('fetch'))) {
-                    console.error('Critical script failure. Recovery initiated.');
-                    // Only reload if we are indeed in a failed state
-                    if (document.body.innerHTML.trim() === "") {
-                        window.location.reload();
-                    }
-                }
-            }, true);
-        })();
-    </script>
 </body>
 
 </html>
