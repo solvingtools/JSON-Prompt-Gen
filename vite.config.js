@@ -50,6 +50,7 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 main: 'index.html',
+                app: 'app.html',
                 about: 'about.html',
                 contact: 'contact.html',
                 security: 'security.html',

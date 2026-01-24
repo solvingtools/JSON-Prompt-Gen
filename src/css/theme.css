@@ -1,13 +1,17 @@
 :root {
-  /* Accent Colors 
-  --accent-primary: #ff21ec80;*/
-  --accent-secondary: #0073ffee;
+  /* Accent Colors */
+  --accent-primary: #ffd900ee;
+  /* Cyber Yellow */
+  --accent-secondary: #ea02e2ec;
+  /* Neon Magenta */
+  --accent-tertiary: #0073ffee;
+  /* Electric Blue */
 
-  /* Bright blue Middle of gradient */
-  --accent-gradient: linear-gradient(165deg, #ffd900ee, #ea02e2ec, #0073ffee);
+  /* Bright Gradient */
+  --accent-gradient: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
 
   /* Focus & Borders */
-  --border-focus: var(--accent-gradient);
+  --border-focus: var(--accent-secondary);
 
   /* Typography Colors */
   --text-code: #00F0FF;
@@ -17,11 +21,12 @@
   --text-secondary: rgba(255, 255, 255, 0.7);
 
   /* Glassmorphism Core */
-  --glass-blur: blur(10px);
-  --bg-elevated: rgba(255, 255, 255, 0.05);
-  --bg-elevated-header: rgba(25, 25, 35, 0.8);
-  --bg-base: #121212;
-  --bg-primary: linear-gradient(125deg, #22053d, #121212, #0F172A);
+  --glass-blur: blur(16px);
+  --bg-elevated: rgba(255, 255, 255, 0.03);
+  --bg-elevated-header: rgba(5, 5, 5, 0.8);
+  --bg-base: #050505;
+  /* Deep Obsidian */
+  --bg-primary: #050505;
 
   /* Base Layout */
   --radius-sm: 8px;
@@ -31,6 +36,10 @@
   --spacing-lg: 24px;
 
   /* Fonts */
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: 'Inter',
+    system-ui,
+    -apple-system,
+    sans-serif;
+  --font-mono: 'JetBrains Mono',
+    monospace;
 }
