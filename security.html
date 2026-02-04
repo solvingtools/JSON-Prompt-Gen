@@ -26,6 +26,7 @@
   <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/theme-BLCvdzzT.css">
   <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/main-DG_cfQ-q.css">
   <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/legal-SjSb04M0.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/forms-BPG2jMz1.css">
 <link rel="manifest" href="/JSON-Prompt-Gen/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/JSON-Prompt-Gen/registerSW.js"></script></head>
 
 <body>
@@ -259,9 +260,8 @@
                 <h2>Reporting Vulnerabilities</h2>
                 <p>If you perform a security audit and find a vulnerability in our client-side code, please report it
                     immediately.</p>
-                <p><a href="https://forms.gle/wdr5GBkxZGmbA18i8" target="_blank" rel="noopener noreferrer"
-                        class="contact-link">Report Security
-                        Vulnerability</a></p>
+                <p><button onclick="openForm('security')" class="contact-link" type="button">Report Security
+                        Vulnerability</button></p>
             </section>
 
         </main>
@@ -330,6 +330,7 @@
         if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
         if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
     </script>
+    <script src="src/js/form-manager.js"></script>
     <!-- Global SVG Assets -->
     <svg class="svg-asset-container" aria-hidden="true" focusable="false">
         <defs>

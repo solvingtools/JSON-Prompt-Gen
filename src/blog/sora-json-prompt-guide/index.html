@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>The Ultimate Guide to Sora 2 JSON Prompt Structure | JSON Prompt Gen</title>
+    <meta name="description"
+        content="Master OpenAI Sora 2 JSON prompt structure with examples. Learn the Cameo system, physics hints, and storyboarding for professional cinematic results.">
+    <link rel="canonical" href="https://solvingtools.github.io/JSON-Prompt-Gen/blog/sora-json-prompt-guide/">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="The Ultimate Guide to Sora 2 JSON Prompt Structure">
+    <meta property="og:description"
+        content="Master OpenAI Sora 2 JSON prompt structure with examples. Learn the Cameo system, physics hints, and storyboarding.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solvingtools.github.io/JSON-Prompt-Gen/blog/sora-json-prompt-guide/">
+    <meta property="og:site_name" content="JSON Prompt Gen">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sora 2 JSON Prompt Guide">
+    <meta name="twitter:description" content="Master OpenAI Sora 2 JSON structure">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "The Ultimate Guide to Sora 2 JSON Prompt Structure",
+      "description": "Master OpenAI Sora 2 JSON prompt structure with professional examples",
+      "datePublished": "2026-01-30",
+      "dateModified": "2026-01-30",
+      "author": {
+        "@type": "Organization",
+        "name": "JSON Prompt Gen Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "JSON Prompt Gen",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://solvingtools.github.io/JSON-Prompt-Gen/assets/icon-512.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://solvingtools.github.io/JSON-Prompt-Gen/blog/sora-json-prompt-guide/"
+      },
+      "articleSection": "AI Video Prompting",
+      "keywords": ["sora json prompts", "openai sora 2", "ai video prompts", "json structure"]
+    }
+    </script>
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/theme-BLCvdzzT.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/landing-DQgNo4nr.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/blog-CmCNV82e.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/post-C_xn8anr.css">
+<link rel="manifest" href="/JSON-Prompt-Gen/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/JSON-Prompt-Gen/registerSW.js"></script></head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="landing-nav">
+        <div class="nav-content">
+            <div class="logo">
+                <img src="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png" alt="JSON Prompt Gen Logo" class="logo-img">
+                <span class="gradient-text">JSON Prompt Gen</span>
+            </div>
+            <div class="nav-links">
+                <a href="/app.html" class="btn-launch-beta" aria-label="Launch Tool">
+                    <span>Launch Tool</span>
+                </a>
+                <a href="/index.html" class="home-btn" aria-label="Home">
+                    <span>Home</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumbs -->
+    <div class="blog-container blog-page-spacer">
+        <nav class="breadcrumbs">
+            <a href="../../../index.html">Home</a>
+            <span>›</span>
+            <a href="../index.html">Blog</a>
+            <span>›</span>
+            <span>Sora JSON Prompt Guide</span>
+        </nav>
+    </div>
+
+    <!-- Post Hero -->
+    <article class="post-container">
+        <header class="post-hero">
+            <span class="platform-badge sora">Sora 2</span>
+            <h1>The Ultimate Guide to Sora 2 JSON Prompt Structure – From Beginner to Pro</h1>
+            <div class="post-meta">
+                <span>📅 January 30, 2026</span>
+                <span>⏱️ 18 min read</span>
+                <span>✍️ JSON Prompt Gen Team</span>
+            </div>
+        </header>
+
+        <!-- Table of Contents -->
+        <aside class="table-of-contents">
+            <h3>📑 Table of Contents</h3>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#section-1">Unique Architecture</a></li>
+                <li><a href="#section-2">JSON Schema Deep Dive</a></li>
+                <li><a href="#section-3">Beginner Path</a></li>
+                <li><a href="#section-4">Advanced Narrative Techniques</a></li>
+                <li><a href="#section-5">Limitations & Workarounds</a></li>
+                <li><a href="#section-6">Why Use the Generator?</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+            </ul>
+        </aside>
+
+        <!-- Post Content -->
+        <div class="post-content">
+            <section id="introduction">
+                <p>Sora 2 didn't just extend video length—it introduced a narrative engine. While other models generate
+                    clips, Sora generates stories. But stories require structure.</p>
+
+                <p>I’ll be honest: my first week with Sora 2 was a rollercoaster of emotions. I spent hours (and a small
+                    fortune in API credits) trying to get a simple multi-shot sequence of a detective walking through a
+                    rainy alleyway. Using standard text prompts, the detective’s hat changed color in Scene 2, and by
+                    Scene 3, he was floating three inches off the ground because the physics engine got confused. I felt
+                    defeated. How were people making these "Hollywood-level" shorts?</p>
+
+                <p>The answer was hidden in the <strong>Sora 2 JSON prompt structure</strong>. Once I stopped treating
+                    Sora like a search bar and started treating it like a database, everything changed. By using
+                    structured JSON, I could lock in character IDs, define physics constraints, and stitch scenes with
+                    frame-perfect precision.</p>
+
+                <div class="info-box">
+                    <strong>💡 Expert Insight</strong>
+                    <p>"Text prompts are for inspiration; JSON is for execution. If your video is longer than 5 seconds
+                        or involves more than one shot, you are doing yourself a disservice by not using a structured
+                        schema."</p>
+                </div>
+            </section>
+
+            <section id="section-1">
+                <h2>Section 1: Understanding Sora 2's Unique Architecture</h2>
+                <p>Sora 2 is built on a <strong>storyboard-first design</strong>. Unlike Google's Veo 3.1, which excels
+                    at "ingredients-to-video" style generation, Sora 2 is optimized for temporal consistency—the ability
+                    to keep the world "real" over long durations.</p>
+
+                <h3>The Cameo System</h3>
+                <p>The breakthrough in Sora 2 is the <strong>Cameo system</strong>. In the JSON structure, a
+                    <code>cameo</code> isn't just a description; it’s a unique identifier (e.g.,
+                    <code>@detective_jack</code>) linked to reference images or previous seeds. This ensures your
+                    character doesn't "morph" between shots.
+                </p>
+
+                <h3>Physics Simulation</h3>
+                <p>Sora 2 includes a native physics engine. When you specify <code>physics_hints</code> in your JSON,
+                    you are telling the model how to handle gravity, fluid dynamics, and collisions. This prevents the
+                    "uncanny valley" effect where objects feel weightless.</p>
+
+                <h3>Comparison: Sora 2 vs. Veo 3.1</h3>
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Sora 2 (Storyboard JSON)</th>
+                                <th>Veo 3.1 (Cinematic JSON)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Primary Strength</strong></td>
+                                <td>Narrative Flow & Character Consistency</td>
+                                <td>Visual Fidelity & Directorial Control</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Character Logic</strong></td>
+                                <td>Native <code>Cameo IDs</code></td>
+                                <td><code>Continuity Blocks</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Physics</strong></td>
+                                <td>Explicit <code>physics_hints</code></td>
+                                <td>Implicit Physics</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Max Coherent Length</strong></td>
+                                <td>20s+ (via Scene Stitching)</td>
+                                <td>60s (Single Generation)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Audio Approach</strong></td>
+                                <td><code>Audio_Description</code> (Planning)</td>
+                                <td>Native Synchronized Generation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="section-2">
+                <h2>Section 2: Sora 2 JSON Schema Deep Dive</h2>
+                <p>To master the <strong>sora 2 json prompt structure</strong>, you need to understand the hierarchy.
+                    Think of it as a screenplay that a computer can read.</p>
+
+                <h3>The Core Schema Elements</h3>
+                <ul>
+                    <li><strong><code>storyboard</code></strong>: A boolean flag. Setting this to <code>true</code>
+                        tells the API to parse multiple scene blocks as a continuous narrative.</li>
+                    <li><strong><code>cameos[]</code></strong>: An array that stores your character's DNA.</li>
+                    <li><strong><code>physics_hints</code></strong>: Specific parameters for motion realism (e.g.,
+                        <code>gravity: 9.8</code>, <code>fluid_viscosity: high</code>).
+                    </li>
+                    <li><strong><code>scene_stitching</code></strong>: References the <code>end_frame</code> of the
+                        previous scene to ensure the "match cut" is seamless.</li>
+                </ul>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>sora_narrative_example.json</span>
+                        <button class="copy-btn" aria-label="Copy code">Copy</button>
+                    </div>
+                    <pre><code class="language-json">{
+  "model": "sora-2-pro",
+  "storyboard": true,
+  "style": "Technicolor Noir",
+  "cameos": [
+    { "id": "@detective_jack", "reference_url": "https://assets.ai/jack_ref.jpg" }
+  ],
+  "scenes": [
+    {
+      "timestamp": "0-5s",
+      "description": "@detective_jack lights a cigarette in the rain.",
+      "camera": "Close-up, low angle",
+      "physics_hints": { "fluid_dynamics": "realistic_rain_interaction" }
+    },
+    {
+      "timestamp": "5-12s",
+      "description": "@detective_jack walks toward a glowing neon sign.",
+      "camera": "Tracking shot, follow from behind",
+      "transition_type": "Match cut"
+    }
+  ]
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="section-3">
+                <h2>Section 3: Beginner Path – Your First Sora Storyboard</h2>
+                <p>If you're just starting, don't try to code this by hand. One missing comma in your JSON will result
+                    in a "400 Bad Request," and your creative spark will die right there.</p>
+
+                <div class="tip-box">
+                    <strong>The Pro Workflow:</strong>
+                    <ol>
+                        <li><strong>Define your Cameos</strong>: Start with one character. Give them a name and a clear
+                            visual hook.</li>
+                        <li><strong>Scene Breakdown</strong>: Use the "one action per scene" rule. (e.g., Scene 1:
+                            Sitting. Scene 2: Standing. Scene 3: Walking.)</li>
+                        <li><strong>Automate</strong>: This is where our <strong>JSON Prompt Generator PWA</strong> is a
+                            literal life-saver. Instead of writing brackets, you use a visual interface to arrange your
+                            scenes. The tool then spits out a perfectly formatted Sora 2 JSON.</li>
+                    </ol>
+                    <p class="tip-footer"><em>Since the tool is 100% free during its beta version, it’s the best way to
+                            learn the sora 2 api prompt format without the technical headache.</em></p>
+                </div>
+            </section>
+
+            <section id="section-4">
+                <h2>Section 4: Advanced Narrative Techniques</h2>
+                <h3>Mastering Cameo IDs</h3>
+                <p>The secret to "Sora Cinema" is using the same <code>@ID</code> across different storyboards. If you
+                    generate a character you love, save their seed. In our PWA tool, you can store these in the
+                    <strong>Cameo Manager</strong>, allowing you to "cast" the same AI actor in entirely different
+                    projects.
+                </p>
+
+                <h3>The ElevenLabs Post-Production Workflow</h3>
+                <p>While Sora 2 has an <code>audio_description</code> field, it currently doesn't generate the sound.
+                    However, structuring your JSON with precise dialogue timestamps allows you to export a "timing map."
+                    You can then plug this into ElevenLabs to generate perfectly synced lip-sync audio in
+                    post-production.</p>
+            </section>
+
+            <section id="section-5">
+                <h2>Section 5: Sora 2's Limitations & JSON Workarounds</h2>
+                <p>Sora isn't perfect. Sometimes it ignores your camera moves or "hallucinates" a third arm on your
+                    character.</p>
+
+                <div class="warning-box">
+                    <strong>⚠️ Common Issues & Fixes</strong>
+                    <ul>
+                        <li><strong>"Character Morphing"</strong>: Usually happens because the <code>cameos</code> block
+                            is too vague. <strong>Fix</strong>: Use more specific clothing descriptions in the
+                            <code>global_style</code> block.
+                        </li>
+                        <li><strong>"Floating Objects"</strong>: The physics engine needs a "grounding" cue.
+                            <strong>Fix</strong>: Add a <code>physics_hints: { "gravity": "standard" }</code> tag to
+                            your JSON.
+                        </li>
+                        <li><strong>"Scene Drift"</strong>: In long videos, the environment can change.
+                            <strong>Fix</strong>: Use the <code>scene_stitching</code> feature in our PWA to lock the
+                            background layout between shots.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="section-6">
+                <h2>Section 6: Why the PWA Tool is Your Sora Architect</h2>
+                <p>Manual JSON generation takes about 20 minutes per video. Our <strong>JSON Prompt Generator
+                        PWA</strong> reduces that to <strong>under 2 minutes</strong>.</p>
+
+                <div class="info-box">
+                    <strong>🚀 PWA Features:</strong>
+                    <ul>
+                        <li><strong>Storyboard Mode</strong>: A visual timeline where you can drag and drop scenes.</li>
+                        <li><strong>Narrative Coherence Checker</strong>: Automatically scans your JSON for
+                            contradictions.</li>
+                        <li><strong>Sora 2 Preset Library</strong>: One-click templates for "Cinematic Chase,"
+                            "Documentary Interview," and "Anime Action."</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div class="cta-block">
+                <h3>Ready to stop guessing and start directing?</h3>
+                <p>Try the Sora-Ready JSON Generator in our JSON Prompt Generator for 100% Free while we are still in
+                    Beta. I can't wait to see what you build.</p>
+                <a href="../../../app.html" class="cta-button">Try it Now →</a>
+            </div>
+
+            <section id="conclusion">
+                <h2>Conclusion</h2>
+                <p>The era of "guessing" what an AI will generate is over. Sora 2 rewards those who think like directors
+                    and organize like engineers. By mastering the <strong>sora 2 json prompt structure</strong>, you
+                    aren't just making videos—you’re building worlds.</p>
+                <p><em>Have a specific storyboard idea you're struggling with? Drop a comment below and I'll help you
+                        structure the JSON for it!</em></p>
+
+                <!--<div class="video-companion">
+                    <h4>📺 Video Companion</h4>
+                    <p>Watch our deep
+                        dive into using JSON prompts within a professional workflow to master cinematic video
+                        generation.</p>
+                    <a href="https://youtu.be/LeZIF06POo0?si=flFpStW7CuTi7gUQ" target="_blank" rel="noopener"
+                        class="nav-btn">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                            <path
+                                d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z">
+                            </path>
+                        </svg>
+                        Watch Video Guide
+                    </a>
+                </div>-->
+            </section>
+        </div>
+
+        <!-- Post Footer -->
+        <footer class="post-footer">
+            <div class="post-navigation">
+                <a href="../veo-json-prompt-guide/index.html" class="nav-btn">← Previous: Veo Guide</a>
+                <a href="../runway-json-prompt-guide/index.html" class="nav-btn">Next: Runway Guide →</a>
+            </div>
+
+            <div class="social-share">
+                <h4>Share this guide:</h4>
+                <div class="share-buttons">
+                    <button class="share-btn twitter">𝕏 Twitter</button>
+                    <button class="share-btn linkedin">in LinkedIn</button>
+                    <button class="share-btn reddit">⬆ Reddit</button>
+                </div>
+            </div>
+        </footer>
+    </article>
+
+    <!-- Newsletter CTA -->
+    <section class="newsletter-section">
+        <div class="blog-container">
+            <h2>Get Weekly Prompt Tips</h2>
+            <p>Join 1000+ creators mastering AI video generation</p>
+            <form class="newsletter-form-large">
+                <input type="email" placeholder="your@email.com" required>
+                <button type="submit">Subscribe Free</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <img src="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png" alt="JSON Prompt Gen Logo" class="logo-img">
+                    <h1 class="gradient-text">JSON Prompt Gen</h1>
+                </div>
+                <p>
+                    Professional AI video prompt generator. <br>Design cinematic shots with code.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="../../../app.html#cinematic-dictionary">Cinematic Dictionary</a></li>
+                    <li><a href="../../../app.html#json-prompt-library">JSON Prompt Library</a></li>
+                    <li><a href="../../../pricing.html">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="../../../documentation.html">Documentation</a></li>
+                    <li><a href="/src/blog/index.html">Blog</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="../../../about.html">About Us</a></li>
+                    <li><a href="../../../contact.html">Contact</a></li>
+                    <li><a href="../../../security.html">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="../../../legal/privacy.html">Privacy Policy</a></li>
+                    <li><a href="../../../legal/terms.html">Terms of Service</a></li>
+                    <li><a href="../../../legal/cookies.html">Cookie Policy</a></li>
+                    <li><a href="../../../legal/disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 JSON Prompt Gen. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Post JavaScript -->
+    <script src="../assets/js/post.js"></script>
+</body>
+
+</html>
