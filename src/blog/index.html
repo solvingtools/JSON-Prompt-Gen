@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>AI Video Prompt Engineering Blog | JSON Prompt Gen</title>
+    <meta name="description"
+        content="Master JSON structure for AI video generation. Professional guides for Veo, Sora, Runway, Luma, and Kling with expert tips and examples.">
+    <link rel="canonical" href="https://solvingtools.github.io/JSON-Prompt-Gen/blog/">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="AI Video Prompt Engineering Blog | JSON Prompt Gen">
+    <meta property="og:description"
+        content="Master JSON structure for AI video generation with professional guides for all major platforms.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://solvingtools.github.io/JSON-Prompt-Gen/blog/">
+    <meta property="og:site_name" content="JSON Prompt Gen">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Video Prompt Engineering Blog">
+    <meta name="twitter:description" content="Master JSON structure for AI video generation">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/src/css/theme.css">
+    <link rel="stylesheet" href="/src/css/landing.css">
+    <link rel="stylesheet" href="assets/css/blog.css">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "JSON Prompt Gen Blog",
+      "description": "Professional guides for AI video prompt engineering",
+      "url": "https://solvingtools.github.io/JSON-Prompt-Gen/blog/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "JSON Prompt Gen",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://solvingtools.github.io/JSON-Prompt-Gen/assets/icon-512.png"
+        }
+      }
+    }
+    </script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="landing-nav">
+        <div class="nav-content">
+            <div class="logo">
+                <img src="/src/assets/icon-192.png" alt="JSON Prompt Gen Logo" class="logo-img">
+                <span class="gradient-text">JSON Prompt Gen</span>
+            </div>
+            <div class="nav-links">
+                <a href="/app.html" class="btn-launch-beta" aria-label="Launch Tool">
+                    <span>Launch Tool</span>
+                </a>
+                <a href="/index.html" class="home-btn" aria-label="Home">
+                    <span>Home</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="blog-hero fade-in-up">
+        <div class="blog-container">
+            <h1>AI Video Prompt Engineering Guides</h1>
+            <p>Master JSON structure for Veo, Sora, Runway, Luma & Kling. Expert tips, examples, and best practices.</p>
+        </div>
+    </section>
+
+    <!-- Search Bar -->
+    <div class="blog-container">
+        <div class="blog-search fade-in-up">
+            <input type="text" class="search-input" id="blogSearch"
+                placeholder="Search for platform guides, techniques, examples...">
+            <span class="search-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <defs>
+                        <linearGradient id="searchGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#2196F3" stop-opacity="1" />
+                            <stop offset="100%" stop-color="#9C27B0" stop-opacity="1" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="11" cy="11" r="8" stroke="url(#searchGradient)"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="url(#searchGradient)"></line>
+                </svg>
+            </span>
+        </div>
+    </div>
+
+    <!-- Platform Filter -->
+    <div class="blog-container">
+        <div class="platform-filter">
+            <button class="filter-btn active" data-platform="all">All Platforms</button>
+            <button class="filter-btn" data-platform="veo">Veo</button>
+            <button class="filter-btn" data-platform="sora">Sora</button>
+            <button class="filter-btn" data-platform="runway">Runway</button>
+            <button class="filter-btn" data-platform="luma">Luma</button>
+            <button class="filter-btn" data-platform="kling">Kling</button>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="blog-container">
+        <div class="blog-layout">
+            <!-- Blog Posts Grid -->
+            <div class="blog-main">
+                <div class="blog-grid" id="blogGrid">
+                    <!-- Blog Card: Veo Guide -->
+                    <article class="blog-card" data-platform="veo">
+                        <div class="blog-card-image"></div>
+                        <div class="blog-card-content">
+                            <span class="platform-badge veo">Veo 3.1</span>
+                            <h3>The Ultimate Guide to Veo 3.1 JSON Prompt Structure - From Beginner to Pro</h3>
+                            <div class="blog-card-meta">
+                                <span>📅 January 29, 2026</span>
+                                <span>⏱️ 15 min read</span>
+                            </div>
+                            <p class="blog-card-excerpt">
+                                Master the Veo 3.1 architecture. Learn to use continuity blocks for stable characters,
+                                native audio sync for precision SFX, and atomic scene arrays to avoid AI hallucination.
+                            </p>
+                            <a href="veo-json-prompt-guide/index.html" class="read-more-btn">Read Full Guide</a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Card: Sora Guide -->
+                    <article class="blog-card" data-platform="sora">
+                        <div class="blog-card-image"></div>
+                        <div class="blog-card-content">
+                            <span class="platform-badge sora">Sora 2</span>
+                            <h3>The Ultimate Guide to Sora 2 JSON Prompt Structure - From Beginner to Pro</h3>
+                            <div class="blog-card-meta">
+                                <span>📅 January 30, 2026</span>
+                                <span>⏱️ 18 min read</span>
+                            </div>
+                            <p class="blog-card-excerpt">
+                                Master Sora 2's storyboard-first architecture. Learn to use Cameo IDs for character
+                                consistency, physics_hints for realistic motion, and scene_stitching for seamless match
+                                cuts.
+                            </p>
+                            <a href="sora-json-prompt-guide/index.html" class="read-more-btn">Read Full Guide</a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Card: Runway Guide -->
+                    <article class="blog-card" data-platform="runway">
+                        <div class="blog-card-image"></div>
+                        <div class="blog-card-content">
+                            <span class="platform-badge runway">Runway Gen-3/4</span>
+                            <h3>The Ultimate Guide to Runway ML JSON Prompt Structure - From Beginner to Pro</h3>
+                            <div class="blog-card-meta">
+                                <span>📅 January 31, 2026</span>
+                                <span>⏱️ 12 min read</span>
+                            </div>
+                            <p class="blog-card-excerpt">
+                                Master the Runway Gen-3/4 ecosystem. Learn to implement mathematical camera motions,
+                                coordinate-based Motion Brush arrays, and batch automation scripts for professional
+                                production.
+                            </p>
+                            <a href="runway-json-prompt-guide/index.html" class="read-more-btn">Read Full Guide</a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Card: Luma Guide -->
+                    <article class="blog-card" data-platform="luma">
+                        <div class="blog-card-image"></div>
+                        <div class="blog-card-content">
+                            <span class="platform-badge luma">Luma Ray 2</span>
+                            <h3>The Ultimate Guide to Luma Ray 2 JSON Prompt Structure - From Beginner to Pro</h3>
+                            <div class="blog-card-meta">
+                                <span>📅 January 31, 2026</span>
+                                <span>⏱️ 10 min read</span>
+                            </div>
+                            <p class="blog-card-excerpt">
+                                Master the Luma Ray 2 architecture. Learn to use dual keyframes for precise motion,
+                                native loop parameters for product showcases, and Concept IDs for reliable camera
+                                choreography.
+                            </p>
+                            <a href="luma-json-prompt-guide/index.html" class="read-more-btn">Read Full Guide</a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Card: Kling Guide -->
+                    <article class="blog-card" data-platform="kling">
+                        <div class="blog-card-image"></div>
+                        <div class="blog-card-content">
+                            <span class="platform-badge kling">Kling 2.6</span>
+                            <h3>The Ultimate Guide to Kling 2.6 JSON Prompt Structure - From Beginner to Pro</h3>
+                            <div class="blog-card-meta">
+                                <span>📅 January 31, 2026</span>
+                                <span>⏱️ 15 min read</span>
+                            </div>
+                            <p class="blog-card-excerpt">
+                                Master the Kling 2.6 Pro ecosystem. Learn to use timeline_script beats for
+                                frame-accurate
+                                action, native audio synchronization for SFX, and multi-character lip-sync controls.
+                            </p>
+                            <a href="kling-json-prompt-guide/index.html" class="read-more-btn">Read Full Guide</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Sidebar 
+            <aside class="blog-sidebar">
+                 Newsletter Signup 
+                <div class="sidebar-widget">
+                    <h3>📧 Stay Updated</h3>
+                    <p class="sidebar-text-muted">Get weekly prompt
+                        tips and exclusive templates</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </form>
+                </div>
+
+                 Popular Posts 
+                <div class="sidebar-widget">
+                    <h3>🔥 Popular Guides</h3>
+                    <div class="popular-post">
+                        <a href="veo-json-prompt-guide/index.html">Veo JSON Structure Guide</a>
+                        <span>Coming Soon</span>
+                    </div>
+                    <div class="popular-post">
+                        <a href="sora-json-prompt-guide/index.html">Sora Prompting Masterclass</a>
+                        <span>Coming Soon</span>
+                    </div>
+                    <div class="popular-post">
+                        <a href="runway-json-prompt-guide/index.html">Runway Gen-3 Deep Dive</a>
+                        <span>Coming Soon</span>
+                    </div>
+                </div>
+
+                 CTA Widget 
+                <div class="sidebar-widget cta-widget-glow">
+                    <h3>🚀 Ready to Create?</h3>
+                    <p class="sidebar-text-muted">Try our visual
+                        prompt builder for free</p>
+                    <a href="../../app.html" class="newsletter-btn cta-btn-block">Launch Tool Now</a>
+                </div>
+            </aside>-->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <img src="/src/assets/icon-192.png" alt="JSON Prompt Gen Logo" class="logo-img">
+                    <h1 class="gradient-text">JSON Prompt Gen</h1>
+                </div>
+                <p>
+                    Professional AI video prompt generator. <br>Design cinematic shots with code.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="../../app.html#cinematic-dictionary">Cinematic Dictionary</a></li>
+                    <li><a href="../../app.html#json-prompt-library">JSON Prompt Library</a></li>
+                    <li><a href="../../pricing.html">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="../../documentation.html">Documentation</a></li>
+                    <li><a href="/src/blog/index.html">Blog</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="../../about.html">About Us</a></li>
+                    <li><a href="../../contact.html">Contact</a></li>
+                    <li><a href="../../security.html">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="../../legal/privacy.html">Privacy Policy</a></li>
+                    <li><a href="../../legal/terms.html">Terms of Service</a></li>
+                    <li><a href="../../legal/cookies.html">Cookie Policy</a></li>
+                    <li><a href="../../legal/disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 JSON Prompt Gen. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Blog JavaScript -->
+    <script src="assets/js/blog.js"></script>
+</body>
+
+</html>

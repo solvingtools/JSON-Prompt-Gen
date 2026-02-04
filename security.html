@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="src/css/theme.css">
     <link rel="stylesheet" href="src/css/main.css">
     <link rel="stylesheet" href="src/css/legal.css">
+    <link rel="stylesheet" href="src/css/forms.css">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XN8KY5PPLK"></script>
     <script>
@@ -259,9 +260,8 @@
                 <h2>Reporting Vulnerabilities</h2>
                 <p>If you perform a security audit and find a vulnerability in our client-side code, please report it
                     immediately.</p>
-                <p><a href="https://forms.gle/wdr5GBkxZGmbA18i8" target="_blank" rel="noopener noreferrer"
-                        class="contact-link">Report Security
-                        Vulnerability</a></p>
+                <p><button onclick="openForm('security')" class="contact-link" type="button">Report Security
+                        Vulnerability</button></p>
             </section>
 
         </main>
@@ -330,6 +330,7 @@
         if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
         if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
     </script>
+    <script src="src/js/form-manager.js"></script>
     <!-- Global SVG Assets -->
     <svg class="svg-asset-container" aria-hidden="true" focusable="false">
         <defs>

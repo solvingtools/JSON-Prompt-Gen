@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="src/css/theme.css">
     <link rel="stylesheet" href="src/css/main.css">
     <link rel="stylesheet" href="src/css/legal.css">
+    <link rel="stylesheet" href="src/css/forms.css">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XN8KY5PPLK"></script>
     <script>
@@ -230,8 +231,7 @@
                     <div class="contact-icon">🐛</div>
                     <h3>Bug Report</h3>
                     <p>Found a glitch in the matrix? Let us know what happened.</p>
-                    <a href="https://forms.gle/DCd4PkYEMFKoqKiJ8" target="_blank" rel="noopener noreferrer"
-                        class="btn-primary btn-block">Report Bug</a>
+                    <button onclick="openForm('bug')" class="btn-primary btn-block" type="button">Report Bug</button>
                 </div>
 
                 <!-- Feature Requests -->
@@ -239,8 +239,8 @@
                     <div class="contact-icon">✨</div>
                     <h3>Feature Request</h3>
                     <p>Have an idea to make the tool better? We'd love to hear it.</p>
-                    <a href="https://forms.gle/6iXQA6vYfNjFQwfp9" target="_blank" rel="noopener noreferrer"
-                        class="btn-secondary btn-block">Suggest Feature</a>
+                    <button onclick="openForm('feature')" class="btn-secondary btn-block" type="button">Suggest
+                        Feature</button>
                 </div>
 
                 <!-- General Inquiries -->
@@ -248,8 +248,8 @@
                     <div class="contact-icon">✉️</div>
                     <h3>General Inquiry</h3>
                     <p>Partnerships, press, or just want to say hello?</p>
-                    <a href="https://forms.gle/nNbEK5uLwU4fS4iy9" target="_blank" rel="noopener noreferrer"
-                        class="btn-secondary btn-block">Contact Us</a>
+                    <button onclick="openForm('general')" class="btn-secondary btn-block" type="button">Contact
+                        Us</button>
                 </div>
             </div>
 
@@ -325,6 +325,7 @@
         if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
         if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
     </script>
+    <script src="src/js/form-manager.js"></script>
     <!-- Global SVG Assets -->
     <svg class="svg-asset-container" aria-hidden="true" focusable="false">
         <defs>
@@ -336,6 +337,7 @@
             </linearGradient>
         </defs>
     </svg>
+    <script src="src/js/form-manager.js"></script>
 </body>
 
 </html>

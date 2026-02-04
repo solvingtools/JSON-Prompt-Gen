@@ -58,7 +58,13 @@ export default defineConfig({
                 privacy: 'legal/privacy.html',
                 terms: 'legal/terms.html',
                 cookies: 'legal/cookies.html',
-                disclaimer: 'legal/disclaimer.html'
+                disclaimer: 'legal/disclaimer.html',
+                blog: 'src/blog/index.html',
+                'blog-veo': 'src/blog/veo-json-prompt-guide/index.html',
+                'blog-sora': 'src/blog/sora-json-prompt-guide/index.html',
+                'blog-runway': 'src/blog/runway-json-prompt-guide/index.html',
+                'blog-luma': 'src/blog/luma-json-prompt-guide/index.html',
+                'blog-kling': 'src/blog/kling-json-prompt-guide/index.html'
             }
         }
     }
