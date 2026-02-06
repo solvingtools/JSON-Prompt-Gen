@@ -139,7 +139,6 @@
     font-size: 1.125rem;
     color: var(--text-primary);
     min-width: 0;
-    /* Prevents code blocks from breaking grid */
 }
 
 .post-content h2 {
@@ -555,4 +554,116 @@ body:has([href*="luma-json-prompt-guide"]) .post-hero,
 body:has([href*="kling-json-prompt-guide"]) .post-hero,
 .post-container:has(.platform-badge.kling) .post-hero {
     background-image: url('../images/kling-hero.png');
+}
+
+/* Related Guides Section - Professional Grid */
+.related-guides {
+    margin-top: 80px;
+    padding-top: 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.related-guides h4 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: var(--text-primary);
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.related-item {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    height: 100%;
+}
+
+.related-item:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.related-thumb-wrapper {
+    height: 160px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.related-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.related-item:hover .related-thumb {
+    transform: scale(1.05);
+}
+
+.related-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.related-item .platform {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent-blue);
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.related-item .title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.related-item:hover .title {
+    color: white;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Platform specific accent colors on hover */
+.related-item:has(img[src*="veo"]):hover {
+    border-color: #4285f4;
+}
+
+.related-item:has(img[src*="sora"]):hover {
+    border-color: #10a37f;
+}
+
+.related-item:has(img[src*="runway"]):hover {
+    border-color: #d8f553;
+}
+
+.related-item:has(img[src*="luma"]):hover {
+    border-color: #000000;
+    background: rgba(50, 50, 50, 0.4);
+}
+
+.related-item:has(img[src*="kling"]):hover {
+    border-color: #7952b3;
 }
