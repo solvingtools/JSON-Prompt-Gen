@@ -547,6 +547,119 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="section-label">Composition Principles</label>
+                    <div class="input-with-dropdown">
+                        <input type="text" class="scene-composition-input"
+                            placeholder="Select composition or type custom..."
+                            aria-label="Composition Principles">
+                        <div class="input-dropdown-wrapper">
+                            <button type="button" class="input-dropdown-trigger"
+                                aria-label="Open composition presets">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="input-dropdown-menu">
+                                <div class="dropdown-item" data-value="rule_of_thirds">Rule of Thirds</div>
+                                <div class="dropdown-item" data-value="center_framed">Center Framed</div>
+                                <div class="dropdown-item" data-value="leading_lines">Leading Lines</div>
+                                <div class="dropdown-item" data-value="golden_ratio">Golden Ratio</div>
+                                <div class="dropdown-item" data-value="negative_space">Negative Space</div>
+                                <div class="dropdown-item" data-value="symmetrical">Symmetrical</div>
+                                <div class="dropdown-item" data-value="asymmetrical">Asymmetrical</div>
+                                <div class="dropdown-item" data-value="depth_of_field">Depth of Field</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="section-label">Lens Techniques</label>
+                    <div class="input-with-dropdown">
+                        <input type="text" class="scene-lens-input"
+                            placeholder="Select lens or type custom..." aria-label="Lens Techniques">
+                        <div class="input-dropdown-wrapper">
+                            <button type="button" class="input-dropdown-trigger"
+                                aria-label="Open lens presets">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="input-dropdown-menu">
+                                <div class="dropdown-item" data-value="macro">Macro</div>
+                                <div class="dropdown-item" data-value="wide_angle">Wide Angle</div>
+                                <div class="dropdown-item" data-value="telephoto">Telephoto</div>
+                                <div class="dropdown-item" data-value="fisheye">Fisheye</div>
+                                <div class="dropdown-item" data-value="bokeh">Bokeh</div>
+                                <div class="dropdown-item" data-value="tilt_shift">Tilt Shift</div>
+                                <div class="dropdown-item" data-value="anamorphic">Anamorphic</div>
+                                <div class="dropdown-item" data-value="prime_lens">Prime Lens</div>
+                                <div class="dropdown-item" data-value="zoom_lens">Zoom Lens</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="section-label">Production Design</label>
+                    <div class="input-with-dropdown">
+                        <input type="text" class="scene-production-input"
+                            placeholder="Select style or type custom..." aria-label="Production Design">
+                        <div class="input-dropdown-wrapper">
+                            <button type="button" class="input-dropdown-trigger"
+                                aria-label="Open production presets">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="input-dropdown-menu">
+                                <div class="dropdown-item" data-value="minimalist">Minimalist</div>
+                                <div class="dropdown-item" data-value="brutalist">Brutalist</div>
+                                <div class="dropdown-item" data-value="futuristic">Futuristic</div>
+                                <div class="dropdown-item" data-value="retro_vintage">Retro/Vintage</div>
+                                <div class="dropdown-item" data-value="industrial">Industrial</div>
+                                <div class="dropdown-item" data-value="gothic">Gothic</div>
+                                <div class="dropdown-item" data-value="art_deco">Art Deco</div>
+                                <div class="dropdown-item" data-value="cyberpunk">Cyberpunk</div>
+                                <div class="dropdown-item" data-value="steampunk">Steampunk</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="section-label">Editing Techniques</label>
+                    <div class="input-with-dropdown">
+                        <input type="text" class="scene-editing-input"
+                            placeholder="Select technique or type custom..."
+                            aria-label="Editing Techniques">
+                        <div class="input-dropdown-wrapper">
+                            <button type="button" class="input-dropdown-trigger"
+                                aria-label="Open editing presets">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="input-dropdown-menu">
+                                <div class="dropdown-item" data-value="fast_cut">Fast Cut</div>
+                                <div class="dropdown-item" data-value="slow_motion">Slow Motion</div>
+                                <div class="dropdown-item" data-value="jump_cut">Jump Cut</div>
+                                <div class="dropdown-item" data-value="cross_dissolve">Cross Dissolve</div>
+                                <div class="dropdown-item" data-value="match_cut">Match Cut</div>
+                                <div class="dropdown-item" data-value="fade_to_black">Fade to Black</div>
+                                <div class="dropdown-item" data-value="long_take">Long Take</div>
+                                <div class="dropdown-item" data-value="montage">Montage</div>
+                                <div class="dropdown-item" data-value="time_lapse">Time Lapse</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div> <!-- End scene-params-grid -->
             </div>
         `;
@@ -640,6 +753,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     firstScene.querySelector('.scene-color-input').value = '';
                     firstScene.querySelector('.scene-mood-input').value = '';
                     firstScene.querySelector('.scene-sound-input').value = '';
+                    firstScene.querySelector('.scene-composition-input').value = '';
+                    firstScene.querySelector('.scene-lens-input').value = '';
+                    firstScene.querySelector('.scene-production-input').value = '';
+                    firstScene.querySelector('.scene-editing-input').value = '';
                     // Hide undo/redo if they were visible
                     firstScene.querySelector('.scene-undo-btn')?.classList.add('hidden');
                     firstScene.querySelector('.scene-redo-btn')?.classList.add('hidden');
@@ -685,6 +802,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const color = sceneEl.querySelector('.scene-color-input').value.trim();
                 const mood = sceneEl.querySelector('.scene-mood-input').value.trim();
                 const sound = sceneEl.querySelector('.scene-sound-input').value.trim();
+                const composition = sceneEl.querySelector('.scene-composition-input')?.value.trim() || '';
+                const lens = sceneEl.querySelector('.scene-lens-input')?.value.trim() || '';
+                const production = sceneEl.querySelector('.scene-production-input')?.value.trim() || '';
+                const editing = sceneEl.querySelector('.scene-editing-input')?.value.trim() || '';
 
                 // Get negative prompt from the input field (which handles both manual and presets)
                 const finalNegative = sceneEl.querySelector('.scene-negative-prompt').value.trim();
@@ -699,7 +820,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             lighting: lighting || null,
                             color_palette: color || null,
                             mood: mood || null,
-                            sound_design: sound || null
+                            sound_design: sound || null,
+                            composition: composition || null,
+                            lens_technique: lens || null,
+                            production_design: production || null,
+                            editing_technique: editing || null
                         }
                     });
                 }

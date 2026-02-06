@@ -154,6 +154,17 @@
     font-family: inherit;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     outline: none;
+    box-sizing: border-box;
+}
+
+.form-input,
+.form-select {
+    height: 52px;
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
 }
 
 .form-input::placeholder,
@@ -221,6 +232,7 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     color: var(--text-primary, #fff);
     min-height: 52px;
+    box-sizing: border-box;
 }
 
 .dropdown-trigger:hover {
@@ -326,11 +338,13 @@
     display: flex;
     align-items: center;
     padding: 14px 18px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1.5px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
+    box-sizing: border-box;
+    min-height: 52px;
 }
 
 .radio-option:hover {
@@ -349,6 +363,67 @@
 .radio-option.selected {
     background: rgba(105, 127, 239, 0.15);
     border-color: #697fef;
+}
+
+/* Section Header */
+.form-section-header {
+    margin: 32px 0 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-section-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 0 0 8px;
+    color: #fff;
+}
+
+.form-section-subtitle {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Checkbox Group */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.05);
+    /* Matched to input */
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    min-height: 52px;
+}
+
+.checkbox-option:hover {
+    background: rgba(255, 255, 255, 0.08);
+    /* slightly lighter interaction */
+    border-color: rgba(105, 127, 239, 0.3);
+}
+
+.checkbox-option.selected {
+    background: rgba(105, 127, 239, 0.15);
+    border-color: #697fef;
+}
+
+.checkbox-option input[type="checkbox"] {
+    margin-right: 12px;
+    width: 20px;
+    height: 20px;
+    accent-color: #697fef;
+    cursor: pointer;
 }
 
 /* Error Message */

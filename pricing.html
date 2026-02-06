@@ -18,12 +18,22 @@
     <!-- Styles -->
     <link rel="stylesheet" href="src/css/theme.css">
     <link rel="stylesheet" href="src/css/landing.css">
+    <link rel="stylesheet" href="src/css/footer.css">
     <link rel="stylesheet" href="src/css/pricing.css">
 
     <!-- PWA -->
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="icon" type="image/png" href="src/assets/favicon.png">
     <link rel="apple-touch-icon" href="src/assets/apple-touch-icon.png">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XN8KY5PPLK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-XN8KY5PPLK');
+    </script>
 </head>
 
 <body>
@@ -37,7 +47,7 @@
                 </a>
             </div>
             <div class="nav-links">
-                <a href="index.html#blog">Blog</a>
+                <a href="src/blog/index.html">Blog</a>
                 <a href="#" class="active">Pricing</a>
                 <a href="app.html" class="btn-launch-beta">Launch Beta</a>
             </div>
@@ -305,7 +315,7 @@
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polyline points="12 6 12 12 16 14"></polyline>
                             </svg>
-                            Vote For Features
+                            Coming Soon
                         </button>
                     </div>
                 </div>
@@ -503,7 +513,7 @@
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polyline points="12 6 12 12 16 14"></polyline>
                             </svg>
-                            Vote For Features
+                            Coming Soon
                         </button>
                     </div>
                 </div>-->
@@ -563,7 +573,7 @@
                 <h4>Resources</h4>
                 <ul>
                     <li><a href="documentation.html">Documentation</a></li>
-                    <li><a href="index.html#blog">Blog</a></li>
+                    <li><a href="src/blog/index.html">Blog</a></li>
                     <li><a href="#">Community</a></li>
                 </ul>
             </div>
