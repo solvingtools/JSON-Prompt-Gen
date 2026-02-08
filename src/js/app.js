@@ -245,6 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Update UI Capabilities
                 updateModelUI();
+                saveWork(); // Auto-save on global change
 
                 // Close
                 wrapper.classList.remove('open');
@@ -708,6 +709,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             wrapper.classList.remove('open');
             input.focus();
+
+            // Trigger auto-save by dispatching input event
+            input.dispatchEvent(new Event('input', { bubbles: true }));
         }
     });
 
@@ -838,16 +842,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.scenes && data.scenes.length > 0) {
                 // Clear existing (except first if we reuse it)
                 scenesContainer.innerHTML = '';
+
+                // Reset counter so addSceneBtn starts from 1
                 sceneCount = 0;
 
                 data.scenes.forEach(sceneData => {
-                    sceneCount++;
-                    // Reuse add scene logic but we need to inject values
-                    // We can call click() on addBtn but that's async/messy with values
-                    // Ideally we refactor addScene to accept data, but for now we'll recreate the HTML manually or use a helper
-
-                    // Simple approach: Trigger click to create structure, then populate last child
-                    // Since addSceneBtn handler is synchronous DOM insertion:
+                    // Reuse add scene logic - let it handle ID generation
                     addSceneBtn.click();
                     const newScene = scenesContainer.lastElementChild;
 
