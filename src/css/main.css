@@ -55,9 +55,57 @@ h3 {
     z-index: 100;
 }
 
+/* Mobile Header Optimizations */
 @media (max-width: 768px) {
     .site-header {
-        padding: 8px 12px;
+        padding: 6px 8px;
+        margin-bottom: 20px;
+    }
+
+    .header-inner {
+        max-width: 100%;
+        gap: 8px;
+    }
+
+    .header-left {
+        gap: 8px;
+        flex: 1;
+        min-width: 0;
+        /* Allow flex items to shrink below content size */
+    }
+
+    .hamburger-btn {
+        margin-left: 0;
+        margin-right: 6px;
+        width: 32px;
+        height: 32px;
+        padding: 6px;
+        flex-shrink: 0;
+    }
+
+    .logo {
+        gap: 6px;
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .logo-img {
+        height: 40px;
+        width: 40px;
+        flex-shrink: 0;
+    }
+
+    .logo h1 {
+        font-size: 1.2rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Hide desktop navigation on mobile - use hamburger menu instead */
+    .main-nav {
+        display: none;
     }
 }
 
