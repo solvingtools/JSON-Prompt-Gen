@@ -55,6 +55,12 @@ h3 {
     z-index: 100;
 }
 
+@media (max-width: 768px) {
+    .site-header {
+        padding: 8px 12px;
+    }
+}
+
 .header-inner {
     max-width: 1600px;
     width: 100%;

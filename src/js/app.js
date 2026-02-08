@@ -780,13 +780,117 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }, null, 2);
 
+                localStorage.removeItem(AUTO_SAVE_KEY);
                 showToast('Generator Reset', 'All scenes and outputs have been cleared.', 'info');
             }
         });
     }
 
+    // Auto-Save Logic
+    const AUTO_SAVE_KEY = 'json_prompt_gen_autosave';
+
+    function saveWork() {
+        const scenes = [];
+        const sceneElements = scenesContainer.querySelectorAll('.scene-item');
+
+        sceneElements.forEach(sceneEl => {
+            scenes.push({
+                description: sceneEl.querySelector('.scene-description').value,
+                camera: sceneEl.querySelector('.scene-camera-input')?.value || '',
+                lighting: sceneEl.querySelector('.scene-lighting-input')?.value || '',
+                color: sceneEl.querySelector('.scene-color-input')?.value || '',
+                mood: sceneEl.querySelector('.scene-mood-input')?.value || '',
+                sound: sceneEl.querySelector('.scene-sound-input')?.value || '',
+                negative: sceneEl.querySelector('.scene-negative-prompt')?.value || '',
+                composition: sceneEl.querySelector('.scene-composition-input')?.value || '',
+                lens: sceneEl.querySelector('.scene-lens-input')?.value || '',
+                production: sceneEl.querySelector('.scene-production-input')?.value || '',
+                editing: sceneEl.querySelector('.scene-editing-input')?.value || ''
+            });
+        });
+
+        const data = {
+            scenes: scenes,
+            globalParams: globalParams.getParams(),
+            timestamp: Date.now()
+        };
+
+        localStorage.setItem(AUTO_SAVE_KEY, JSON.stringify(data));
+        // console.log('Work auto-saved');
+    }
+
+    function restoreWork() {
+        const saved = localStorage.getItem(AUTO_SAVE_KEY);
+        if (!saved) return;
+
+        try {
+            const data = JSON.parse(saved);
+
+            // Restore Global Params
+            if (data.globalParams) {
+                Object.keys(data.globalParams).forEach(key => {
+                    globalParams.updateParam(key, data.globalParams[key]);
+                });
+                syncGlobalUI();
+            }
+
+            // Restore Scenes
+            if (data.scenes && data.scenes.length > 0) {
+                // Clear existing (except first if we reuse it)
+                scenesContainer.innerHTML = '';
+                sceneCount = 0;
+
+                data.scenes.forEach(sceneData => {
+                    sceneCount++;
+                    // Reuse add scene logic but we need to inject values
+                    // We can call click() on addBtn but that's async/messy with values
+                    // Ideally we refactor addScene to accept data, but for now we'll recreate the HTML manually or use a helper
+
+                    // Simple approach: Trigger click to create structure, then populate last child
+                    // Since addSceneBtn handler is synchronous DOM insertion:
+                    addSceneBtn.click();
+                    const newScene = scenesContainer.lastElementChild;
+
+                    newScene.querySelector('.scene-description').value = sceneData.description || '';
+                    if (sceneData.camera) newScene.querySelector('.scene-camera-input').value = sceneData.camera;
+                    if (sceneData.lighting) newScene.querySelector('.scene-lighting-input').value = sceneData.lighting;
+                    if (sceneData.color) newScene.querySelector('.scene-color-input').value = sceneData.color;
+                    if (sceneData.mood) newScene.querySelector('.scene-mood-input').value = sceneData.mood;
+                    if (sceneData.sound) newScene.querySelector('.scene-sound-input').value = sceneData.sound;
+                    if (sceneData.negative) newScene.querySelector('.scene-negative-prompt').value = sceneData.negative;
+                    if (sceneData.composition) newScene.querySelector('.scene-composition-input').value = sceneData.composition;
+                    if (sceneData.lens) newScene.querySelector('.scene-lens-input').value = sceneData.lens;
+                    if (sceneData.production) newScene.querySelector('.scene-production-input').value = sceneData.production;
+                    if (sceneData.editing) newScene.querySelector('.scene-editing-input').value = sceneData.editing;
+                });
+
+                showToast('Work Restored', 'Your previous session has been restored.', 'success');
+            }
+        } catch (e) {
+            console.error('Failed to restore work:', e);
+        }
+    }
+
+    // Attach Auto-Save to Inputs
+    // We delegate change/input events on the container
+    scenesContainer.addEventListener('input', () => {
+        saveWork();
+    });
+
+    // Also save on global param changes (handled in globalParamsService but likely need explicit trigger here or hook)
+    // For now, we rely on the fact that global params are saved to their own storage, 
+    // BUT our restoreWork loads them from auto-save. behavior might be redundant but safe.
+    // Let's hook into the global-params-corrected event or just save when we can.
+    // Actually, globalParamsService saves to its own key. 
+    // But "Scenes" are the main risk.
+
+    // Attempt restore on load
+    restoreWork();
+
+
     // Generate JSON logic
     generateBtn.addEventListener('click', async () => {
+        saveWork(); // Save before generating
         // Cinematic Loading Effect
         generateBtn.classList.add('loading');
         await new Promise(r => setTimeout(r, 600)); // Short cinematic delay
