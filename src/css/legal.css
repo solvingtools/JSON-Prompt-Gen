@@ -84,15 +84,17 @@
 }
 
 .contact-link {
-    color: var(--accent-primary);
-    text-decoration: none;
+    color: #0044ff;
+    background: transparent;
+    border: none;
+    text-decoration: underline;
     font-weight: 500;
     font-size: 1.1rem;
     transition: all 0.2s ease;
 }
 
 .contact-link:hover {
-    color: #fff;
+    color: #400094;
     text-decoration: underline;
 }
 
