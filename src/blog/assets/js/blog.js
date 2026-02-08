@@ -1,102 +1,102 @@
 // Blog Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const blogCards = document.querySelectorAll('.blog-card');
+    const searchInput = document.getElementById('blogSearch');
+    const blogGrid = document.getElementById('blogGrid');
 
-// Platform Filter
-const filterBtns = document.querySelectorAll('.filter-btn');
-const blogCards = document.querySelectorAll('.blog-card');
+    let activePlatform = 'all';
+    let searchTerm = '';
 
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // Update active state
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+    // Create No Results message if it doesn't exist
+    const createNoResultsMessage = () => {
+        let msg = document.getElementById('no-results-message');
+        if (!msg) {
+            msg = document.createElement('div');
+            msg.id = 'no-results-message';
+            msg.className = 'empty-state-container hidden';
+            msg.innerHTML = `
+                <div class="empty-state">
+                    <p>No guides found matching your criteria.</p>
+                    <button class="btn btn-secondary" id="resetFilters">Clear All Filters</button>
+                </div>
+            `;
+            blogGrid.parentNode.appendChild(msg);
 
-        const platform = btn.dataset.platform;
+            document.getElementById('resetFilters')?.addEventListener('click', () => {
+                activePlatform = 'all';
+                searchTerm = '';
+                if (searchInput) searchInput.value = '';
+                filterBtns.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.platform === 'all');
+                });
+                applyFilters();
+            });
+        }
+        return msg;
+    };
 
-        // Filter blog cards
+    const noResultsMsg = createNoResultsMessage();
+
+    function applyFilters() {
+        let visibleCount = 0;
+
         blogCards.forEach(card => {
-            if (platform === 'all' || card.dataset.platform === platform) {
+            const cardPlatform = card.dataset.platform;
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const excerpt = card.querySelector('.blog-card-excerpt').textContent.toLowerCase();
+            const badge = card.querySelector('.platform-badge').textContent.toLowerCase();
+
+            const matchesPlatform = activePlatform === 'all' || cardPlatform === activePlatform;
+            const matchesSearch = !searchTerm ||
+                title.includes(searchTerm) ||
+                excerpt.includes(searchTerm) ||
+                badge.includes(searchTerm);
+
+            if (matchesPlatform && matchesSearch) {
                 card.style.display = 'block';
                 card.style.animation = 'fadeInUp 0.6s ease forwards';
+                visibleCount++;
             } else {
                 card.style.display = 'none';
             }
         });
-    });
-});
 
-// Search Functionality
-const searchInput = document.getElementById('blogSearch');
-
-searchInput?.addEventListener('input', (e) => {
-    const searchTerm = e.target.value.toLowerCase();
-
-    blogCards.forEach(card => {
-        const title = card.querySelector('h3').textContent.toLowerCase();
-        const excerpt = card.querySelector('.blog-card-excerpt').textContent.toLowerCase();
-        const platform = card.querySelector('.platform-badge').textContent.toLowerCase();
-
-        if (title.includes(searchTerm) || excerpt.includes(searchTerm) || platform.includes(searchTerm)) {
-            card.style.display = 'block';
+        // Show/Hide no results message
+        if (visibleCount === 0) {
+            noResultsMsg.classList.remove('hidden');
         } else {
-            card.style.display = 'none';
+            noResultsMsg.classList.add('hidden');
         }
-    });
-});
+    }
 
-// Newsletter Form
-const newsletterForm = document.getElementById('newsletterForm');
-
-newsletterForm?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = newsletterForm.querySelector('input[type="email"]').value;
-
-    // TODO: Integrate with newsletter service
-    alert(`Thank you for subscribing! We'll send updates to ${email}`);
-    newsletterForm.reset();
-});
-
-// Smooth Scroll for Blog Cards
-blogCards.forEach(card => {
-    card.addEventListener('click', (e) => {
-        // Only navigate if clicking on the card itself, not on links
-        if (e.target.tagName !== 'A') {
-            const link = card.querySelector('.read-more-btn');
-            if (link) {
-                window.location.href = link.href;
-            }
-        }
-    });
-});
-
-// Add hover sound effect (optional)
-if ('AudioContext' in window) {
-    blogCards.forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            // Subtle hover feedback without actual sound
-            card.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+    // Platform Filter Click
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activePlatform = btn.dataset.platform;
+            applyFilters();
         });
     });
-}
 
-// Lazy load images when implemented
-const observerOptions = {
-    root: null,
-    rootMargin: '50px',
-    threshold: 0.1
-};
-
-const imageObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const img = entry.target;
-            // Future: load actual images here
-            imageObserver.unobserve(img);
-        }
+    // Search Input
+    searchInput?.addEventListener('input', (e) => {
+        searchTerm = e.target.value.toLowerCase();
+        applyFilters();
     });
-}, observerOptions);
 
-document.querySelectorAll('.blog-card-image').forEach(img => {
-    imageObserver.observe(img);
+    // Handle card clicks
+    blogCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'A' && e.target.closest('a') === null) {
+                const link = card.querySelector('.read-more-btn');
+                if (link) {
+                    window.location.href = link.href;
+                }
+            }
+        });
+    });
+
+    console.log('Blog Engine Initialized');
 });
-
-console.log('Blog JS loaded successfully');

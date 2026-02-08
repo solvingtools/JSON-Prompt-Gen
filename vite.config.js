@@ -59,6 +59,7 @@ export default defineConfig({
                 terms: 'legal/terms.html',
                 cookies: 'legal/cookies.html',
                 disclaimer: 'legal/disclaimer.html',
+                pricing: 'pricing.html',
                 blog: 'src/blog/index.html',
                 'blog-veo': 'src/blog/veo-json-prompt-guide/index.html',
                 'blog-sora': 'src/blog/sora-json-prompt-guide/index.html',

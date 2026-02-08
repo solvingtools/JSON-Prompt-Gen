@@ -1542,7 +1542,6 @@ body {
     color: #ffd900;
 }
 
-/* Guardrails Logos */
 /* Guardrails SVG Icons */
 .model-icon-svg {
     width: 64px;
@@ -1608,5 +1607,3 @@ body {
 .specs-list li:last-child {
     border-bottom: none;
 }
-
-/* Footer Styles have been moved to footer.css for universal support */
