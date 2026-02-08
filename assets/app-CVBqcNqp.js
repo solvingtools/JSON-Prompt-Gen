@@ -187,6 +187,7 @@ ${r}`}]}],generationConfig:{temperature:m.temperature||.7,maxOutputTokens:m.maxT
                             </div>
                         </div>
                     </div>
+                </div>
                 <div class="form-group">
                     <label class="section-label">Color Palettes</label>
                     <div class="input-with-dropdown">
