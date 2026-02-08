@@ -1,6 +1,8 @@
 // Blog Functionality
 
-document.addEventListener('DOMContentLoaded', () => {
+function initBlog() {
+    console.log('Initializing Blog JS...');
+
     // Platform Filter
     const filterBtns = document.querySelectorAll('.filter-btn');
     const blogCards = document.querySelectorAll('.blog-card');
@@ -8,18 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (filterBtns.length > 0) {
         console.log(`Found ${filterBtns.length} filter buttons`);
         filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent any default button behavior
+                console.log(`Filter clicked: ${btn.dataset.platform}`);
+
                 // Update active state
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
 
                 const platform = btn.dataset.platform;
-                console.log(`Filtering by platform: ${platform}`);
 
                 // Filter blog cards
                 blogCards.forEach(card => {
                     if (platform === 'all' || card.dataset.platform === platform) {
                         card.style.display = 'block';
+                        // Reset animation
                         card.style.animation = 'none';
                         card.offsetHeight; /* Trigger reflow */
                         card.style.animation = 'fadeInUp 0.6s ease forwards';
@@ -109,4 +114,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     console.log('Blog JS loaded successfully');
-});
+}
+
+// Robust initialization
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBlog);
+} else {
+    initBlog();
+}
