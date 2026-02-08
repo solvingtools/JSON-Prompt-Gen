@@ -1,95 +1,74 @@
 // Blog Functionality
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Platform Filter
     const filterBtns = document.querySelectorAll('.filter-btn');
     const blogCards = document.querySelectorAll('.blog-card');
-    const searchInput = document.getElementById('blogSearch');
-    const blogGrid = document.getElementById('blogGrid');
 
-    let activePlatform = 'all';
-    let searchTerm = '';
+    if (filterBtns.length > 0) {
+        console.log(`Found ${filterBtns.length} filter buttons`);
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active state
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
 
-    // Create No Results message if it doesn't exist
-    const createNoResultsMessage = () => {
-        let msg = document.getElementById('no-results-message');
-        if (!msg) {
-            msg = document.createElement('div');
-            msg.id = 'no-results-message';
-            msg.className = 'empty-state-container hidden';
-            msg.innerHTML = `
-                <div class="empty-state">
-                    <p>No guides found matching your criteria.</p>
-                    <button class="btn btn-secondary" id="resetFilters">Clear All Filters</button>
-                </div>
-            `;
-            blogGrid.parentNode.appendChild(msg);
+                const platform = btn.dataset.platform;
+                console.log(`Filtering by platform: ${platform}`);
 
-            document.getElementById('resetFilters')?.addEventListener('click', () => {
-                activePlatform = 'all';
-                searchTerm = '';
-                if (searchInput) searchInput.value = '';
-                filterBtns.forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.platform === 'all');
+                // Filter blog cards
+                blogCards.forEach(card => {
+                    if (platform === 'all' || card.dataset.platform === platform) {
+                        card.style.display = 'block';
+                        card.style.animation = 'none';
+                        card.offsetHeight; /* Trigger reflow */
+                        card.style.animation = 'fadeInUp 0.6s ease forwards';
+                    } else {
+                        card.style.display = 'none';
+                    }
                 });
-                applyFilters();
             });
-        }
-        return msg;
-    };
+        });
+    } else {
+        console.warn('No filter buttons found');
+    }
 
-    const noResultsMsg = createNoResultsMessage();
+    // Search Functionality
+    const searchInput = document.getElementById('blogSearch');
 
-    function applyFilters() {
-        let visibleCount = 0;
+    searchInput?.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
 
         blogCards.forEach(card => {
-            const cardPlatform = card.dataset.platform;
             const title = card.querySelector('h3').textContent.toLowerCase();
             const excerpt = card.querySelector('.blog-card-excerpt').textContent.toLowerCase();
-            const badge = card.querySelector('.platform-badge').textContent.toLowerCase();
+            const platform = card.querySelector('.platform-badge').textContent.toLowerCase();
 
-            const matchesPlatform = activePlatform === 'all' || cardPlatform === activePlatform;
-            const matchesSearch = !searchTerm ||
-                title.includes(searchTerm) ||
-                excerpt.includes(searchTerm) ||
-                badge.includes(searchTerm);
-
-            if (matchesPlatform && matchesSearch) {
+            if (title.includes(searchTerm) || excerpt.includes(searchTerm) || platform.includes(searchTerm)) {
                 card.style.display = 'block';
-                card.style.animation = 'fadeInUp 0.6s ease forwards';
-                visibleCount++;
             } else {
                 card.style.display = 'none';
             }
         });
-
-        // Show/Hide no results message
-        if (visibleCount === 0) {
-            noResultsMsg.classList.remove('hidden');
-        } else {
-            noResultsMsg.classList.add('hidden');
-        }
-    }
-
-    // Platform Filter Click
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            activePlatform = btn.dataset.platform;
-            applyFilters();
-        });
     });
 
-    // Search Input
-    searchInput?.addEventListener('input', (e) => {
-        searchTerm = e.target.value.toLowerCase();
-        applyFilters();
+    // Newsletter Form
+    const newsletterForm = document.getElementById('newsletterForm');
+
+    newsletterForm?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = newsletterForm.querySelector('input[type="email"]').value;
+
+        // TODO: Integrate with newsletter service
+        alert(`Thank you for subscribing! We'll send updates to ${email}`);
+        newsletterForm.reset();
     });
 
-    // Handle card clicks
+    // Smooth Scroll for Blog Cards
     blogCards.forEach(card => {
         card.addEventListener('click', (e) => {
-            if (e.target.tagName !== 'A' && e.target.closest('a') === null) {
+            // Only navigate if clicking on the card itself, not on links
+            if (e.target.tagName !== 'A') {
                 const link = card.querySelector('.read-more-btn');
                 if (link) {
                     window.location.href = link.href;
@@ -98,5 +77,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    console.log('Blog Engine Initialized');
+    // Add hover sound effect (optional)
+    if ('AudioContext' in window) {
+        blogCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Subtle hover feedback without actual sound
+                card.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+        });
+    }
+
+    // Lazy load images when implemented
+    const observerOptions = {
+        root: null,
+        rootMargin: '50px',
+        threshold: 0.1
+    };
+
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                // Future: load actual images here
+                imageObserver.unobserve(img);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.blog-card-image').forEach(img => {
+        imageObserver.observe(img);
+    });
+
+    console.log('Blog JS loaded successfully');
 });
