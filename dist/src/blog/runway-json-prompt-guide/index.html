@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XN8KY5PPLK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-XN8KY5PPLK');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>The Ultimate Guide to Runway JSON Prompt Structure | JSON Prompt Gen</title>
+    <meta name="description"
+        content="Master Runway Gen-3 and Gen-4 JSON prompt structure. Learn Motion Brush parameters, camera motion speeds, and batch processing for professional AI video results.">
+    <link rel="canonical" href="https://solvingtools.github.io/JSON-Prompt-Gen/src/blog/runway-json-prompt-guide/">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="The Ultimate Guide to Runway JSON Prompt Structure">
+    <meta property="og:description"
+        content="Master Runway Gen-3 and Gen-4 JSON prompt structure. Learn Motion Brush parameters, camera motion speeds, and batch processing.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solvingtools.github.io/JSON-Prompt-Gen/blog/runway-json-prompt-guide/">
+    <meta property="og:site_name" content="JSON Prompt Gen">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Runway JSON Prompt Guide">
+    <meta name="twitter:description" content="Master Runway Gen-3 and Gen-4 JSON structure">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "The Ultimate Guide to Runway JSON Prompt Structure",
+      "description": "Master Runway Gen-3 and Gen-4 JSON prompt structure with professional examples",
+      "datePublished": "2026-01-31",
+      "dateModified": "2026-01-31",
+      "author": {
+        "@type": "Organization",
+        "name": "JSON Prompt Gen Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "JSON Prompt Gen",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://solvingtools.github.io/JSON-Prompt-Gen/assets/icon-512.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://solvingtools.github.io/JSON-Prompt-Gen/blog/runway-json-prompt-guide/"
+      },
+      "articleSection": "AI Video Prompting",
+      "keywords": ["runway json prompts", "runway gen-3", "runway gen-4", "motion brush json"]
+    }
+    </script>
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/theme-BLCvdzzT.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/landing-BlCzyX-G.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/footer-OknDGBv_.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/blog-CmCNV82e.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/post-Bkqyaasm.css">
+<link rel="manifest" href="/JSON-Prompt-Gen/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/JSON-Prompt-Gen/registerSW.js"></script></head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="landing-nav">
+        <div class="nav-content">
+            <div class="logo">
+                <img src="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png" alt="JSON Prompt Gen Logo" class="logo-img">
+                <span class="gradient-text">JSON Prompt Gen</span>
+            </div>
+            <div class="nav-links">
+                <a href="../../../app.html" class="btn-launch-beta" aria-label="Launch Tool">
+                    <span>Launch Tool</span>
+                </a>
+                <a href="../../../index.html" class="home-btn" aria-label="Home">
+                    <span>Home</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumbs -->
+    <div class="blog-container blog-page-spacer">
+        <nav class="breadcrumbs">
+            <a href="../../../index.html">Home</a>
+            <span>›</span>
+            <a href="../index.html">Blog</a>
+            <span>›</span>
+            <span>Runway JSON Prompt Guide</span>
+        </nav>
+    </div>
+
+    <!-- Post Hero -->
+    <article class="post-container">
+        <header class="post-hero">
+            <span class="platform-badge runway">Runway Gen-3/4</span>
+            <h1>The Ultimate Guide to Runway JSON Prompt Structure – From Beginner to Pro</h1>
+            <div class="post-meta">
+                <span>📅 January 31, 2026</span>
+                <span>⏱️ 12 min read</span>
+                <span>✍️ JSON Prompt Gen Team</span>
+            </div>
+        </header>
+
+        <!-- Table of Contents -->
+        <aside class="table-of-contents">
+            <h3>📑 Table of Contents</h3>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#section-1">Architecture & Philosophy</a></li>
+                <li><a href="#section-2">Gen-3 Alpha Turbo Mastery</a></li>
+                <li><a href="#section-3">Gen-4 Next-Gen Preview</a></li>
+                <li><a href="#section-4">Beginner-Intermediate Workflows</a></li>
+                <li><a href="#section-5">Motion Brush in JSON</a></li>
+                <li><a href="#section-6">Pro Automation & Analytics</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+            </ul>
+        </aside>
+
+        <!-- Post Content -->
+        <div class="post-content">
+            <section id="introduction">
+                <p>Runway built its reputation on control. Motion Brush. Director Mode. Camera paths you can draw. But
+                    when you need to scale—when you're generating 50 clips for a campaign—clicking doesn't cut it. You
+                    need JSON.</p>
+
+                <p>As a filmmaker, I’ve had my share of late nights wrestling with UI sliders. I remember trying to get
+                    a perfect 360-degree orbit around a product shot; after the 20th manual adjustment, I felt like
+                    throwing my monitor out the window. It wasn't until I dove into the <strong>runway json prompt
+                        structure</strong> that I found peace. JSON turns that "lucky guess" into a repeatable,
+                    mathematical formula. It’s the bridge between creative "vibes" and programmatic execution.</p>
+
+                <div class="info-box">
+                    <strong>💡 Key Takeaway</strong>
+                    <ul>
+                        <li><strong>Directorial Precision</strong>: JSON allows you to define exact camera speeds and
+                            motion brush paths that the web UI sometimes oversimplifies.</li>
+                        <li><strong>Massive Scalability</strong>: Programmatic prompts enable batch generation of
+                            consistent shots across entire marketing campaigns.</li>
+                        <li><strong>Future-Ready</strong>: Mastering the Gen-3 and Gen-4 schemas now prepares you for
+                            the high-level automation coming to Gen-4.5 and beyond.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="section-1">
+                <h2>Section 1: Runway's Control Philosophy & JSON Architecture</h2>
+                <p>Runway isn't just a generator; it’s a virtual soundstage. While other AI models treat the prompt like
+                    a black box, Runway’s architecture is modular.</p>
+                <p>The <strong>runway ml prompt format</strong> is built to handle multiple layers of input
+                    simultaneously. In a single JSON request, you can combine a primary text instruction, an image
+                    reference for the first frame, and a "Motion Brush" layer that dictates exactly which pixels should
+                    move and in what direction.</p>
+
+                <h3>Control Comparison: Runway vs. Others</h3>
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Runway (Gen-3/4)</th>
+                                <th>Sora 2</th>
+                                <th>Veo 3.1</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Motion Control</strong></td>
+                                <td>Advanced (Motion Brush)</td>
+                                <td>Implicit (Physics)</td>
+                                <td>High (Ingredients)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Camera Logic</strong></td>
+                                <td>Mathematical (Speed 1-10)</td>
+                                <td>Narrative (Cameos)</td>
+                                <td>Directorial (Shot types)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Reference Type</strong></td>
+                                <td>Image + Motion Paths</td>
+                                <td>Character Storyboards</td>
+                                <td>Ingredient Blocks</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Automation</strong></td>
+                                <td>Highly Scriptable</td>
+                                <td>Story-Focused</td>
+                                <td>Blueprint-Focused</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="section-2">
+                <h2>Section 2: Gen-3 Alpha Turbo JSON Mastery</h2>
+                <p>The Gen-3 Alpha Turbo model is the workhorse of the Runway ecosystem. Its JSON structure is designed
+                    for speed without sacrificing that signature Runway control.</p>
+
+                <h3>Runway-Specific JSON Fields</h3>
+                <ul>
+                    <li><strong><code>promptImage</code></strong>: The URL or Base64 data of your starting frame.</li>
+                    <li><strong><code>motion_brush</code></strong>: An array of coordinate points and motion vectors.
+                    </li>
+                    <li><strong><code>ratio</code></strong>: The aspect ratio (e.g., <code>"1280:720"</code>).</li>
+                    <li><strong><code>seed</code></strong>: A fixed integer to ensure your results are reproducible.
+                    </li>
+                </ul>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>precise_orbit_shot.json</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code class="language-json">{
+  "model": "gen3_alpha_turbo",
+  "promptImage": "https://assets.yoursite.com/product_ref.jpg",
+  "promptText": "A cinematic orbit shot around the sleek perfume bottle, soft volumetric lighting.",
+  "duration": 5,
+  "ratio": "16:9",
+  "camera_motion": {
+    "pan": 5.5,
+    "zoom": 0.2
+  }
+}</code></pre>
+                </div>
+
+                <div class="tip-box">
+                    <strong>Pro Tip:</strong>
+                    <p>Instead of manually calculating if "Pan 5.5" is too fast, use our <strong>JSON Prompt Generator
+                            PWA</strong>. Its visual simulator shows you the motion speed before you generate, saving
+                        you credits.</p>
+                </div>
+            </section>
+
+            <section id="section-3">
+                <h2>Section 3: Gen-4 Next-Gen Features (Preview)</h2>
+                <p>Gen-4 is where Runway truly enters "Director Mode." The JSON schema expands to include
+                    <strong>Subject Reference</strong> and <strong>Style Reference</strong>.
+                </p>
+                <ul>
+                    <li><strong>Subject Consistency</strong>: Pass multiple image URLs to define a character’s identity,
+                        ensuring they don't change clothes or hair color between clips.</li>
+                    <li><strong>Temporal Consistency</strong>: New parameters like <code>consistency_strength</code>
+                        allow you to dial in how much the AI respects the previous frame vs. how much it "hallucinates"
+                        new motion.</li>
+                </ul>
+            </section>
+
+            <section id="section-4">
+                <h2>Section 4: Beginner to Intermediate Workflows</h2>
+                <p>Starting with the <strong>runway gen-3 api json</strong> can feel daunting. I remember my first
+                    error: "Invalid Aspect Ratio" because I typed "16x9" instead of <code>"1280:720"</code>.</p>
+
+                <h3>Step-by-Step Selection</h3>
+                <ol>
+                    <li><strong>Select your Model</strong>: Choose <code>gen3_alpha_turbo</code> for speed or
+                        <code>gen4</code> for character consistency.
+                    </li>
+                    <li><strong>Define your Canvas</strong>: Use the <code>ratio</code> field with strings like
+                        <code>"1280:720"</code>.
+                    </li>
+                    <li><strong>Set Camera Speed</strong>: Use the 0.1 to 10 scale. A <code>zoom: 10.0</code> is
+                        "hyperspeed," while <code>0.1</code> is a subtle "natural" drift.</li>
+                </ol>
+
+                <div class="info-box">
+                    <strong>Image URL Validator</strong>
+                    <p>Our PWA tool includes a built-in validator that checks if your <code>promptImage</code> link is
+                        publicly accessible before you send the JSON, preventing the dreaded "Task Failed" error.</p>
+                </div>
+            </section>
+
+            <section id="section-5">
+                <h2>Section 5: Motion Brush & Director Mode in JSON</h2>
+                <p>Motion Brush is Runway’s "magic wand." In the UI, you paint an area. In JSON, that painting is
+                    converted into a coordinate array.</p>
+
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table purple-theme">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Description</th>
+                                <th>JSON Value Range</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Horizontal</strong></td>
+                                <td>Left/Right motion</td>
+                                <td>-10.0 to 10.0</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vertical</strong></td>
+                                <td>Up/Down motion</td>
+                                <td>-10.0 to 10.0</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Proximity</strong></td>
+                                <td>Depth/Z-axis motion</td>
+                                <td>-10.0 to 10.0</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ambient</strong></td>
+                                <td>Random environmental motion</td>
+                                <td>0 to 10.0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="warning-box">
+                    <strong>Manual Warning</strong>
+                    <p>Writing these arrays manually is nearly impossible. Our PWA lets you "draw" the motion on a
+                        canvas; it then converts your strokes into the complex <code>motion_brush</code> coordinate
+                        arrays automatically.</p>
+                </div>
+            </section>
+
+            <section id="section-6">
+                <h2>Section 6: Pro Automation & Batch Workflows</h2>
+                <p>If you're an agency, you aren't making one video; you're making thirty. The <strong>runway gen-4
+                        structured prompts</strong> allow for batch arrays.</p>
+
+                <div class="info-box">
+                    <strong>Case Study: The 30-Second Commercial</strong>
+                    <p>By using our PWA’s <strong>Atomic Scene Locks</strong>, I once generated a full 30-second
+                        sequence where the camera "trucked" left across five different locations perfectly. The JSON
+                        ensured that the <code>camera_motion.truck</code> value remained exactly <code>-4.0</code>
+                        across all generations, creating a seamless match-cut.</p>
+                </div>
+            </section>
+
+            <div class="cta-block">
+                <h3>Ready to scale your production?</h3>
+                <p>Try the Runway-Ready JSON Generator in our PWA for 100% Free while we are still in Beta.</p>
+                <a href="../../../app.html" class="cta-button">Try it Now →</a>
+            </div>
+
+            <section id="conclusion">
+                <h2>Conclusion</h2>
+                <p>The shift toward automation is inevitable. Runway’s UI is great for playing, but the <strong>runway
+                        json prompt structure</strong> is for producing. It separates the hobbyists from the
+                    professionals who can deliver high-quality, consistent work on a deadline.</p>
+
+                <!--<div class="video-companion">
+                    <h4>📺 Visual Guide</h4>
+                    <p>Watch this visual
+                        walkthrough of Runway's advanced camera controls, which directly corresponds to the JSON
+                        parameters discussed.</p>
+                    <a href="https://www.youtube.com/watch?v=3pHu1mxOjp8" target="_blank" rel="noopener"
+                        class="nav-btn">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                            <path
+                                d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z">
+                            </path>
+                        </svg>
+                        Watch Video Guide
+                    </a>
+                </div>-->
+            </section>
+        </div>
+
+        <!-- Post Footer -->
+        <footer class="post-footer">
+            <div class="post-navigation">
+                <a href="../sora-json-prompt-guide/index.html" class="nav-btn">← Previous: Sora Guide</a>
+                <a href="../luma-json-prompt-guide/index.html" class="nav-btn">Next: Luma Guide →</a>
+            </div>
+
+            <div class="social-share">
+                <h4>Share this guide:</h4>
+                <div class="share-buttons">
+                    <button class="share-btn twitter">𝕏 Twitter</button>
+                    <button class="share-btn linkedin">in LinkedIn</button>
+                    <button class="share-btn reddit">⬆ Reddit</button>
+                </div>
+            </div>
+
+            <div class="related-guides">
+                <h4>Explore Other Cinematic Guides:</h4>
+                <div class="related-grid">
+                    <a href="../veo-json-prompt-guide/index.html" class="related-item">
+                        <div class="related-thumb-wrapper">
+                            <img src="/JSON-Prompt-Gen/assets/veo-hero-B9Ctb1rJ.png" alt="Veo Guide" class="related-thumb">
+                        </div>
+                        <div class="related-content">
+                            <span class="platform">Veo</span>
+                            <span class="title">Complete Veo 3.1 JSON Guide</span>
+                        </div>
+                    </a>
+                    <a href="../sora-json-prompt-guide/index.html" class="related-item">
+                        <div class="related-thumb-wrapper">
+                            <img src="/JSON-Prompt-Gen/assets/sora-hero-OWl86hft.png" alt="Sora Guide" class="related-thumb">
+                        </div>
+                        <div class="related-content">
+                            <span class="platform">Sora</span>
+                            <span class="title">Complete Sora JSON Guide</span>
+                        </div>
+                    </a>
+                    <a href="../kling-json-prompt-guide/index.html" class="related-item">
+                        <div class="related-thumb-wrapper">
+                            <img src="/JSON-Prompt-Gen/assets/kling-hero-DWRGKxau.png" alt="Kling Guide" class="related-thumb">
+                        </div>
+                        <div class="related-content">
+                            <span class="platform">Kling</span>
+                            <span class="title">Kling Video Prompting</span>
+                        </div>
+                    </a>
+                    <a href="../luma-json-prompt-guide/index.html" class="related-item">
+                        <div class="related-thumb-wrapper">
+                            <img src="/JSON-Prompt-Gen/assets/luma-hero-HQtUr4Hh.png" alt="Luma Guide" class="related-thumb">
+                        </div>
+                        <div class="related-content">
+                            <span class="platform">Luma</span>
+                            <span class="title">Luma Dream Machine Guide</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </article>
+
+    <!-- Newsletter CTA -->
+    <section class="newsletter-section">
+        <div class="blog-container">
+            <h2>Get Weekly Prompt Tips</h2>
+            <p>Join 1000+ creators mastering AI video generation</p>
+            <form class="newsletter-form-large">
+                <input type="email" placeholder="your@email.com" required>
+                <button type="submit">Subscribe Free</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <img src="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png" alt="JSON Prompt Gen Logo" class="logo-img">
+                    <h1 class="gradient-text">JSON Prompt Gen</h1>
+                </div>
+                <p>
+                    Professional AI video prompt generator. <br>Design cinematic shots with code.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="../../../app.html#cinematic-dictionary">Cinematic Dictionary</a></li>
+                    <li><a href="../../../app.html#json-prompt-library">JSON Prompt Library</a></li>
+                    <li><a href="../../../pricing.html">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="../../../documentation.html">Documentation</a></li>
+                    <li><a href="../index.html">Blog</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="../../../about.html">About Us</a></li>
+                    <li><a href="../../../contact.html">Contact</a></li>
+                    <li><a href="../../../security.html">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="../../../legal/privacy.html">Privacy Policy</a></li>
+                    <li><a href="../../../legal/terms.html">Terms of Service</a></li>
+                    <li><a href="../../../legal/cookies.html">Cookie Policy</a></li>
+                    <li><a href="../../../legal/disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 JSON Prompt Gen. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Post JavaScript -->
+    <script src="../assets/js/post.js"></script>
+</body>
+
+</html>

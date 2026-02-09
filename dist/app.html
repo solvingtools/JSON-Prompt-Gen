@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XN8KY5PPLK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XN8KY5PPLK');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON Prompt Gen</title>
@@ -15,7 +24,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
         rel="stylesheet">
 
-    <!-- Styles -->
+    <!-- Styles -->
 
     <!-- PWA (Managed by vite-plugin-pwa) -->
     <link rel="icon" type="image/png" href="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png">
@@ -29,15 +38,6 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XN8KY5PPLK"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-XN8KY5PPLK');
-    </script>
 
     <!-- Error Tracking (Sentry Placeholder) -->
     <script>
@@ -46,11 +46,11 @@
             // In production: Sentry.captureException(error);
         };
     </script>
-  <script type="module" crossorigin src="/JSON-Prompt-Gen/assets/app-CHjb2rTg.js"></script>
+  <script type="module" crossorigin src="/JSON-Prompt-Gen/assets/app-DZM5ij2S.js"></script>
   <link rel="modulepreload" crossorigin href="/JSON-Prompt-Gen/assets/modulepreload-polyfill-B5Qt9EMX.js">
-  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/app-8Z7fc9Xg.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/app-DCBNg7CT.css">
   <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/theme-BLCvdzzT.css">
-  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/main-DUroIRiC.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/main-Cmmizgox.css">
 <link rel="manifest" href="/JSON-Prompt-Gen/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/JSON-Prompt-Gen/registerSW.js"></script></head>
 
 <body>
@@ -93,6 +93,16 @@
                                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
                             </svg> Dictionary
                         </a></li>
+                    <li><a href="library.html" class="sidebar-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="sidebar-icon">
+                                <rect width="7" height="7" x="3" y="3" rx="1" />
+                                <rect width="7" height="7" x="14" y="3" rx="1" />
+                                <rect width="7" height="7" x="14" y="14" rx="1" />
+                                <rect width="7" height="7" x="3" y="14" rx="1" />
+                            </svg> Prompt Library
+                        </a></li>
                     <li><a href="#" data-section="llm-section" class="sidebar-link">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                 fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
@@ -114,14 +124,7 @@
                                 <path d="M12 7v5l4 2" />
                             </svg> History
                         </a></li>
-                    <li><a href="#" data-section="pricing-section" class="sidebar-link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="url(#sidebarIconGradient)" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="sidebar-icon">
-                                <rect width="20" height="14" x="2" y="5" rx="2" />
-                                <line x1="2" x2="22" y1="10" y2="10" />
-                            </svg> Pricing
-                        </a></li>
+
                 </ul>
             </div>
 
@@ -239,9 +242,10 @@
                 <ul>
                     <li><a href="#" data-section="generator-section" class="active">JSON Generator</a></li>
                     <li><a href="#" data-section="dictionary-section">Dictionary</a></li>
+                    <li><a href="library.html">Prompt Library</a></li>
                     <li><a href="#" data-section="llm-section">LLM Integration</a></li>
                     <li><a href="#" data-section="history-section">History</a></li>
-                    <li><a href="#" data-section="pricing-section">Pricing</a></li>
+
                 </ul>
             </nav>
         </div>
@@ -527,6 +531,123 @@
                                             <div class="dropdown-item" data-value="extra_limbs">Extra Limbs</div>
                                             <div class="dropdown-item" data-value="distorted">Distorted</div>
                                             <div class="dropdown-item" data-value="unrealistic">Unrealistic</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="section-label">Composition Principles</label>
+                                <div class="input-with-dropdown">
+                                    <input type="text" class="scene-composition-input"
+                                        placeholder="Select composition or type custom..."
+                                        aria-label="Composition Principles">
+                                    <div class="input-dropdown-wrapper">
+                                        <button type="button" class="input-dropdown-trigger"
+                                            aria-label="Open composition presets">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <polyline points="6 9 12 15 18 9"></polyline>
+                                            </svg>
+                                        </button>
+                                        <div class="input-dropdown-menu">
+                                            <div class="dropdown-item" data-value="rule_of_thirds">Rule of Thirds</div>
+                                            <div class="dropdown-item" data-value="center_framed">Center Framed</div>
+                                            <div class="dropdown-item" data-value="leading_lines">Leading Lines</div>
+                                            <div class="dropdown-item" data-value="golden_ratio">Golden Ratio</div>
+                                            <div class="dropdown-item" data-value="negative_space">Negative Space</div>
+                                            <div class="dropdown-item" data-value="symmetrical">Symmetrical</div>
+                                            <div class="dropdown-item" data-value="asymmetrical">Asymmetrical</div>
+                                            <div class="dropdown-item" data-value="depth_of_field">Depth of Field</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="section-label">Lens Techniques</label>
+                                <div class="input-with-dropdown">
+                                    <input type="text" class="scene-lens-input"
+                                        placeholder="Select lens or type custom..." aria-label="Lens Techniques">
+                                    <div class="input-dropdown-wrapper">
+                                        <button type="button" class="input-dropdown-trigger"
+                                            aria-label="Open lens presets">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <polyline points="6 9 12 15 18 9"></polyline>
+                                            </svg>
+                                        </button>
+                                        <div class="input-dropdown-menu">
+                                            <div class="dropdown-item" data-value="macro">Macro</div>
+                                            <div class="dropdown-item" data-value="wide_angle">Wide Angle</div>
+                                            <div class="dropdown-item" data-value="telephoto">Telephoto</div>
+                                            <div class="dropdown-item" data-value="fisheye">Fisheye</div>
+                                            <div class="dropdown-item" data-value="bokeh">Bokeh</div>
+                                            <div class="dropdown-item" data-value="tilt_shift">Tilt Shift</div>
+                                            <div class="dropdown-item" data-value="anamorphic">Anamorphic</div>
+                                            <div class="dropdown-item" data-value="prime_lens">Prime Lens</div>
+                                            <div class="dropdown-item" data-value="zoom_lens">Zoom Lens</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="section-label">Production Design</label>
+                                <div class="input-with-dropdown">
+                                    <input type="text" class="scene-production-input"
+                                        placeholder="Select style or type custom..." aria-label="Production Design">
+                                    <div class="input-dropdown-wrapper">
+                                        <button type="button" class="input-dropdown-trigger"
+                                            aria-label="Open production presets">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <polyline points="6 9 12 15 18 9"></polyline>
+                                            </svg>
+                                        </button>
+                                        <div class="input-dropdown-menu">
+                                            <div class="dropdown-item" data-value="minimalist">Minimalist</div>
+                                            <div class="dropdown-item" data-value="brutalist">Brutalist</div>
+                                            <div class="dropdown-item" data-value="futuristic">Futuristic</div>
+                                            <div class="dropdown-item" data-value="retro_vintage">Retro/Vintage</div>
+                                            <div class="dropdown-item" data-value="industrial">Industrial</div>
+                                            <div class="dropdown-item" data-value="gothic">Gothic</div>
+                                            <div class="dropdown-item" data-value="art_deco">Art Deco</div>
+                                            <div class="dropdown-item" data-value="cyberpunk">Cyberpunk</div>
+                                            <div class="dropdown-item" data-value="steampunk">Steampunk</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="section-label">Editing Techniques</label>
+                                <div class="input-with-dropdown">
+                                    <input type="text" class="scene-editing-input"
+                                        placeholder="Select technique or type custom..."
+                                        aria-label="Editing Techniques">
+                                    <div class="input-dropdown-wrapper">
+                                        <button type="button" class="input-dropdown-trigger"
+                                            aria-label="Open editing presets">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <polyline points="6 9 12 15 18 9"></polyline>
+                                            </svg>
+                                        </button>
+                                        <div class="input-dropdown-menu">
+                                            <div class="dropdown-item" data-value="fast_cut">Fast Cut</div>
+                                            <div class="dropdown-item" data-value="slow_motion">Slow Motion</div>
+                                            <div class="dropdown-item" data-value="jump_cut">Jump Cut</div>
+                                            <div class="dropdown-item" data-value="cross_dissolve">Cross Dissolve</div>
+                                            <div class="dropdown-item" data-value="match_cut">Match Cut</div>
+                                            <div class="dropdown-item" data-value="fade_to_black">Fade to Black</div>
+                                            <div class="dropdown-item" data-value="long_take">Long Take</div>
+                                            <div class="dropdown-item" data-value="montage">Montage</div>
+                                            <div class="dropdown-item" data-value="time_lapse">Time Lapse</div>
                                         </div>
                                     </div>
                                 </div>
@@ -1206,278 +1327,16 @@
                 </div>
             </section>
 
-            <!-- Pricing Section (Hidden by Default) -->
-            <section id="pricing-section" class="pricing-page hidden">
-                <div class="pricing-hero">
-                    <h2 class="gradient-text">Scale Your Cinematic Vision</h2>
-                    <div class="section-underline"></div>
-                    <p class="pricing-subtitle">
-                        From solo creators to professional directors, choose the precision level that fits your
-                        workflow.
-                        Anticipate the next generation of AI video prompting.
-                    </p>
-                </div>
 
-                <div class="beta-notice">
-                    <div class="beta-icon-wrapper">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="beta-content">
-                        <h4>Public Beta is Live!</h4>
-                        <p>JSON Prompt Gen is currently in open beta. You can configure your own <strong>API
-                                Keys</strong> via the Integration Hub and use all features with <strong>no limits—100%
-                                free</strong> until our full launch.</p>
-                    </div>
-                </div>
-
-                <div class="pricing-grid">
-                    <!-- Tier 1: Creator (Free) -->
-                    <div class="pricing-card tier-free">
-                        <div class="pricing-header">
-                            <h3 class="tier-name">
-                                Creator
-                                <span class="pricing-badge">Free</span>
-                            </h3>
-                            <div class="pricing-price">
-                                <span class="price-amount">$0</span>
-                                <span class="price-period">/month</span>
-                            </div>
-                            <p class="price-desc">The essential toolkit for solo creators. Transform vague concepts into
-                                production-ready JSON in seconds.</p>
-                        </div>
-                        <ul class="pricing-features">
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> 20 JSON Prompt Generations per month</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Cinematic Dictionary Engine</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> BYOK LLM Integration</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Master Modes + Guardrails</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Global Parameter Suite</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Version History + Diff Viewer</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Basic Negative & Camera Controls</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Basic Lighting Palette</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> 10 Prompt Templates Saving</li>
-                        </ul>
-                        <div class="pricing-action">
-                            <button class="btn-pricing coming-soon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                                Coming Soon
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Tier 2: Style & Consistency Pro -->
-                    <div class="pricing-card tier-pro">
-                        <div class="pricing-header">
-                            <h3 class="tier-name">
-                                Director
-                                <span class="pricing-badge">Pro</span>
-                            </h3>
-                            <div class="pricing-price">
-                                <span class="price-amount">$9</span>
-                                <span class="price-period">/month</span>
-                            </div>
-                            <p class="price-desc">Unmatched consistency for professional marketers and directors. Unlock
-                                advanced creative shifting tools.</p>
-                        </div>
-                        <ul class="pricing-features">
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> <strong>Everything in Free</strong></li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Unlimited Prompt Generations</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Smart Negative Prompt Builder</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Pro Camera & Lighting Suite</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Style Shifter Engine</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Character Bible + Ref Upload</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Atomic Scene + Global Locks</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Visual Pre-Visualization</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Consistency Score Preview</li>
-                            <!--<li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Real-Time Cost Calculator</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Gemini/Claude Expansion</li>-->
-                        </ul>
-                        <div class="pricing-action">
-                            <button class="btn-pricing coming-soon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                                Coming Soon
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Tier 3: Studio Scale (Enterprise) 
-                    <div class="pricing-card tier-enterprise">
-                        <div class="pricing-header">
-                            <h3 class="tier-name">
-                                Studio
-                                <span class="pricing-badge">Team</span>
-                            </h3>
-                            <div class="pricing-price">
-                                <span class="price-amount">$79</span>
-                                <span class="price-period">/month</span>
-                            </div>
-                            <p class="price-desc">The industry standard for agencies. Enterprise-grade security,
-                                collaboration, and temporal logic.</p>
-                        </div>
-                        <ul class="pricing-features">
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> <strong>Everything in Pro</strong></li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Brand DNA Lock</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Team Collab + Library</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Advanced Physics Engine</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Prompt Feedback Loop Analyzer</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Multi-Scene Timeline Builder</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Community Marketplace (Rev Share)</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> Audio Cue Integration</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg> One-Click Export Suite</li>
-                        </ul>
-                        <div class="pricing-action">
-                            <button class="btn-pricing coming-soon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <polyline points="12 6 12 12 16 14"></polyline>
-                                </svg>
-                                Coming Soon
-                            </button>
-                        </div>
-                    </div> -->
-                </div>
-            </section>
         </main>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer
     <footer class="site-footer">
         <div class="footer-inner">
             <div class="footer-col">
                 <div class="footer-logo">
-                    <img src="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png" alt="JSON Prompt Gen Logo" class="logo-img">
+                    <img src="src/assets/icon-192.png" alt="JSON Prompt Gen Logo" class="logo-img">
                     <h1 class="gradient-text">JSON Prompt Gen</h1>
                 </div>
                 <p>
@@ -1508,10 +1367,10 @@
                     <li><a href="documentation.html#faq">FAQ</a></li>
                 </ul>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 JSON Prompt Gen. All rights reserved.</p>
-        </div>
+        </div>-->
+    <div class="footer-bottom">
+        <p>&copy; 2026 JSON Prompt Gen. All rights reserved.</p>
+    </div>
     </footer>
 
     <!-- Getting Started Modal -->

@@ -2,6 +2,14 @@
 <html lang="en">
 
 <head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XN8KY5PPLK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XN8KY5PPLK');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON Prompt Generator | Technical Video Prompting for Veo & Sora</title>
@@ -15,21 +23,14 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
         rel="stylesheet">
 
-    <!-- Styles -->
+    <!-- Styles -->
 
     <!-- PWA -->
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="icon" type="image/png" href="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png">
     <link rel="apple-touch-icon" href="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XN8KY5PPLK"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-XN8KY5PPLK');
-    </script>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -46,10 +47,13 @@
       "featureList": "JSON Validation, Cinematic Dictionary, Multi-Model Support"
     }
     </script>
-  <script type="module" crossorigin src="/JSON-Prompt-Gen/assets/main-CniJL5fP.js"></script>
-  <link rel="modulepreload" crossorigin href="/JSON-Prompt-Gen/assets/modulepreload-polyfill-B5Qt9EMX.js">
-  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/main-BctkIEVP.css">
+  <script type="module" crossorigin src="/JSON-Prompt-Gen/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
+  <script type="module" crossorigin src="/JSON-Prompt-Gen/assets/landing-Bg6jHQQn.js"></script>
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/main-S94Mj4nD.css">
   <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/theme-BLCvdzzT.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/landing-BlCzyX-G.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/footer-OknDGBv_.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/forms-BJa6KU4T.css">
 <link rel="manifest" href="/JSON-Prompt-Gen/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/JSON-Prompt-Gen/registerSW.js"></script></head>
 
 <body>
@@ -61,10 +65,10 @@
                 <span class="gradient-text">JSON Prompt Gen</span>
             </div>
             <div class="nav-links">
-                <a href="#demo">Demo</a>
-                <a href="#models">Supported Models</a>
-                <a href="app.html" class="btn btn-secondary">Login</a>
-                <a href="app.html" class="btn btn-primary">Launch App</a>
+                <a href="src/blog/index.html">Blog</a>
+                <a href="pricing.html">Pricing</a>
+                <!--<a href="app.html" class="btn btn-secondary">Login</a>-->
+                <a href="app.html" class="btn-launch-beta">Launch Beta</a>
             </div>
         </div>
     </nav>
@@ -74,219 +78,937 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <div class="container hero-split">
-            <div class="hero-content">
-                <h1 class="hero-title">Stop Burning Credits.<br>Generate <span class="gradient-text">Production-Ready
-                        JSON</span> for Veo 3.1 & Sora.</h1>
-                <p class="hero-subtitle">The technical bridge between your creative vision and complex AI video schemas.
-                    Turn vague ideas into precise, validated JSON in under 60 seconds.</p>
-                <div class="hero-cta">
-                    <a href="app.html" class="btn btn-lg btn-primary">Get Early Access - Free Forever for MVP Users</a>
-                    <div class="trust-badge-row">
-                        <span class="trust-badge"><span class="lock-icon">⚡</span> Zero-Server Architecture</span>
-                        <span class="trust-badge"><span class="lock-icon">🔒</span> AES-256 Encrypted Keys</span>
-                        <span class="trust-badge"><span class="lock-icon">📶</span> Works Offline</span>
-                    </div>
-                </div>
+        <div class="container hero-centered">
+            <!-- Beta Badge -->
+            <div class="beta-badge fade-in-up">
+                <span class="beta-icon">🚀</span> Public Beta Open
             </div>
-            <div class="hero-visual">
-                <!-- Visual Proof: Code vs Request -->
-                <div class="visual-card-wrapper">
-                    <div class="visual-card request-card glass-panel">
-                        <div class="card-label">User Request</div>
-                        <p>"A cinematic shot of a robot in a forest."</p>
-                    </div>
-                    <div class="arrow-connector">↓</div>
-                    <div class="visual-card json-card glass-panel">
-                        <div class="card-label">Generated JSON</div>
-                        <pre><code class="language-json"><span class="key">"camera"</span>: {
-  <span class="key">"type"</span>: <span class="string">"dolly_push"</span>,
-  <span class="key">"speed"</span>: <span class="number">0.8</span>
-},
-<span class="key">"lighting"</span>: <span class="string">"golden_hour"</span>,
-<span class="key">"style"</span>: <span class="string">"cinematic"</span></code></pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Platform Guardrails -->
-        <div class="guardrails-block text-center mt-100">
-            <h2 class="section-title">Platform-Specific Guardrails</h2>
-            <p class="section-subtitle">Don't waste credits on rejected prompts. We enforce limits for every model.</p>
-            <div class="guardrails-grid">
-                <div class="guardrail-card glass-panel">
-                    <h3>Veo 3.1</h3>
-                    <ul class="specs-list">
-                        <li>✅ Max Duration: 60s</li>
-                        <li>✅ Resolution: 1080p</li>
-                        <li>❌ No "NSFW" keywords</li>
-                    </ul>
-                </div>
-                <div class="guardrail-card glass-panel">
-                    <h3>Sora</h3>
-                    <ul class="specs-list">
-                        <li>✅ Physics-based prompts</li>
-                        <li>✅ Multi-shot consistency</li>
-                        <li>⚠️ High credit cost/sec</li>
-                    </ul>
-                </div>
-                <div class="guardrail-card glass-panel">
-                    <h3>Runway Gen-4</h3>
-                    <ul class="specs-list">
-                        <li>✅ Motion Brush IDs</li>
-                        <li>✅ Camera Control Maps</li>
-                        <li>❌ Max 16s generation</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
 
-        <!-- Cinematic Dictionary -->
-        <div class="dictionary-block text-center mt-100">
-            <h2 class="section-title">The Cinematic Dictionary</h2>
-            <p class="section-subtitle">Access 100+ professional camera and lighting terms defined in JSON.</p>
-            <div class="dictionary-preview glass-panel">
-                <div class="term-tag">Dolly Zoom</div>
-                <div class="term-tag">Rack Focus</div>
-                <div class="term-tag">Dutch Angle</div>
-                <div class="term-tag">Volumetric Fog</div>
-                <div class="term-tag">Subsurface Scattering</div>
-                <div class="term-tag">Rembrandt Lighting</div>
-                <div class="term-tag">Anamorphic Lens Flare</div>
-                <div class="term-tag">Bokeh</div>
-            </div>
-        </div>
-        <!-- BYOK Architecture Showcase -->
-        <div class="byok-block text-center mt-100">
-            <h2 class="section-title">Your Keys. Your Control.</h2>
-            <p class="section-subtitle">We use a Zero-Server architecture. Your API keys are encrypted locally and never
-                touch our servers.</p>
+            <h1 class="hero-title">
+                Stop Burning Credits.<br>
+                <span class="gradient-text-anim">Generate Precision JSON</span>
+            </h1>
+            <p class="hero-subtitle">
+                The technical JSON Prompt I.D.E. for professional, cinematic AI video. Validate schemas for Veo 3.1,
+                Sora 2, Runway, Luma Dream Machine, and Kling in seconds — offline & zero-server.
+            </p>
 
-            <div class="architecture-visual glass-panel">
-                <div class="arch-node user-node">
-                    <span class="node-icon">👤</span>
-                    <span class="node-label">Your Browser</span>
+            <div class="hero-cta">
+                <div class="cta-group">
+                    <a href="app.html" class="btn btn-lg btn-beam">
+                        <span class="btn-beam-text">Try Beta Now</span>
+                        <div class="btn-beam-glow"></div>
+                    </a>
+                    <button id="hero-notify-btn" class="btn btn-lg btn-secondary btn-icon" onclick="openForm('voting')">
+                        <span class="bell-icon">🗳️</span> Vote for Features
+                    </button>
                 </div>
-                <div class="arch-connection">
-                    <div class="connection-line"></div>
-                    <span class="connection-status locked">
-                        🔒 AES-256 <br> Direct Request
-                    </span>
-                    <div class="connection-line"></div>
-                </div>
-                <div class="arch-node api-node">
-                    <span class="node-icon">☁️</span>
-                    <span class="node-label">AI Model API</span>
-                    <div class="model-badges">
-                        <span class="mini-badge">Veo</span>
-                        <span class="mini-badge">Sora</span>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Social Proof -->
-        <div class="social-block text-center mt-100">
-            <h2 class="section-title">Trusted by Technical Creatives</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card glass-panel">
-                    <p class="quote">"Finally, a tool that treats prompting like code. I stopped wasting credits on
-                        hallucinated camera moves."</p>
-                    <div class="author">
-                        <div class="author-avatar color-1">JD</div>
-                        <div class="author-info">
-                            <strong>James D.</strong>
-                            <span>VFX Supervisor</span>
-                        </div>
+                <div class="trust-metrics mt-24">
+                    <div class="avatar-group">
+                        <div class="avatar-sm"></div>
+                        <div class="avatar-sm"></div>
+                        <div class="avatar-sm"></div>
                     </div>
+                    <p class="trust-text">Joined by <strong>1000+ Ai Video Creators, UGC Ads Creators, Filmmakers, and
+                            more</strong> using validated JSON.</p>
                 </div>
-                <div class="testimonial-card glass-panel">
-                    <p class="quote">"The JSON validation saved me hours of debugging API errors. It's the IDE I didn't
-                        know I needed."</p>
-                    <div class="author">
-                        <div class="author-avatar color-2">AS</div>
-                        <div class="author-info">
-                            <strong>Sarah A.</strong>
-                            <span>AI Filmmaker</span>
-                        </div>
-                    </div>
+
+                <!-- Beta Note -->
+                <div class="beta-note mb-32 fade-in-up delay-1">
+                    <span class="highlight-text-cyber-yellow">Note:</span> Completely FREE during Beta, you can
+                    configure
+                    your own API Keys to use advanced Ai Features.
                 </div>
-                <div class="testimonial-card glass-panel">
-                    <p class="quote">"Direct local keys mean I can actually trust this tool with my enterprise workflow.
-                        Zero data leakage."</p>
-                    <div class="author">
-                        <div class="author-avatar color-3">MK</div>
-                        <div class="author-info">
-                            <strong>Marcus K.</strong>
-                            <span>Pipeline TD</span>
-                        </div>
-                    </div>
+
+                <!--<div class="trust-badge-row centered">
+                    <span class="trust-badge"><i class="fas fa-bolt"></i> Speed &lt;100ms</span>
+                    <span class="trust-badge"><i class="fas fa-lock"></i> AES-256</span>
+                    <span class="trust-badge"><i class="fas fa-wifi-slash"></i> Offline Capable</span>
                 </div>
             </div>
-        </div>
-        <!-- Floating Action Button (FAB) -->
-        <a href="app.html" id="fab-cta" class="fab-cta hidden" title="Launch App">
-            <span class="fab-icon">🚀</span>
-        </a>
 
-        <!-- Footer -->
-        <footer class="landing-footer text-center">
-            <p class="footer-text">&copy; 2024 JSON Prompt Gen. Built for the new era of filmmaking.</p>
-        </footer>
+             Featured In (Visual only for now) 
+            <div class="featured-in mt-100 fade-in">
+                <p class="featured-label">AS SEEN IN</p>
+                <div class="logo-row opacity-50">
+                    <span class="logo-text">TECHCRUNCH</span>
+                    <span class="logo-text">WIRED</span>
+                    <span class="logo-text">THE VERGE</span>
+                    <span class="logo-text">NoFilmSchool</span>
+                </div>
+            </div>-->
+            </div>
+    </section>
+
+    <!-- Visual Proof Section -->
+    <section class="proof-section">
+        <div class="container">
+            <h2 class="section-title text-center">Prompting is Engineering</h2>
+            <p class="section-subtitle text-center">Natural language is ambiguous. JSON is absolute. See the difference.
+            </p>
+
+            <!-- Example 1: Beginner -->
+            <div class="proof-example-block">
+                <div class="level-badge">
+                    <span class="level-number">Level 1</span>
+                    <span class="level-title">The Beginner</span>
+                </div>
+
+                <div class="proof-card failure">
+                    <div class="card-header-sm">
+                        <span class="status-dot red"></span>
+                        <span class="card-type-label">Vague Natural Language</span>
+                    </div>
+                    <div class="code-block-sm">
+                        "Cool slow motion video of a racing car drifting on a track at night with smoke."
+                    </div>
+                    <div class="result-feedback failure">
+                        Result: ⚠️ Hallucinated camera speed.
+                        <div class="cost-pill failure">Cost: $2.47 / shot</div>
+                    </div>
+                </div>
+
+                <div class="proof-arrow"></div>
+
+                <div class="proof-card success">
+                    <div class="card-header-sm">
+                        <span class="status-dot green"></span>
+                        <span class="card-type-label">Structured JSON</span>
+                    </div>
+                    <pre><code class="language-json">{
+  <span class="key">"subject"</span>: <span class="string">"racing_car"</span>,
+  <span class="key">"action"</span>: <span class="string">"drifting"</span>,
+  <span class="key">"environment"</span>: <span class="string">"night_track"</span>,
+  <span class="key">"camera"</span>: {
+    <span class="key">"type"</span>: <span class="string">"slow_motion"</span>,
+    <span class="key">"fps"</span>: 60
+  }
+}</code></pre>
+                    <div class="result-feedback success">
+                        Result: ✅ Physics-accurate motion.
+                        <div class="cost-pill success">Cost: $0.63 / shot</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 2: Intermediate -->
+            <div class="proof-example-block">
+                <div class="level-badge">
+                    <span class="level-number">Level 2</span>
+                    <span class="level-title">The Content Creator</span>
+                </div>
+
+                <div class="proof-card failure">
+                    <div class="card-header-sm">
+                        <span class="status-dot red"></span>
+                        <span class="card-type-label">Unstructured Detail</span>
+                    </div>
+                    <div class="code-block-sm">
+                        "Cyberpunk street samurai walking in rain, neon lights, 35mm lens, shallow depth of field, moody
+                        atmosphere."
+                    </div>
+                    <div class="result-feedback failure">
+                        Result: ⚠️ Parameters ignored by model.
+                        <div class="cost-pill failure">Cost: $1.85 / shot</div>
+                    </div>
+                </div>
+
+                <div class="proof-arrow"></div>
+
+                <div class="proof-card success">
+                    <div class="card-header-sm">
+                        <span class="status-dot green"></span>
+                        <span class="card-type-label">Validated Parameters</span>
+                    </div>
+                    <pre><code class="language-json">{
+  <span class="key">"subject"</span>: <span class="string">"cyberpunk_samurai"</span>,
+  <span class="key">"camera"</span>: {
+    <span class="key">"lens"</span>: <span class="string">"35mm"</span>,
+    <span class="key">"focus"</span>: <span class="string">"shallow_dof"</span>
+  },
+  <span class="key">"lighting"</span>: <span class="string">"neon_moody"</span>
+}</code></pre>
+                    <div class="result-feedback success">
+                        Result: ✅ Exact lens replication.
+                        <div class="cost-pill success">Cost: $0.63 / shot</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 3: Professional -->
+            <div class="proof-example-block">
+                <div class="level-badge">
+                    <span class="level-number">Level 3</span>
+                    <span class="level-title">The Director</span>
+                </div>
+
+                <div class="proof-card failure">
+                    <div class="card-header-sm">
+                        <span class="status-dot red"></span>
+                        <span class="card-type-label">Screenplay Format</span>
+                    </div>
+                    <div class="code-block-sm">
+                        "EXT. DESERT - DAY. Wide Shot. A lone wanderer traverses the dunes. Sun flare. High contrast.
+                        70mm IMAX. Tracking shot."
+                    </div>
+                    <div class="result-feedback failure">
+                        Result: ⚠️ Inconsistent framing.
+                        <div class="cost-pill failure">Cost: $2.10 / shot</div>
+                    </div>
+                </div>
+
+                <div class="proof-arrow"></div>
+
+                <div class="proof-card success">
+                    <div class="card-header-sm">
+                        <span class="status-dot green"></span>
+                        <span class="card-type-label">Production Schema</span>
+                    </div>
+                    <pre><code class="language-json">{
+  <span class="key">"shot_type"</span>: <span class="string">"wide_shot"</span>,
+  <span class="key">"camera"</span>: {
+    <span class="key">"format"</span>: <span class="string">"70mm_imax"</span>,
+    <span class="key">"movement"</span>: <span class="string">"tracking"</span>
+  },
+  <span class="key">"lighting"</span>: <span class="string">"high_contrast_sun"</span>
+}</code></pre>
+                    <div class="result-feedback success">
+                        Result: ✅ Production-ready footage.
+                        <div class="cost-pill success">Cost: $0.63 / shot</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 4: Developer -->
+            <div class="proof-example-block">
+                <div class="level-badge">
+                    <span class="level-number">Level 4</span>
+                    <span class="level-title">The Developer</span>
+                </div>
+
+                <div class="proof-card failure">
+                    <div class="card-header-sm">
+                        <span class="status-dot red"></span>
+                        <span class="card-type-label">Broken Syntax</span>
+                    </div>
+                    <div class="code-block-sm">
+                        {
+                        "subject": "spaceman"
+                        "action": "floating",
+                        "camera": [
+                        "type": "dolly"
+                        ]
+                        }
+                    </div>
+                    <div class="result-feedback failure">
+                        Result: ❌ Fatal Parse Error (0s generated).
+                        <div class="cost-pill failure">Status: Failed</div>
+                    </div>
+                </div>
+
+                <div class="proof-arrow"></div>
+
+                <div class="proof-card success">
+                    <div class="card-header-sm">
+                        <span class="status-dot green"></span>
+                        <span class="card-type-label">Auto-Corrected</span>
+                    </div>
+                    <pre><code class="language-json">{
+  <span class="key">"subject"</span>: <span class="string">"spaceman"</span>,
+  <span class="key">"action"</span>: <span class="string">"floating"</span>,
+  <span class="key">"camera"</span>: {
+    <span class="key">"type"</span>: <span class="string">"dolly"</span>
+  }
+}</code></pre>
+                    <div class="result-feedback success">
+                        Result: ✅ Validated & Executed.
+                        <div class="cost-pill success">Cost: $0.63 / shot</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Interactive Demo Section -->
-    <section id="demo" class="demo-section">
+    <!-- Audience Segmentation -->
+    <div class="audience-section mt-120">
         <div class="container">
-            <h2 class="section-title text-center">Experience Frictionless Control</h2>
+            <h2 class="section-title text-center">Built for Your Workflow</h2>
+            <p class="section-subtitle text-center mb-60">Whether you're a director, marketer, or developer, our
+                tool translates your vision into perfect JSON structure.</p>
+            <div class="audience-grid">
+                <!-- 1. Filmmakers (Cyan) -->
+                <div class="audience-card glass-panel">
+                    <svg class="audience-icon-large icon-cyan" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18 3H6C4.34 3 3 4.34 3 6V18C3 19.66 4.34 21 6 21H18C19.66 21 21 19.66 21 18V6C21 4.34 19.66 3 18 3ZM19 18C19 18.55 18.55 19 18 19H6C5.45 19 5 18.55 5 18V6C5 5.45 5.45 5 6 5H7V7H9V5H11V7H13V5H15V7H17V5H18C18.55 5 19 5.45 19 6V18Z" />
+                    </svg>
+                    <h3>Filmmakers</h3>
+                    <p>Achieve shot-list precision with professional cinematography terms. Stop fighting AI
+                        inconsistencies and master your frame.</p>
+                </div>
+
+                <!-- 2. Marketers (Purple) -->
+                <div class="audience-card glass-panel">
+                    <svg class="audience-icon-large icon-purple" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M12,10A2,2 0 0,0 10,12A2,2 0 0,0 12,14A2,2 0 0,0 14,12A2,2 0 0,0 12,10Z" />
+                    </svg>
+                    <h3>Marketers</h3>
+                    <p>Generate brand-consistent video ads 5x faster. Use repeatable JSON templates that maintain strict
+                        visual identity across campaigns.</p>
+                </div>
+
+                <!-- 3. Content Creators (Yellow) -->
+                <div class="audience-card glass-panel">
+                    <svg class="audience-icon-large icon-yellow" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10,16.5V7.5L16,12L10,16.5Z" />
+                    </svg>
+                    <h3>Content Creators</h3>
+                    <p>Turn viral concepts into high-production shorts instantly. Scale your output without needing a
+                        massive technical background.</p>
+                </div>
+
+                <!-- 4. Developers (Blue) -->
+                <div class="audience-card glass-panel">
+                    <svg class="audience-icon-large icon-blue" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                    </svg>
+                    <h3>Developers</h3>
+                    <p>Integrate cinematic video generation into your pipelines. Deploy schema-validated JSON that works
+                        on the first try, every time.</p>
+                </div>
+
+                <!-- 5. VFX Artists (Orange) -->
+                <div class="audience-card glass-panel">
+                    <svg class="audience-icon-large icon-orange" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z" />
+                    </svg>
+                    <h3>VFX Artists</h3>
+                    <p>Match lighting and camera intrinsics with mathematical accuracy. Export metadata for seamless
+                        integration with post-production tools.</p>
+                </div>
+
+                <!-- 6. Game Designers (Pink) -->
+                <div class="audience-card glass-panel">
+                    <svg class="audience-icon-large icon-pink" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M21,6H3C1.9,6,1,6.9,1,8v8c0,1.1,0.9,2,2,2h18c1.1,0,2-0.9,2-2V8C23,6.9,22.1,6,21,6z M10,13H8v2H7v-2H5v-1h2V10h1v2h2V13z M15,12c-0.55,0-1-0.45-1-1s0.45-1,1-1s1,0.45,1,1S15.55,12,15,12z M18,15c-0.55,0-1-0.45-1-1s0.45-1,1-1s1,0.45,1,1S18.55,15,18,15z" />
+                    </svg>
+                    <h3>Game Designers</h3>
+                    <p>Rapidly conceptualize environments and assets. Ensure stylistic consistency across thousands of
+                        textures with absolute control.</p>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Proof (Impact Metrics) -->
+    <div class="impact-section mt-120">
+        <div class="container text-center">
+            <h2 class="section-title">Built for Production Quality</h2>
+            <p class="section-subtitle">Real-world workflows transformed by precision-driven JSON automation.</p>
+            <!--<div class="metrics-bar glass-panel">
+                <div class="metric-item">
+                    <div class="metric-value gradient-text">2.5k+</div>
+                    <div class="metric-label">Prompts Generated</div>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric-item">
+                    <div class="metric-value gradient-text">60%</div>
+                    <div class="metric-label">Token Savings</div>
+                </div>
+                <div class="metric-divider"></div>
+                <div class="metric-item">
+                    <div class="metric-value gradient-text">0s</div>
+                    <div class="metric-label">Server Latency</div>
+                </div>
+            </div>-->
+
+            <div class="case-studies-grid mt-40">
+                <!-- 1. Filmmakers -->
+                <div class="case-study-card cyan glass-panel">
+                    <div class="case-header">
+                        <h3>Filmmakers</h3>
+                    </div>
+                    <div class="case-body">
+                        <p class="problem"><strong>Problem:</strong> Inconsistent shot-list metadata leads to hours of
+                            wasted time in post-production and manual logging.</p>
+                        <p class="solution"><strong>Solution:</strong> Our JSON schema auto-generates precise
+                            camera-move metadata, cutting edit prep time by 40%.</p>
+                    </div>
+                </div>
+
+                <!-- 2. Marketers -->
+                <div class="case-study-card purple glass-panel">
+                    <div class="case-header">
+                        <h3>Marketers</h3>
+                    </div>
+                    <div class="case-body">
+                        <p class="problem"><strong>Problem:</strong> Brand-inconsistent video ads cause audience
+                            confusion and dilute campaign impact across variations.</p>
+                        <p class="solution"><strong>Solution:</strong> Template-driven JSON guarantees brand colors and
+                            tone across 100+ variations with 100% fidelity.</p>
+                    </div>
+                </div>
+
+                <!-- 3. Content Creators -->
+                <div class="case-study-card yellow glass-panel">
+                    <div class="case-header">
+                        <h3>Content Creators</h3>
+                    </div>
+                    <div class="case-body">
+                        <p class="problem"><strong>Problem:</strong> Rapid trend response is hampered by slow production
+                            times for high-quality cinematic visuals.</p>
+                        <p class="solution"><strong>Solution:</strong> Instant JSON-to-video conversion lets creators
+                            publish Hollywood-grade shorts within minutes of a trend breaking.</p>
+                    </div>
+                </div>
+
+                <!-- 4. Developers -->
+                <div class="case-study-card blue glass-panel">
+                    <div class="case-header">
+                        <h3>Developers</h3>
+                    </div>
+                    <div class="case-body">
+                        <p class="problem"><strong>Problem:</strong> Manual video-generation pipelines break on schema
+                            mismatches and unexpected model API changes.</p>
+                        <p class="solution"><strong>Solution:</strong> Strict validation ensures 0-error deployments and
+                            seamless integration with production-grade AI video APIs.</p>
+                    </div>
+                </div>
+
+                <!-- 5. VFX Artists -->
+                <div class="case-study-card orange glass-panel">
+                    <div class="case-header">
+                        <h3>VFX Artists</h3>
+                    </div>
+                    <div class="case-body">
+                        <p class="problem"><strong>Problem:</strong> Lighting and camera parameters are often
+                            mis-aligned between AI renders and traditional post-production assets.</p>
+                        <p class="solution"><strong>Solution:</strong> Exported JSON includes exact exposure and focal
+                            data, streamlining 3D match-moving and compositing.</p>
+                    </div>
+                </div>
+
+                <!-- 6. Game Designers -->
+                <div class="case-study-card pink glass-panel">
+                    <div class="case-header">
+                        <h3>Game Designers</h3>
+                    </div>
+                    <div class="case-body">
+                        <p class="problem"><strong>Problem:</strong> Dynamic asset pipelines require thousands of
+                            repetitive texture generation scripts with varying styles.</p>
+                        <p class="solution"><strong>Solution:</strong> One-click JSON-driven batch processing creates
+                            consistent texture sets that plug into any engine instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Platform Guardrails -->
+    <div id="models" class="guardrails-block mt-120">
+        <div class="container text-center">
+            <h2 class="section-title">Strict Model Guardrails</h2>
+            <p class="section-subtitle">We enforce hard limits for every major AI video model so you never burn credits
+                on invalid prompts.</p>
+            <div class="guardrails-grid five-col">
+                <!-- Veo (Google) -->
+                <div class="guardrail-card glass-panel">
+                    <svg class="model-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                        <!-- Google G Style Path -->
+                        <path
+                            d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .533 5.333.533 12S5.867 24 12.48 24c3.52 0 6.187-1.16 8.56-3.52 2.453-2.453 3.12-5.867 3.12-8.56 0-.853-.093-1.467-.267-2.027H12.48z" />
+                    </svg>
+                    <h3>Veo</h3>
+                    <ul class="specs-list">
+                        <li>✅ 1080p+ Native Res</li>
+                        <li>✅ Cinematic Control</li>
+                        <li>⚠️ Strict Safety Filters</li>
+                    </ul>
+                </div>
+
+                <!-- Sora (OpenAI) -->
+                <!-- By <a href="//en.wikipedia.org/wiki/OpenAI" title="OpenAI">OpenAI</a> - <a rel="nofollow" class="external free" href="https://openai.com/vi-VN/sora/">https://openai.com/vi-VN/sora/</a>, <a href="//en.wikipedia.org/wiki/File:OpenAI_Sora_icon.png" title="Fair use of copyrighted material in the context of Sora (text-to-video model)">Fair use</a>, <a href="https://en.wikipedia.org/w/index.php?curid=81712553">Link</a> -->
+                <div class="guardrail-card glass-panel">
+                    <svg class="model-icon-svg" viewBox="0 0 100 100" fill="currentColor">
+                        <!-- Sora Cloud Base -->
+                        <path
+                            d="M78.6,23.5c-0.6,0.1-1.2,0.1-1.8,0.2c-2.4-9.3-10.8-16.1-20.8-16.1c-10.7,0-19.6,7.8-21.6,18.1c-9.5,1-16.9,9.1-16.9,18.8c0,5.6,2.5,10.7,6.4,14.3c-2.1,3.4-3.3,7.4-3.3,11.7c0,12.4,10.1,22.5,22.5,22.5c2.3,0,4.5-0.4,6.6-1.1c4.4,5.1,10.9,8.4,18.1,8.4c9.8,0,18.2-6,21.7-14.5c8.7-2.3,15.1-10.3,15.1-19.8C104.6,35.2,93.2,24.1,78.6,23.5z"
+                            fill="#FFFFFF" />
+                        <!-- Sora Eyes (Sparkles) -->
+                        <path d="M42.5,65.3c-3.6,0-6.5-4.3-6.5-9.6s2.9-9.6,6.5-9.6s6.5,4.3,6.5,9.6S46.1,65.3,42.5,65.3z"
+                            fill="#000000" />
+                        <path d="M42.5,58.3l1.5,3l1.5-3l-1.5-3L42.5,58.3z" fill="#FFFFFF" />
+                        <path d="M62.5,65.3c-3.6,0-6.5-4.3-6.5-9.6s2.9-9.6,6.5-9.6s6.5,4.3,6.5,9.6S66.1,65.3,62.5,65.3z"
+                            fill="#000000" />
+                        <path d="M62.5,58.3l1.5,3l1.5-3l-1.5-3L62.5,58.3z" fill="#FFFFFF" />
+                    </svg>
+                    <h3>Sora</h3>
+                    <ul class="specs-list">
+                        <li>✅ 60s Duration</li>
+                        <li>✅ Physics Simulation</li>
+                        <li>⚠️ High Compute Cost</li>
+                    </ul>
+                </div>
+
+                <!-- Runway -->
+                <div class="guardrail-card glass-panel">
+                    <svg class="model-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                        <!-- Bold R Style -->
+                        <path
+                            d="M5 3H12C15.866 3 19 6.13401 19 10C19 13.0805 16.9859 15.6961 14.2343 16.5905L19.5229 21H16.276L11.597 16.5H8.5V21H5V3ZM8.5 6V13.5H12C13.933 13.5 15.5 11.933 15.5 10C15.5 8.067 13.933 6.5 12 6.5H8.5V6Z" />
+                    </svg>
+                    <h3>Runway</h3>
+                    <ul class="specs-list">
+                        <li>✅ Gen-3 Alpha</li>
+                        <li>✅ Motion Brush</li>
+                        <li>⚠️ 10s Clip Limit</li>
+                    </ul>
+                </div>
+
+                <!-- Luma -->
+                <div class="guardrail-card glass-panel">
+                    <svg class="model-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                        <!-- Sparkle/Star Style -->
+                        <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
+                    </svg>
+                    <h3>Luma</h3>
+                    <ul class="specs-list">
+                        <li>✅ Dream Machine</li>
+                        <li>✅ Keyframe Anim</li>
+                        <li>⚠️ 5s Ext. Limit</li>
+                    </ul>
+                </div>
+
+                <!-- Kling -->
+                <div class="guardrail-card glass-panel">
+                    <svg class="model-icon-svg" viewBox="0 0 24 24" fill="currentColor">
+                        <!-- Stylized K -->
+                        <path d="M4 2H8V10L16 2H21L12 11L21 22H16L8 14V22H4V2Z" />
+                    </svg>
+                    <h3>Kling</h3>
+                    <ul class="specs-list">
+                        <li>✅ 1080p 60fps</li>
+                        <li>✅ High Fidelity</li>
+                        <li>⚠️ Server Queues</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cinematic Dictionary -->
+    <div class="dictionary-block text-center mt-100">
+        <div class="container">
+            <h2 class="section-title">The Cinematic Dictionary</h2>
+            <p class="section-subtitle">Access 100+ professional camera and lighting terms defined in JSON.</p>
+            <div class="dictionary-grid-cards">
+                <!-- 1. Camera Techniques -->
+                <div class="dict-card glass-panel">
+                    <h3>Close-up</h3>
+                    <p>A tight framing that focuses on a subject's face, emphasizing emotion.</p>
+                    <span class="mini-code">"camera": "close_up"</span>
+                </div>
+                <!-- 2. Lighting Setups -->
+                <div class="dict-card glass-panel">
+                    <h3>Rembrandt</h3>
+                    <p>Classic lighting with a triangle of light on the shadowed side of the face.</p>
+                    <span class="mini-code">"lighting": "rembrandt"</span>
+                </div>
+                <!-- 3. Color Palettes -->
+                <div class="dict-card glass-panel">
+                    <h3>Monochromatic</h3>
+                    <p>Uses variations of a single color hue for visual unity.</p>
+                    <span class="mini-code">"palette": "monochromatic"</span>
+                </div>
+                <!-- 4. Composition -->
+                <div class="dict-card glass-panel">
+                    <h3>Rule of Thirds</h3>
+                    <p>Frame divided into nine equal segments for balanced placement.</p>
+                    <span class="mini-code">"composition": "rule_of_thirds"</span>
+                </div>
+                <!-- 5. Mood -->
+                <div class="dict-card glass-panel">
+                    <h3>Nostalgic</h3>
+                    <p>Evoking longing for the past through vintage color grading.</p>
+                    <span class="mini-code">"mood": "nostalgic"</span>
+                </div>
+                <!-- 6. Movement -->
+                <div class="dict-card glass-panel">
+                    <h3>Tracking Shot</h3>
+                    <p>Camera moves alongside the subject, maintaining constant distance.</p>
+                    <span class="mini-code">"movement": "tracking"</span>
+                </div>
+                <!-- 7. Lens -->
+                <div class="dict-card glass-panel">
+                    <h3>Anamorphic</h3>
+                    <p>Widescreen look with signature oval bokeh and horizontal lens flares.</p>
+                    <span class="mini-code">"lens": "anamorphic"</span>
+                </div>
+                <!-- 8. Production Design -->
+                <div class="dict-card glass-panel">
+                    <h3>Visual Motifs</h3>
+                    <p>Recurring visual elements interlaced with symbolic narrative meaning.</p>
+                    <span class="mini-code">"design": "visual_motifs"</span>
+                </div>
+                <!-- 9. Sound -->
+                <div class="dict-card glass-panel">
+                    <h3>Sound Bridge</h3>
+                    <p>Audio from the next scene begins before the visual transition occurs.</p>
+                    <span class="mini-code">"sound": "sound_bridge"</span>
+                </div>
+                <!-- 10. Editing -->
+                <div class="dict-card glass-panel">
+                    <h3>Match Cut</h3>
+                    <p>A transition between shots that matches visual composition or action.</p>
+                    <span class="mini-code">"editing": "match_cut"</span>
+                </div>
+                <!-- 11. Camera Extra -->
+                <div class="dict-card glass-panel">
+                    <h3>Dutch Angle</h3>
+                    <p>Camera tilted to one side creating psychological disorientation.</p>
+                    <span class="mini-code">"camera": "dutch_angle"</span>
+                </div>
+                <!-- 12. Lens Extra -->
+                <div class="dict-card glass-panel">
+                    <h3>Bokeh</h3>
+                    <p>The aesthetic quality of the blur in the out-of-focus areas of an image.</p>
+                    <span class="mini-code">"lens": "bokeh"</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BYOK Architecture Showcase -->
+    <div class="byok-block text-center mt-100">
+        <h2 class="section-title">Total Data Sovereignty</h2>
+        <p class="section-subtitle">Industry-standard BYOK (Bring Your Own Key) architecture. Your intellectual property
+            never leaves your control.</p>
+
+        <div class="container">
+            <div class="privacy-grid three-col mb-60">
+                <div class="privacy-card glass-panel">
+                    <div class="privacy-icon">🛡️</div>
+                    <h3>Military-Grade Encryption</h3>
+                    <p>Utilizing local AES-256 vaulting. Your API keys are stored securely on your hardware,
+                        inaccessible even to our platform.</p>
+                </div>
+                <div class="privacy-card glass-panel">
+                    <div class="privacy-icon">⚡</div>
+                    <h3>Peer-to-Peer Access</h3>
+                    <p>Direct encrypted handshakes between your client and AI providers. Zero internal proxies or
+                        middleman interceptors.</p>
+                </div>
+                <div class="privacy-card glass-panel">
+                    <div class="privacy-icon">🛑</div>
+                    <h3>Non-Custodial Session</h3>
+                    <p>A stateless environment that logs 0.00% of your data. Your creative DNA remains your own, from
+                        first draft to final render.</p>
+                </div>
+            </div>
+
+            <!-- Visual Flow -->
+            <div class="architecture-flow glass-panel">
+                <div class="flow-step">
+                    <span class="flow-icon user-icon">👤</span>
+                    <span class="flow-label">You (Browser)</span>
+                </div>
+                <div class="flow-connector">
+                    <div class="con-line dashed"></div>
+                    <span class="con-badge">🔒 Encrypted Storage</span>
+                    <div class="con-line dashed"></div>
+                </div>
+                <div class="flow-step">
+                    <span class="flow-icon local-icon">💾</span>
+                    <span class="flow-label">Local Vault</span>
+                </div>
+                <div class="flow-connector">
+                    <div class="con-line solid"></div>
+                    <span class="con-badge success">⚡ Signed Request</span>
+                    <div class="con-line solid"></div>
+                </div>
+                <div class="flow-step">
+                    <span class="flow-icon cloud-icon">☁️</span>
+                    <span class="flow-label">Model API</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Demo 
+    <section id="demo" class="demo-section mt-120 text-center">
+        <div class="container">
+            <h2 class="section-title">Generative IDE Demo</h2>
+            <p class="section-subtitle">Tweak cinematic parameters anytime. Watch the JSON compile in real-time.</p>
+
             <div class="demo-interface glass-panel">
-                <div class="demo-controls">
+                <div class="controls-panel text-left">
                     <div class="control-group">
-                        <label>Platform</label>
-                        <select id="demo-platform" class="glass-select" title="Select Platform">
-                            <option value="veo">Veo 3.1</option>
-                            <option value="sora">Sora</option>
-                            <option value="kling">Kling 2.6</option>
+                        <label>Target Model</label>
+                        <select id="demo-platform" class="glass-select" title="Select AI Video Model">
+                            <option value="veo">Google Veo 3.1</option>
+                            <option value="sora">OpenAI Sora</option>
+                            <option value="kling">Kling AI</option>
                         </select>
                     </div>
                     <div class="control-group">
                         <label>Camera Movement</label>
-                        <select id="demo-camera" class="glass-select" title="Select Camera">
+                        <select id="demo-camera" class="glass-select" title="Select Camera Movement">
                             <option value="dolly_push">Dolly Push</option>
-                            <option value="orbit">Drone Orbit</option>
-                            <option value="pan_left">Pan Left</option>
+                            <option value="dolly_zoom">Dolly Zoom</option>
+                            <option value="truck_left">Truck Left</option>
+                            <option value="orbit_cw">Orbit Clockwise</option>
                         </select>
                     </div>
                     <div class="control-group">
-                        <label>Mood</label>
-                        <select id="demo-mood" class="glass-select" title="Select Mood">
-                            <option value="cyberpunk">Cyberpunk</option>
+                        <label>Lighting Mood</label>
+                        <select id="demo-mood" class="glass-select" title="Select Lighting Mood">
+                            <option value="cyberpunk">Cyberpunk Neon</option>
                             <option value="noir">Film Noir</option>
-                            <option value="ethereal">Ethereal</option>
+                            <option value="golden">Golden Hour</option>
+                            <option value="solar">Solar Punk</option>
                         </select>
                     </div>
-                    <button id="demo-export-btn" class="btn btn-primary full-width">Export JSON</button>
+                    <button id="demo-export-btn" class="btn btn-primary full-width mt-24">
+                        Copy JSON Payload
+                    </button>
                 </div>
-                <div class="demo-preview" id="demo-code-block">
+
+                <div class="demo-preview">
                     <div class="code-header">
                         <div class="dot red"></div>
                         <div class="dot yellow"></div>
                         <div class="dot green"></div>
-                        <span class="code-filename">prompt.json</span>
+                        <span class="code-filename">prompt_payload.json</span>
                     </div>
-                    <pre><code class="language-json">{
+                    <pre id="demo-code-block"><code class="language-json">{
   <span class="key">"platform"</span>: <span class="string">"veo_3.1"</span>,
   <span class="key">"camera"</span>: <span class="string">"dolly_push"</span>,
   <span class="key">"mood"</span>: <span class="string">"cyberpunk"</span>,
-  <span class="key">"seed"</span>: <span class="number">42</span>
+  <span class="key">"seed"</span>: <span class="number">847291</span>
 }</code></pre>
                     <div class="scanning-line"></div>
                 </div>
             </div>
         </div>
-    </section>
-    <div id="waitlist-modal" class="modal hidden">
+    </section>-->
+
+    <!-- Results Showcase (Case Studies) -->
+    <div class="results-section mt-120">
+        <div class="container">
+            <h2 class="section-title text-center">What Our Users Are Saying</h2>
+            <p class="section-subtitle text-center">Real feedback from individuals who've transformed their workflows
+                and saved thousands in credits.</p>
+            <div class="case-study-grid">
+                <!-- 1. Sarah Chen - Filmmaker -->
+                <div class="case-card glass-panel">
+                    <div class="user-role-label">Independent Filmmaker</div>
+                    <p class="testimonial-text">"Before JSON Prompt Gen, I was burning through $50-80 in credits per
+                        project trying to nail the right camera movement. The guesswork was killing my budget. Now I get
+                        it right on the first attempt. The JSON validation catches errors I didn't even know I was
+                        making. This tool paid for itself in the first week."</p>
+                    <div class="case-stat">
+                        <span class="stat-big">$600+ Saved</span>
+                        <span class="stat-desc">In First Month Alone</span>
+                    </div>
+                </div>
+
+                <!-- 2. Marcus Johnson - Marketing -->
+                <div class="case-card glass-panel">
+                    <div class="user-role-label">Creative Director</div>
+                    <p class="testimonial-text">"Our team struggled with brand consistency across video variations. We'd
+                        generate 10 assets and get 10 different aesthetics. JSON Prompt Gen's template system solved
+                        this overnight. We now deliver 50+ on-brand videos per campaign. Clients are blown away, and
+                        revision rounds dropped from 5 to zero."</p>
+                    <div class="case-stat">
+                        <span class="stat-big">85% Faster</span>
+                        <span class="stat-desc">Campaign Turnaround</span>
+                    </div>
+                </div>
+
+                <!-- 3. Alex Rivera - Creator -->
+                <div class="case-card glass-panel">
+                    <div class="user-role-label">Content Creator</div>
+                    <p class="testimonial-text">"I tried manual prompts for months and results were so inconsistent my
+                        audience noticed. Since switching to JSON templates, my 'cinematic dark sci-fi' style is
+                        perfectly locked in. Followers grew from 50K to 500K in 4 months. I'd honestly pay $100/month
+                        for this."</p>
+                    <div class="case-stat">
+                        <span class="stat-big">10x Growth</span>
+                        <span class="stat-desc">In 4 Months</span>
+                    </div>
+                </div>
+
+                <!-- 4. Dr. Priya Malhotra - VFX -->
+                <div class="case-card glass-panel">
+                    <div class="user-role-label">VFX Supervisor</div>
+                    <p class="testimonial-text">"The camera metadata export is a pipeline game-changer. We used to spend
+                        hours manually keyframing camera data for match-moving. Now the JSON export includes exact focal
+                        length and exposure parameters that plug directly into our comp software. Team productivity
+                        doubled."</p>
+                    <div class="case-stat">
+                        <span class="stat-big">12 Hours</span>
+                        <span class="stat-desc">Saved Per Project</span>
+                    </div>
+                </div>
+
+                <!-- 5. Tom Anderson - Game Dev -->
+                <div class="case-card glass-panel">
+                    <div class="user-role-label">Cinematic Designer</div>
+                    <p class="testimonial-text">"We needed 200+ cutscene variations for our RPG, all with the same
+                        ethereal vibe. Manual prompting was chaos—every batch looked different. One JSON template later:
+                        perfect consistency across every scene. Validation also prevented API errors that wasted
+                        credits. Impossible task became a weekend project."</p>
+                    <div class="case-stat">
+                        <span class="stat-big">200+ Assets</span>
+                        <span class="stat-desc">Perfect Consistency</span>
+                    </div>
+                </div>
+
+                <!-- 6. Elena Martinez - Education -->
+                <div class="case-card glass-panel">
+                    <div class="user-role-label">Head of Content</div>
+                    <p class="testimonial-text">"Our platform needs 50+ educational videos weekly. Before this tool,
+                        prompt engineering took longer than rendering. JSON Prompt Gen automated 90% of that work.
+                        Production cycle went from 3 weeks to 3 days. Immediate ROI. Now we scale content without hiring
+                        more staff."</p>
+                    <div class="case-stat">
+                        <span class="stat-big">10x Faster</span>
+                        <span class="stat-desc">Content Production</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing Clarity 
+    <div id="pricing" class="pricing-section mt-120 text-center">
+        <div class="container">
+            <h2 class="section-title">Professional Pricing</h2>
+            <p class="section-subtitle">Start for free. Upgrade for team collaboration.</p>
+
+            <div class="pricing-grid">-->
+    <!-- Free Tier 
+                <div class="pricing-card free glass-panel">
+                    <div class="card-badge">Current Version</div>
+                    <h3>Professional Starter</h3>
+                    <div class="price">Free</div>
+                    <p class="price-sub">Forever</p>
+                    <ul class="pricing-features">
+                        <li>✅ 40 Validated Prompts/Mo</li>
+                        <li>✅ Core Cinematic Dictionary</li>
+                        <li>✅ Offline PWA Access</li>
+                        <li>✅ Community Support</li>
+                    </ul>
+                    <a href="app.html" class="btn btn-primary full-width">Launch App</a>
+                </div>-->
+
+    <!-- Pro Tier (Waitlist) 
+                <div class="pricing-card pro glass-panel">
+                    <div class="card-badge">Coming Q2 2026</div>
+                    <h3>Team Pro</h3>
+                    <div class="price">$12<span class="month">/mo</span></div>
+                    <p class="price-sub">per user</p>
+                    <ul class="pricing-features icon-dim">
+                        <li>🔒 Shared Team Libraries</li>
+                        <li>🔒 Custom Schema Validation</li>
+                        <li>🔒 API Integration</li>
+                        <li>🔒 Priority Support</li>
+                    </ul>
+                    <button class="btn btn-secondary full-width" disabled>Join Waitlist</button>
+                    <p class="small-text mt-4">Notify me when available</p>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <!-- FAQ Section 
+    <div class="faq-block text-center mt-120">
+        <h2 class="section-title">Common Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-card glass-panel">
+                <h3>Is my API key safe?</h3>
+                <p>Yes. Keys are stored locally in your browser using AES-256 encryption. We never see them.</p>
+            </div>
+            <div class="faq-card glass-panel">
+                <h3>Does it work offline?</h3>
+                <p>Absolutely. The app is a PWA (Progressive Web App). Install it on your desktop or mobile.</p>
+            </div>
+            <div class="faq-card glass-panel">
+                <h3>Can I export to ComfyUI?</h3>
+                <p>Yes. The JSON output is standards-compliant and can be pasted directly into ComfyUI nodes.</p>
+            </div>
+            <div class="faq-card glass-panel">
+                <h3>Is it really free?</h3>
+                <p>The Core IDE is free forever. We only charge for upcoming premium cloud sync features.</p>
+            </div>
+        </div>
+    </div>-->
+
+    <!-- Floating Action Button (FAB) 
+    <a href="app.html" id="fab-cta" class="fab-cta hidden" title="Launch App">
+        <span class="fab-icon">🚀</span>
+    </a>
+    -->
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <img src="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png" alt="JSON Prompt Gen Logo" class="logo-img">
+                    <h1 class="gradient-text">JSON Prompt Gen</h1>
+                </div>
+                <p>
+                    Professional AI video prompt generator. <br>Design cinematic shots with code.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="app.html#cinematic-dictionary">Cinematic Dictionary</a></li>
+                    <li><a href="app.html#json-prompt-library">JSON Prompt Library</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="documentation.html">Documentation</a></li>
+                    <li><a href="src/blog/index.html">Blog</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="security.html">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="legal/privacy.html">Privacy Policy</a></li>
+                    <li><a href="legal/terms.html">Terms of Service</a></li>
+                    <li><a href="legal/cookies.html">Cookie Policy</a></li>
+                    <li><a href="legal/disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 JSON Prompt Gen. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!--<div id="waitlist-modal" class="modal hidden">
         <div class="modal-content glass-panel">
             <h2 class="modal-title section-title">Get 5 Free Cinematic Prompts</h2>
             <p class="modal-subtitle">Join the waitlist to unlock our
@@ -300,12 +1022,12 @@
             <button id="close-modal" class="btn-text">No thanks, I'll pay for credits</button>
         </div>
     </div>
-    <iframe name="hidden_iframe" class="hidden-iframe" title="Hidden Form Submission Target"></iframe>
+    <iframe name="hidden_iframe" class="hidden-iframe" title="Hidden Form Submission Target"></iframe>-->
 
-    <!-- PWA Install Toast -->
+    <!-- PWA Install Toast 
     <div id="pwa-toast" class="pwa-toast hidden">
         <div class="pwa-content">
-            <img src="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png" alt="App Icon" class="pwa-icon">
+            <img src="src/assets/icon-192.png" alt="App Icon" class="pwa-icon">
             <div class="pwa-text">
                 <strong>Install App</strong>
                 <span>Add to Home Screen for best experience</span>
@@ -316,8 +1038,9 @@
                 Now</button>
             <button id="pwa-install-btn" class="btn btn-primary pwa-install-btn">Install</button>
         </div>
-    </div>
-
+    </div>-->
+
+    <script src="src/js/form-manager.js"></script>
 </body>
 
 </html>

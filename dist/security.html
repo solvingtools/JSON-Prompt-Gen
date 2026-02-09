@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XN8KY5PPLK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-XN8KY5PPLK');
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Security - JSON Prompt Gen</title>
@@ -13,19 +22,12 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
         rel="stylesheet">
 
-    <!-- Styles -->
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XN8KY5PPLK"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-XN8KY5PPLK');
-    </script>
+    <!-- Styles -->
   <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/theme-BLCvdzzT.css">
-  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/main-DUroIRiC.css">
-  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/legal-SjSb04M0.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/main-Cmmizgox.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/footer-OknDGBv_.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/legal-Cehj0N3x.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/forms-BJa6KU4T.css">
 <link rel="manifest" href="/JSON-Prompt-Gen/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/JSON-Prompt-Gen/registerSW.js"></script></head>
 
 <body>
@@ -259,9 +261,8 @@
                 <h2>Reporting Vulnerabilities</h2>
                 <p>If you perform a security audit and find a vulnerability in our client-side code, please report it
                     immediately.</p>
-                <p><a href="https://forms.gle/wdr5GBkxZGmbA18i8" target="_blank" rel="noopener noreferrer"
-                        class="contact-link">Report Security
-                        Vulnerability</a></p>
+                <p><button onclick="openForm('security')" class="contact-link" type="button">Report Security
+                        Vulnerability</button></p>
             </section>
 
         </main>
@@ -279,6 +280,22 @@
                 </p>
             </div>
             <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="app.html#cinematic-dictionary">Cinematic Dictionary</a></li>
+                    <li><a href="app.html#json-prompt-library">JSON Prompt Library</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="documentation.html">Documentation</a></li>
+                    <li><a href="src/blog/index.html">Blog</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
                 <h4>Company</h4>
                 <ul>
                     <li><a href="about.html">About Us</a></li>
@@ -293,13 +310,6 @@
                     <li><a href="legal/terms.html">Terms of Service</a></li>
                     <li><a href="legal/cookies.html">Cookie Policy</a></li>
                     <li><a href="legal/disclaimer.html">Disclaimer</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="documentation.html">Documentation</a></li>
-                    <li><a href="documentation.html#faq">FAQ</a></li>
                 </ul>
             </div>
         </div>
@@ -330,6 +340,7 @@
         if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
         if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
     </script>
+    <script src="src/js/form-manager.js"></script>
     <!-- Global SVG Assets -->
     <svg class="svg-asset-container" aria-hidden="true" focusable="false">
         <defs>

@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /src/assets/
+Disallow: /brain/
+Allow: /
+Sitemap: https://solvingtools.github.io/JSON-Prompt-Gen/sitemap.xml

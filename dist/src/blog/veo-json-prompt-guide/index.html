@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XN8KY5PPLK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-XN8KY5PPLK');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>The Ultimate Guide to Veo JSON Prompt Structure | JSON Prompt Gen</title>
+    <meta name="description"
+        content="Master Google Veo 3.1 JSON prompt structure with 50+ examples. Learn camera movements, lighting parameters, and negative prompts for professional results.">
+    <link rel="canonical" href="https://solvingtools.github.io/JSON-Prompt-Gen/src/blog/veo-json-prompt-guide/">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="The Ultimate Guide to Veo JSON Prompt Structure">
+    <meta property="og:description"
+        content="Master Google Veo 3.1 JSON prompt structure with 50+ examples. Learn camera movements, lighting parameters, and negative prompts.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://solvingtools.github.io/JSON-Prompt-Gen/blog/veo-json-prompt-guide/">
+    <meta property="og:site_name" content="JSON Prompt Gen">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Veo JSON Prompt Guide">
+    <meta name="twitter:description" content="Master Google Veo 3.1 JSON structure">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "The Ultimate Guide to Veo JSON Prompt Structure",
+      "description": "Master Google Veo 3.1 JSON prompt structure with 50+ examples",
+      "datePublished": "2026-01-29",
+      "dateModified": "2026-01-29",
+      "author": {
+        "@type": "Organization",
+        "name": "JSON Prompt Gen Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "JSON Prompt Gen",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://solvingtools.github.io/JSON-Prompt-Gen/assets/icon-512.png"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://solvingtools.github.io/JSON-Prompt-Gen/blog/veo-json-prompt-guide/"
+      },
+      "articleSection": "AI Video Prompting",
+      "keywords": ["veo json prompts", "google veo 3.1", "ai video prompts", "json structure"]
+    }
+    </script>
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/theme-BLCvdzzT.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/landing-BlCzyX-G.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/footer-OknDGBv_.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/blog-CmCNV82e.css">
+  <link rel="stylesheet" crossorigin href="/JSON-Prompt-Gen/assets/post-Bkqyaasm.css">
+<link rel="manifest" href="/JSON-Prompt-Gen/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/JSON-Prompt-Gen/registerSW.js"></script></head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="landing-nav">
+        <div class="nav-content">
+            <div class="logo">
+                <img src="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png" alt="JSON Prompt Gen Logo" class="logo-img">
+                <span class="gradient-text">JSON Prompt Gen</span>
+            </div>
+            <div class="nav-links">
+                <a href="../../../app.html" class="btn-launch-beta" aria-label="Launch Tool">
+                    <span>Launch Tool</span>
+                </a>
+                <a href="../../../index.html" class="home-btn" aria-label="Home">
+                    <span>Home</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumbs -->
+    <div class="blog-container blog-page-spacer">
+        <nav class="breadcrumbs">
+            <a href="../../../index.html">Home</a>
+            <span>›</span>
+            <a href="../index.html">Blog</a>
+            <span>›</span>
+            <span>Veo JSON Prompt Guide</span>
+        </nav>
+    </div>
+
+    <!-- Post Hero -->
+    <article class="post-container">
+        <header class="post-hero">
+            <span class="platform-badge veo">Veo 3.1</span>
+            <h1>The Ultimate Guide to Veo 3.1 JSON Prompt Structure – From Beginner to Pro</h1>
+            <div class="post-meta">
+                <span>📅 January 29, 2026</span>
+                <span>⏱️ 15 min read</span>
+                <span>✍️ JSON Prompt Gen Team</span>
+            </div>
+        </header>
+
+        <!-- Table of Contents -->
+        <aside class="table-of-contents">
+            <h3>📑 Table of Contents</h3>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#section-1">Why Veo 3.1 Demands JSON</a></li>
+                <li><a href="#section-2">The Anatomy of a Prompt</a></li>
+                <li><a href="#section-3">Beginner Workflows</a></li>
+                <li><a href="#section-4">Pro Techniques</a></li>
+                <li><a href="#section-5">Troubleshooting</a></li>
+                <li><a href="#section-6">Why Use the Generator?</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+            </ul>
+        </aside>
+
+        <!-- Post Content -->
+        <div class="post-content">
+            <section id="introduction">
+                <p>In October 2025, Google changed the game. Veo 3.1 didn't just extend video length to 60 seconds—it
+                    introduced a native language for video direction: <strong>structured JSON prompting</strong>.</p>
+
+                <p>I remember the first night I got access to the Veo 3.1 API. I was ecstatic. I took a prompt that had
+                    worked decently in Sora and Runway—something about a neon-drenched samurai in a rainy Kyoto—and hit
+                    "Generate." The result? A flickering, inconsistent mess. The samurai’s sword turned into a baguette
+                    halfway through, and the "cinematic lighting" looked like a broken flashlight. I felt that familiar
+                    sting of AI frustration: another tool that promised the world but delivered a lottery.</p>
+
+                <p>Then I realized my mistake. I was talking to a director-level AI in the language of a toddler. Veo
+                    3.1 doesn't just want a "story"; it wants a <strong>blueprint</strong>. That is where JSON
+                    (JavaScript Object Notation) comes in. It is the difference between shouting "Make it look cool!"
+                    and handing a cinematographer a shot list.</p>
+
+                <div class="info-box">
+                    <strong>💡 Key Takeaway</strong>
+                    <ul>
+                        <li><strong>Precision Control</strong>: JSON eliminates the ambiguity of text prompts by
+                            separating style, camera movement, and action into distinct, machine-readable blocks.</li>
+                        <li><strong>Temporal Coherence</strong>: Using the <code>continuity</code> block ensures
+                            characters and props remain stable across the full 60-second generation.</li>
+                        <li><strong>Native Audio Sync</strong>: JSON allows for millisecond-precision timing between
+                            visual actions and generated sound effects or dialogue.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="section-1">
+                <h2>Why Veo 3.1 Demands JSON (Not Just Text)</h2>
+                <p>Veo 3.1's architecture is built on <strong>atomic scene processing</strong>. Unlike earlier models
+                    that try to "hallucinate" an entire video from one paragraph, Veo 3.1 parses information based on
+                    front-loaded token weighting. In plain English: the first things you say matter most, but in a long
+                    text prompt, the AI often "forgets" the ending.</p>
+
+                <p>The <strong>"Ingredients to Video"</strong> feature is the heart of this update. It allows you to
+                    feed the model specific references—images, style presets, and even audio cues. When you use a
+                    standard text prompt, you're basically tossing all those ingredients into a blender. JSON, however,
+                    acts as a gourmet recipe, telling the model exactly when to use the "lighting" ingredient and how to
+                    apply the "camera" spice.</p>
+
+                <h3>Comparison: Text Prompt vs. JSON Prompt</h3>
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Text Prompting</th>
+                                <th>JSON Structured Prompting</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Consistency</strong></td>
+                                <td>High risk of "morphing"</td>
+                                <td>Locked via <code>continuity</code> blocks</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Camera Control</strong></td>
+                                <td>Suggestions (often ignored)</td>
+                                <td>Mandatory parameters (highly adherent)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Audio</strong></td>
+                                <td>Random ambient noise</td>
+                                <td>Precisely timed sound events</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Efficiency</strong></td>
+                                <td>High "credit waste" on bad seeds</td>
+                                <td>Higher first-time success rate</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="section-2">
+                <h2>The Anatomy of a Veo 3.1 JSON Prompt</h2>
+                <p>JSON prompting is the process of organizing your creative intent into a hierarchical data structure
+                    that the Veo Flow editor can parse without error.</p>
+
+                <h3>The Essential Schema</h3>
+                <ol>
+                    <li><strong><code>output</code></strong>: Defines the "canvas" (resolution, aspect ratio, and the
+                        full 60s duration).</li>
+                    <li><strong><code>global_style</code></strong>: The "DNA" of the video—mood, color grading, and
+                        safety filters.</li>
+                    <li><strong><code>continuity</code></strong>: This is the secret sauce. You define your "Character
+                        Bible" here so the AI remembers what your lead looks like in Scene 10.</li>
+                    <li><strong><code>scenes[]</code></strong>: An array of individual shots. Veo thrives on the "one
+                        action per scene" rule.</li>
+                    <li><strong><code>audio</code></strong>: Specific cues for SFX and ambient layers.</li>
+                </ol>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>cyberpunk_chase.json</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code class="language-json">{
+  "version": "veo-3.1",
+  "output": {
+    "duration": "15s",
+    "resolution": "4k",
+    "aspect_ratio": "21:9"
+  },
+  "global_style": {
+    "look": "Anamorphic Cinematic",
+    "mood": "Tense/High-Stakes",
+    "color_grading": "Cyberpunk Teal and Orange"
+  },
+  "continuity": {
+    "characters": [{ "id": "hero_1", "description": "Woman in chrome jacket, glowing blue eyes" }]
+  },
+  "scenes": [
+    {
+      "id": "shot_01",
+      "timestamp": "00:00-00:05",
+      "shot": {
+        "type": "Low Angle Tracking",
+        "camera": "Dolly In"
+      },
+      "action": "hero_1 sprints through a crowded neon market, splashing through puddles.",
+      "audio": { "sfx": "Heavy rhythmic footsteps, splashing water, neon hum" }
+    }
+  ]
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="section-3">
+                <h2>Beginner Workflows – Building Your First JSON</h2>
+                <p>When I started, I tried to write these by hand in VS Code. It was a nightmare. One missing comma and
+                    the whole generation would fail, eating up my time and patience.</p>
+
+                <div class="tip-box">
+                    <strong>The Workflow:</strong>
+                    <ol>
+                        <li><strong>Concept</strong>: Start with a simple idea. "A cat drinking milk."</li>
+                        <li><strong>Breakdown</strong>: Don't just say "drinking milk." Think: <em>Close-up shot? Soft
+                                morning light? Cinematic 4k?</em></li>
+                        <li><strong>Structure</strong>: Assign these to the JSON fields.</li>
+                    </ol>
+                    <p class="tip-footer"><em>(Pro tip: Veo weights the first 10 tokens
+                            heavily—always lead your action string with the most important visual element).</em></p>
+                </div>
+
+                <p>This is where our <strong>JSON Prompt Generator PWA</strong> (currently in free Beta!) becomes a
+                    lifesaver. Instead of worrying about syntax, the tool provides a visual interface. You select
+                    "Close-up" from a dropdown, and it writes the <code>"shot": {"type": "Close-up"}</code> code for
+                    you. It automates the "boring" technical part so you can focus on being a director.</p>
+            </section>
+
+            <section id="section-4">
+                <h2>Pro Techniques for Cinematic Control</h2>
+                <h3>Advanced Camera Grammar</h3>
+                <p>Veo 3.1 understands sophisticated cinematography, but only if you use the right terms in the
+                    <code>shot</code> block.
+                </p>
+
+                <ul>
+                    <li><strong>Dolly Zoom (The "Vertigo" Effect)</strong>: Set <code>camera_movement</code> to
+                        <code>forward</code> while specifying a <code>focal_length</code> shift in the action
+                        description.
+                    </li>
+                    <li><strong>Dutch Angle</strong>: Use this in the <code>global_parameters</code> to create a sense
+                        of unease throughout the sequence.</li>
+                </ul>
+
+                <h3>Scene Atomicity & Shot Continuity</h3>
+                <p>The biggest "pro" secret? <strong>Scene Atomicity.</strong> If you want a 30-second video, don't
+                    write one long scene. Write six 5-second scenes. By using the <strong>Atomic Scene Locks</strong> in
+                    our PWA tool, you can ensure that the lighting in Scene 1 perfectly matches Scene 2, preventing that
+                    jarring "AI jump" between shots.</p>
+
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table purple-theme">
+                        <thead>
+                            <tr>
+                                <th>Term</th>
+                                <th>Effect</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Orbit</strong></td>
+                                <td>Circular movement around a subject</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Crane Shot</strong></td>
+                                <td>Vertical movement (up or down)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pan/Tilt</strong></td>
+                                <td>Horizontal or vertical rotation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tracking</strong></td>
+                                <td>Following a subject at a constant distance</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="section-5">
+                <h2>Troubleshooting & Optimization</h2>
+                <div class="warning-box">
+                    <strong>Professional Troubleshooting Guide</strong>
+                    <ul>
+                        <li><strong>"Veo ignores my camera instructions"</strong>: You’re likely "burying the lead."
+                            Move your camera keywords to the very beginning of the <code>action</code> field or ensure
+                            the <code>shot</code> block is correctly defined.</li>
+                        <li><strong>"Character morphs between scenes"</strong>: You aren't utilizing the
+                            <code>continuity</code> block. You need to define a <strong>Character Bible</strong>. Our
+                            tool’s "Character Bible Lite" feature lets you upload a reference image, which the PWA then
+                            converts into a permanent JSON reference ID for every scene.
+                        </li>
+                        <li><strong>"Audio is out of sync"</strong>: Ensure your <code>audio</code> timestamps match
+                            your <code>scene</code> timestamps exactly. If a glass breaks at <code>00:04.5</code>, your
+                            SFX cue must be precisely at that mark.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="section-6">
+                <h2>Why Use the JSON Prompt Generator?</h2>
+                <p>Look, you <em>can</em> write JSON manually. But as someone who spent three hours debugging a single
+                    bracket, I don’t recommend it.</p>
+                <p>Our <strong>JSON Prompt Generator PWA</strong> (Free during Beta) was designed to bridge the gap
+                    between "I have a cool idea" and "I have a perfectly formatted JSON file."</p>
+
+                <div class="info-box">
+                    <strong>🚀 Tool Features:</strong>
+                    <ul>
+                        <li><strong>Visual Scene Builder</strong>: Drag and drop scenes to reorder your timeline.</li>
+                        <li><strong>Cinematic Dictionary</strong>: Access over 100+ professional terms for lighting and
+                            mood.</li>
+                        <li><strong>Cost Calculator</strong>: Real-time token estimation so you don't blow your API
+                            budget.</li>
+                        <li><strong>One-Click Export</strong>: Get your JSON ready for Google Flow or Vertex AI
+                            instantly.</li>
+                    </ul>
+                </div>
+                <p>Manual JSON creation takes roughly 30 minutes for a complex sequence. With the tool, I’ve gotten it
+                    down to <strong>under 3 minutes</strong>.</p>
+            </section>
+
+            <div class="cta-block">
+                <h3>Ready to stop guessing and start directing?</h3>
+                <p>Try the Veo-Ready JSON Generator in our JSON Prompt Generator for 100% Free while we are still in
+                    Beta. I can't wait to see what you build.</p>
+                <a href="../../../app.html" class="cta-button">Try it Now →</a>
+            </div>
+
+            <section id="conclusion">
+                <h2>Conclusion</h2>
+                <p>JSON isn't just a formatting choice—it’s the steering wheel for the most powerful video AI Google has
+                    ever built. By mastering the structure of Veo 3.1, you transition from someone who <em>hopes</em>
+                    for a good result to someone who <em>engineers</em> one.</p>
+                <p>The future of video is structured. Whether you’re building a 5-second social clip or a 60-second
+                    cinematic masterpiece, your success depends on the clarity of your blueprint.</p>
+                <p><em>Would you like me to generate a specific JSON template for a particular scene you're working
+                        on?</em></p>
+            </section>
+        </div>
+
+        <!-- Post Footer -->
+        <footer class="post-footer">
+            <div class="post-navigation">
+                <a href="../index.html" class="nav-btn">← Back to Blog</a>
+                <a href="../sora-json-prompt-guide/index.html" class="nav-btn">Next: Sora Guide →</a>
+            </div>
+
+            <div class="social-share">
+                <h4>Share this guide:</h4>
+                <div class="share-buttons">
+                    <button class="share-btn twitter">𝕏 Twitter</button>
+                    <button class="share-btn linkedin">in LinkedIn</button>
+                    <button class="share-btn reddit">⬆ Reddit</button>
+                </div>
+            </div>
+
+            <div class="related-guides">
+                <h4>Explore Other Cinematic Guides:</h4>
+                <div class="related-grid">
+                    <a href="../sora-json-prompt-guide/index.html" class="related-item">
+                        <div class="related-thumb-wrapper">
+                            <img src="/JSON-Prompt-Gen/assets/sora-hero-OWl86hft.png" alt="Sora Guide" class="related-thumb">
+                        </div>
+                        <div class="related-content">
+                            <span class="platform">Sora</span>
+                            <span class="title">Complete Sora JSON Guide</span>
+                        </div>
+                    </a>
+                    <a href="../kling-json-prompt-guide/index.html" class="related-item">
+                        <div class="related-thumb-wrapper">
+                            <img src="/JSON-Prompt-Gen/assets/kling-hero-DWRGKxau.png" alt="Kling Guide" class="related-thumb">
+                        </div>
+                        <div class="related-content">
+                            <span class="platform">Kling</span>
+                            <span class="title">Kling Video Prompting</span>
+                        </div>
+                    </a>
+                    <a href="../runway-json-prompt-guide/index.html" class="related-item">
+                        <div class="related-thumb-wrapper">
+                            <img src="/JSON-Prompt-Gen/assets/runway-hero-DSxI_RFg.png" alt="Runway Guide" class="related-thumb">
+                        </div>
+                        <div class="related-content">
+                            <span class="platform">Runway</span>
+                            <span class="title">Runway Gen-3 Alpha JSON</span>
+                        </div>
+                    </a>
+                    <a href="../luma-json-prompt-guide/index.html" class="related-item">
+                        <div class="related-thumb-wrapper">
+                            <img src="/JSON-Prompt-Gen/assets/luma-hero-HQtUr4Hh.png" alt="Luma Guide" class="related-thumb">
+                        </div>
+                        <div class="related-content">
+                            <span class="platform">Luma</span>
+                            <span class="title">Luma Dream Machine Guide</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </article>
+
+    <!-- Newsletter CTA 
+    <section class="newsletter-section">
+        <div class="blog-container">
+            <h2>Get Weekly Prompt Tips</h2>
+            <p>Join 1000+ creators mastering AI video generation</p>
+            <form class="newsletter-form-large">
+                <input type="email" placeholder="your@email.com" required>
+                <button type="submit">Subscribe Free</button>
+            </form>
+        </div>
+    </section>-->
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <img src="/JSON-Prompt-Gen/assets/favicon-D_ZNcNnd.png" alt="JSON Prompt Gen Logo" class="logo-img">
+                    <h1 class="gradient-text">JSON Prompt Gen</h1>
+                </div>
+                <p>
+                    Professional AI video prompt generator. <br>Design cinematic shots with code.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="../../../app.html#cinematic-dictionary">Cinematic Dictionary</a></li>
+                    <li><a href="../../../app.html#json-prompt-library">JSON Prompt Library</a></li>
+                    <li><a href="../../../pricing.html">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="../../../documentation.html">Documentation</a></li>
+                    <li><a href="../index.html">Blog</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="../../../about.html">About Us</a></li>
+                    <li><a href="../../../contact.html">Contact</a></li>
+                    <li><a href="../../../security.html">Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="../../../legal/privacy.html">Privacy Policy</a></li>
+                    <li><a href="../../../legal/terms.html">Terms of Service</a></li>
+                    <li><a href="../../../legal/cookies.html">Cookie Policy</a></li>
+                    <li><a href="../../../legal/disclaimer.html">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 JSON Prompt Gen. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Post JavaScript -->
+    <script src="../assets/js/post.js"></script>
+</body>
+
+</html>
