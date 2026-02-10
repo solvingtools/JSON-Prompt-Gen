@@ -671,7 +671,7 @@ body {
 }
 
 .proof-card.failure {
-    border-left: 4px solid #ff5f56;
+    border-left: none;
     transform: translateZ(20px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
@@ -682,7 +682,7 @@ body {
 }
 
 .proof-card.success {
-    border-left: 4px solid #27c93f;
+    border-left: none;
     transform: translateZ(20px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
