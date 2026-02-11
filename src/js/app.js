@@ -18,11 +18,76 @@ window.AnalyticsService = AnalyticsService;
 window.historyService = new HistoryService();
 
 document.addEventListener('DOMContentLoaded', () => {
+
     // Initialize Core UI-dependent Services
     try {
         new GettingStarted();
     } catch (e) {
         console.error('GettingStarted Init Error:', e);
+    }
+
+    // Check for "Use in Prompt" Term from Dictionary
+    const pendingTerm = localStorage.getItem('pending_dict_term');
+    if (pendingTerm) {
+        try {
+            const term = JSON.parse(pendingTerm);
+            // We assume the first scene is the target
+            const firstSceneDesc = document.querySelector('.scene-description');
+            if (firstSceneDesc) {
+                const currentVal = firstSceneDesc.value;
+                // Append logic: Add comma if needed, or replace if empty
+                if (currentVal) {
+                    firstSceneDesc.value = `${currentVal}, ${term.name}`;
+                } else {
+                    firstSceneDesc.value = term.name;
+                }
+
+                // Trigger Event for Auto-Save
+                firstSceneDesc.dispatchEvent(new Event('input', { bubbles: true }));
+
+                // Robust Toast Logic
+                const showToastSafe = (title, message, type = 'info') => {
+                    if (typeof showToast === 'function') {
+                        showToast(title, message, type);
+                    } else if (window.showToast) {
+                        window.showToast(title, message, type);
+                    } else {
+                        // Fallback implementation
+                        let container = document.getElementById('toast-container');
+                        if (!container) {
+                            container = document.createElement('div');
+                            container.id = 'toast-container';
+                            container.className = 'toast-container';
+                            document.body.appendChild(container);
+                        }
+
+                        const toast = document.createElement('div');
+                        toast.className = `toast toast-${type} show`;
+                        toast.innerHTML = `
+                            <div class="toast-header">
+                                <strong class="me-auto">${title}</strong>
+                                <button type="button" class="btn-close" onclick="this.parentElement.parentElement.remove()"></button>
+                            </div>
+                            <div class="toast-body">${message}</div>
+                        `;
+                        container.appendChild(toast);
+
+                        // Auto remove after 3s
+                        setTimeout(() => {
+                            toast.classList.remove('show');
+                            setTimeout(() => toast.remove(), 300);
+                        }, 3000);
+                    }
+                };
+
+                showToastSafe('Term Applied', `Added "${term.name}" to your prompt.`, 'success');
+
+                localStorage.removeItem('pending_dict_term');
+            }
+        } catch (e) {
+            console.error('Error applying dictionary term:', e);
+            localStorage.removeItem('pending_dict_term'); // Clear on error too
+        }
     }
 
 
