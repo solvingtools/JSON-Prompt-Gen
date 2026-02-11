@@ -1,5 +1,8 @@
 User-agent: *
-Disallow: /src/assets/
-Disallow: /brain/
 Allow: /
+Disallow: /brain/
+Disallow: /node_modules/
+Disallow: /dist/
+
+# Professional Sitemap Index
 Sitemap: https://solvingtools.github.io/JSON-Prompt-Gen/sitemap.xml
