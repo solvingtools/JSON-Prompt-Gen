@@ -51,11 +51,17 @@
 
 #dict-contribute-btn {
     padding: 10px 14px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     gap: 6px;
     background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
-    border: none;
+    border: 1px solid transparent;
     color: white;
+    box-shadow: none;
+}
+
+#dict-contribute-btn:hover {
+    border: 1px solid rgba(255, 255, 255, 0.678);
+    box-shadow: 0 0 20px rgba(136, 185, 226, 0.2);
 }
 
 .dictionary-search-container {
@@ -562,7 +568,7 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     width: 90%;
-    max-width: 520px;
+    max-width: 525px;
     max-height: 85vh;
     overflow-y: auto;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
@@ -800,8 +806,14 @@
 
 #modal-submit-btn {
     background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
-    border: none;
+    border: 1px solid transparent;
     color: white;
+    box-shadow: none;
+}
+
+#modal-submit-btn:hover {
+    border: 1px solid rgba(255, 255, 255, 0.678);
+    box-shadow: 0 0 20px rgba(136, 185, 226, 0.2);
 }
 
 .modal-body {
