@@ -12,26 +12,32 @@
   <url>
     <loc>https://solvingtools.github.io/JSON-Prompt-Gen/src/blog/veo-json-prompt-guide/</loc>
     <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://solvingtools.github.io/JSON-Prompt-Gen/src/blog/sora-json-prompt-guide/</loc>
     <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://solvingtools.github.io/JSON-Prompt-Gen/src/blog/kling-json-prompt-guide/</loc>
     <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://solvingtools.github.io/JSON-Prompt-Gen/src/blog/runway-json-prompt-guide/</loc>
     <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://solvingtools.github.io/JSON-Prompt-Gen/src/blog/luma-json-prompt-guide/</loc>
     <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
 </urlset>

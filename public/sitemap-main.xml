@@ -24,21 +24,25 @@
   <url>
     <loc>https://solvingtools.github.io/JSON-Prompt-Gen/about.html</loc>
     <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://solvingtools.github.io/JSON-Prompt-Gen/contact.html</loc>
     <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://solvingtools.github.io/JSON-Prompt-Gen/security.html</loc>
     <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://solvingtools.github.io/JSON-Prompt-Gen/documentation.html</loc>
     <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
@@ -46,21 +50,26 @@
   <url>
     <loc>https://solvingtools.github.io/JSON-Prompt-Gen/legal/privacy.html</loc>
     <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://solvingtools.github.io/JSON-Prompt-Gen/legal/terms.html</loc>
     <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://solvingtools.github.io/JSON-Prompt-Gen/legal/cookies.html</loc>
     <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://solvingtools.github.io/JSON-Prompt-Gen/legal/disclaimer.html</loc>
     <lastmod>2026-02-10</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
+
 </urlset>
