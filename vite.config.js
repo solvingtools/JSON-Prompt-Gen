@@ -51,6 +51,7 @@ export default defineConfig({
             input: {
                 main: 'index.html',
                 app: 'app.html',
+                dictionary: 'dictionary.html',
                 about: 'about.html',
                 contact: 'contact.html',
                 security: 'security.html',
