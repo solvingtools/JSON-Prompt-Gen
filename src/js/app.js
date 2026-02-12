@@ -1290,9 +1290,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Bind Navigation Links
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
             const sectionId = link.dataset.section;
-            switchSection(sectionId);
+            if (sectionId) {
+                e.preventDefault();
+                switchSection(sectionId);
+            }
         });
     });
 

@@ -119,38 +119,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModal = document.getElementById('close-modal');
     const waitlistForm = document.getElementById('waitlist-form');
     const formSourceInput = document.getElementById('form-source');
-
     const heroNotifyBtn = document.getElementById('hero-notify-btn');
 
-    exportBtn.addEventListener('click', () => {
-        formSourceInput.value = 'demo_export_btn';
-        modal.classList.remove('hidden');
-    });
+    if (exportBtn && modal && formSourceInput) {
+        exportBtn.addEventListener('click', () => {
+            formSourceInput.value = 'demo_export_btn';
+            modal.classList.remove('hidden');
+        });
+    }
 
-    if (heroNotifyBtn) {
+    if (heroNotifyBtn && modal && formSourceInput) {
         heroNotifyBtn.addEventListener('click', () => {
             formSourceInput.value = 'hero_notify_btn';
             modal.classList.remove('hidden');
         });
     }
 
-    closeModal.addEventListener('click', () => {
-        modal.classList.add('hidden');
-    });
+    if (closeModal && modal) {
+        closeModal.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+    }
 
     // Handle "Invisible" Form Submission
-    waitlistForm.addEventListener('submit', () => {
-        // Since we are targeting a hidden iframe, the page won't reload.
-        // We just need to show a success state.
-        const originalText = waitlistForm.querySelector('button').textContent;
-        waitlistForm.querySelector('button').textContent = 'Joined!';
+    if (waitlistForm && modal) {
+        waitlistForm.addEventListener('submit', () => {
+            // Since we are targeting a hidden iframe, the page won't reload.
+            // We just need to show a success state.
+            const submitBtn = waitlistForm.querySelector('button');
+            const originalText = submitBtn ? submitBtn.textContent : 'Join';
+            if (submitBtn) submitBtn.textContent = 'Joined!';
 
-        setTimeout(() => {
-            modal.classList.add('hidden');
-            waitlistForm.querySelector('button').textContent = originalText;
-            alert("Thanks for joining! (Simulation: Data sent to Google Form)");
-        }, 1500);
-    });
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                if (submitBtn) submitBtn.textContent = originalText;
+                alert("Thanks for joining! (Simulation: Data sent to Google Form)");
+            }, 1500);
+        });
+    }
 
 
     // === Sticky CTA Logic ===

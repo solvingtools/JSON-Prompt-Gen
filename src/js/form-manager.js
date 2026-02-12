@@ -313,6 +313,11 @@ class FormManager {
         const closeBtn = document.getElementById('formCloseBtn');
         const form = document.getElementById('dynamicForm');
 
+        if (!modal || !form || !closeBtn) {
+            console.error('FormManager: Required modal elements not found');
+            return;
+        }
+
         // Close modal events
         closeBtn.addEventListener('click', () => this.closeForm());
         modal.addEventListener('click', (e) => {
@@ -335,6 +340,74 @@ class FormManager {
                 e.target.classList.contains('form-textarea') ||
                 e.target.classList.contains('form-select-hidden')) {
                 this.validateField(e.target);
+            }
+        });
+
+        // Delegate Radio/Checkbox/Dropdown events once at the form level
+        form.addEventListener('click', (e) => {
+            // Radio logic
+            const radioOption = e.target.closest('.radio-option');
+            if (radioOption) {
+                const radio = radioOption.querySelector('input[type="radio"]');
+                if (radio) {
+                    radio.checked = true;
+                    document.querySelectorAll(`input[name="${radio.name}"]`).forEach(r => {
+                        r.closest('.radio-option').classList.remove('selected');
+                    });
+                    radioOption.classList.add('selected');
+                }
+            }
+
+            // Checkbox logic
+            const checkboxOption = e.target.closest('.checkbox-option');
+            if (checkboxOption) {
+                const checkbox = checkboxOption.querySelector('input[type="checkbox"]');
+                // If the user clicked the label/container but not the input itself, toggle it
+                if (e.target !== checkbox) {
+                    checkbox.checked = !checkbox.checked;
+                    // Dispatch change event manually so the 'change' listener fires
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            }
+
+            // Dropdown trigger logic
+            const trigger = e.target.closest('.dropdown-trigger');
+            if (trigger) {
+                const dropdown = trigger.closest('.custom-dropdown');
+                e.stopPropagation();
+                document.querySelectorAll('.custom-dropdown.open').forEach(openDropdown => {
+                    if (openDropdown !== dropdown) openDropdown.classList.remove('open');
+                });
+                dropdown.classList.toggle('open');
+            }
+
+            // Dropdown item selection
+            const item = e.target.closest('.dropdown-item');
+            if (item) {
+                const dropdown = item.closest('.custom-dropdown');
+                const hiddenInput = dropdown.querySelector('.form-select-hidden');
+                const displayValue = dropdown.querySelector('.dropdown-value');
+                const value = item.getAttribute('data-value');
+                const text = item.textContent;
+
+                dropdown.querySelectorAll('.dropdown-item').forEach(i => i.classList.remove('selected'));
+                item.classList.add('selected');
+                displayValue.textContent = text;
+                displayValue.classList.add('has-value');
+                hiddenInput.value = value;
+                dropdown.classList.remove('open');
+                this.validateField(hiddenInput);
+            }
+        });
+
+        // Handle checkbox change for styling
+        form.addEventListener('change', (e) => {
+            if (e.target.type === 'checkbox') {
+                const option = e.target.closest('.checkbox-option');
+                if (option) {
+                    if (e.target.checked) option.classList.add('selected');
+                    else option.classList.remove('selected');
+                }
             }
         });
     }
@@ -391,63 +464,7 @@ class FormManager {
             container.insertAdjacentHTML('beforeend', fieldHTML);
         });
 
-        // Special handling for interactive elements
-        this.bindRadioGroups();
-        this.bindCustomDropdowns();
-        this.bindCheckboxGroups();
-    }
-
-    /**
-     * Bind custom dropdown interactions
-     */
-    bindCustomDropdowns() {
-        const dropdowns = document.querySelectorAll('.custom-dropdown');
-
-        dropdowns.forEach(dropdown => {
-            const trigger = dropdown.querySelector('.dropdown-trigger');
-            const items = dropdown.querySelectorAll('.dropdown-item');
-            const hiddenInput = dropdown.querySelector('.form-select-hidden');
-            const displayValue = dropdown.querySelector('.dropdown-value');
-
-            // Toggle menu
-            trigger.addEventListener('click', (e) => {
-                e.stopPropagation();
-                // Close other dropdowns
-                document.querySelectorAll('.custom-dropdown.open').forEach(openDropdown => {
-                    if (openDropdown !== dropdown) openDropdown.classList.remove('open');
-                });
-                dropdown.classList.toggle('open');
-            });
-
-            // Handle item selection
-            items.forEach(item => {
-                item.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const value = item.getAttribute('data-value');
-                    const text = item.textContent;
-
-                    // Update UI
-                    items.forEach(i => i.classList.remove('selected'));
-                    item.classList.add('selected');
-                    displayValue.textContent = text;
-                    displayValue.classList.add('has-value');
-
-                    // Update hidden input
-                    hiddenInput.value = value;
-                    dropdown.classList.remove('open');
-
-                    // Trigger validation
-                    this.validateField(hiddenInput);
-                });
-            });
-        });
-
-        // Close dropdowns when clicking outside
-        document.addEventListener('click', () => {
-            document.querySelectorAll('.custom-dropdown.open').forEach(dropdown => {
-                dropdown.classList.remove('open');
-            });
-        });
+        // Interactive elements are now handled via event delegation in bindEvents()
     }
 
     /**
@@ -554,46 +571,6 @@ class FormManager {
                 <div class="form-error-message">This field is required</div>
             </div>
         `;
-    }
-
-    /**
-     * Bind radio button interactions
-     */
-    bindRadioGroups() {
-        const radioOptions = document.querySelectorAll('.radio-option');
-        radioOptions.forEach(option => {
-            option.addEventListener('click', function () {
-                const radio = this.querySelector('input[type="radio"]');
-                radio.checked = true;
-
-                // Remove selected class from siblings
-                const name = radio.name;
-                document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
-                    r.closest('.radio-option').classList.remove('selected');
-                });
-
-                // Add to this option
-                this.classList.add('selected');
-            });
-        });
-    }
-
-    /**
-     * Bind checkbox interactions
-     */
-    bindCheckboxGroups() {
-        // Toggle selected state on change
-        document.querySelectorAll('.checkbox-option input[type="checkbox"]').forEach(input => {
-            input.addEventListener('change', (e) => {
-                const el = e.target;
-                const option = el.closest('.checkbox-option');
-                if (el.checked) option.classList.add('selected');
-                else option.classList.remove('selected');
-
-                // Trigger validation on parent group if needed
-                // (optional: could add validation logic here)
-            });
-        });
     }
 
     /**
