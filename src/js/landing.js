@@ -99,20 +99,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Event Listeners
-    platformSelect.addEventListener('change', (e) => {
-        demoState.platform = e.target.value;
-        updateCodePreview();
-    });
+    if (platformSelect) {
+        platformSelect.addEventListener('change', (e) => {
+            demoState.platform = e.target.value;
+            updateCodePreview();
+        });
+    }
 
-    cameraSelect.addEventListener('change', (e) => {
-        demoState.camera = e.target.value;
-        updateCodePreview();
-    });
+    if (cameraSelect) {
+        cameraSelect.addEventListener('change', (e) => {
+            demoState.camera = e.target.value;
+            updateCodePreview();
+        });
+    }
 
-    moodSelect.addEventListener('change', (e) => {
-        demoState.mood = e.target.value;
-        updateCodePreview();
-    });
+    if (moodSelect) {
+        moodSelect.addEventListener('change', (e) => {
+            demoState.mood = e.target.value;
+            updateCodePreview();
+        });
+    }
 
     // === Waitlist Modal Logic ===
     const modal = document.getElementById('waitlist-modal');

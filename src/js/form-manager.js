@@ -720,12 +720,14 @@ class FormManager {
         document.querySelectorAll('.custom-dropdown').forEach(dropdown => {
             dropdown.classList.remove('valid', 'invalid');
             const displayValue = dropdown.querySelector('.dropdown-value');
-            if (displayValue) {
+            if (displayValue && this.currentFormType) {
                 const config = this.formConfigs[this.currentFormType];
-                const fieldName = dropdown.getAttribute('data-field-name');
-                const field = config.fields.find(f => (f.entryId || f.name) === fieldName);
-                displayValue.textContent = 'Select ' + (field ? field.label : 'Option');
-                displayValue.classList.remove('has-value');
+                if (config) {
+                    const fieldName = dropdown.getAttribute('data-field-name');
+                    const field = config.fields.find(f => (f.entryId || f.name) === fieldName);
+                    displayValue.textContent = 'Select ' + (field ? field.label : 'Option');
+                    displayValue.classList.remove('has-value');
+                }
             }
         });
     }
@@ -733,35 +735,37 @@ class FormManager {
 
 // Initialize immediately if DOM is ready, otherwise wait for DOMContentLoaded
 // This ensures openForm is available for inline onclick handlers
-let formManagerInstance = null;
-
 function initFormManager() {
-    if (!formManagerInstance) {
-        formManagerInstance = new FormManager();
+    if (!window.formManagerInstance) {
+        window.formManagerInstance = new FormManager();
     }
 }
 
 // Expose openForm globally immediately (will queue calls if needed)
 window.openForm = function (type) {
-    if (formManagerInstance && formManagerInstance.isInitialized) {
-        formManagerInstance.openForm(type);
+    const instance = window.formManagerInstance;
+    if (instance && instance.isInitialized) {
+        instance.openForm(type);
     } else {
         // If not initialized yet, wait for DOM and then open
         const tryOpen = () => {
-            if (formManagerInstance && formManagerInstance.isInitialized) {
-                formManagerInstance.openForm(type);
+            const currentInstance = window.formManagerInstance;
+            if (currentInstance && currentInstance.isInitialized) {
+                currentInstance.openForm(type);
             } else {
-                setTimeout(tryOpen, 50);
+                setTimeout(tryOpen, 100);
             }
         };
         tryOpen();
     }
 };
 
-// Initialize on DOM load
+// Initialize on DOM load or immediately if already ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initFormManager);
 } else {
-    // DOM is already ready
     initFormManager();
 }
+
+// Export for module support (Vite)
+export default FormManager;
