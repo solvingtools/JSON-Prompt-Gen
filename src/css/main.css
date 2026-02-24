@@ -19,6 +19,14 @@ body {
     box-sizing: border-box;
 }
 
+.hidden {
+    display: none !important;
+}
+
+.z-2000 {
+    z-index: 2000 !important;
+}
+
 /* Typography */
 h1,
 h2,

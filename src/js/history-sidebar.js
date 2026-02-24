@@ -95,22 +95,69 @@ const initHistorySidebars = () => {
     }
 
     // ===============================
+    // AI HISTORY SIDEBAR (SECTION)
+    // ===============================
+    const aiHistorySidebar = document.getElementById('ai-history-sidebar');
+    const aiHistorySidebarOverlay = document.getElementById('ai-history-sidebar-overlay');
+    const aiHistoryHamburgerBtn = document.getElementById('ai-history-hamburger-btn');
+    const aiHistorySidebarClose = document.getElementById('ai-history-sidebar-close');
+    const aiHistoryList = document.getElementById('ai-history-section-list');
+
+    function openAiHistorySidebar() {
+        console.log('Opening AI History Sidebar');
+        if (aiHistorySidebar) aiHistorySidebar.classList.add('active');
+        if (aiHistorySidebarOverlay) aiHistorySidebarOverlay.classList.add('active');
+        if (window.gaTracker) window.gaTracker.trackEvent('history_sidebar_open', { type: 'ai_section' });
+    }
+
+    function closeAiHistorySidebar() {
+        console.log('Closing AI History Sidebar');
+        if (aiHistorySidebar) aiHistorySidebar.classList.remove('active');
+        if (aiHistorySidebarOverlay) aiHistorySidebarOverlay.classList.remove('active');
+    }
+
+    if (aiHistoryHamburgerBtn) {
+        aiHistoryHamburgerBtn.addEventListener('click', openAiHistorySidebar);
+    }
+
+    if (aiHistorySidebarClose) {
+        aiHistorySidebarClose.addEventListener('click', closeAiHistorySidebar);
+    }
+
+    if (aiHistorySidebarOverlay) {
+        aiHistorySidebarOverlay.addEventListener('click', closeAiHistorySidebar);
+    }
+
+    // Close AI sidebar when a history item is clicked
+    if (aiHistoryList) {
+        aiHistoryList.addEventListener('click', function (e) {
+            const historyItem = e.target.closest('.history-item');
+            if (historyItem && !e.target.closest('.history-delete-btn')) {
+                setTimeout(closeAiHistorySidebar, 150);
+            }
+        });
+    }
+
+    // ===============================
     // EXPOSE GLOBAL CONTROLLERS
     // ===============================
-    window.historysSidebarController = {
-        // Modal sidebar
+    window.historySidebarController = {
+        // Modal sidebar (JSON)
         open: openHistorySidebar,
         close: closeHistorySidebar,
-        // Section sidebar
+        // Section sidebar (JSON)
         openSection: openHistorySectionSidebar,
-        closeSection: closeHistorySectionSidebar
+        closeSection: closeHistorySectionSidebar,
+        // AI History sidebar
+        openAi: openAiHistorySidebar,
+        closeAi: closeAiHistorySidebar
     };
 
-    console.log('History sidebars initialized (modal + section)');
+    console.log('History sidebars initialized (modal + section + ai)');
 };
 
 // Run initialization
 initHistorySidebars();
 
 // Export for other modules if needed
-export const historySidebarController = window.historysSidebarController;
+export const historySidebarController = window.historySidebarController;

@@ -447,6 +447,43 @@
         if (hamburgerBtn) hamburgerBtn.addEventListener('click', openSidebar);
         if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
         if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Auto-close main sidebar when links are clicked
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', closeSidebar);
+        });
+
+        // Dictionary Categories Sidebar Logic
+        const dictSidebar = document.getElementById('dict-sidebar');
+        const dictSidebarOverlay = document.getElementById('dict-sidebar-overlay');
+        const dictHamburgerBtn = document.getElementById('dict-hamburger-btn');
+        const dictSidebarClose = document.getElementById('dict-sidebar-close');
+
+        function openDictSidebar() {
+            if (dictSidebar) dictSidebar.classList.add('active');
+            if (dictSidebarOverlay) dictSidebarOverlay.classList.add('active');
+        }
+
+        function closeDictSidebar() {
+            if (dictSidebar) dictSidebar.classList.remove('active');
+            if (dictSidebarOverlay) dictSidebarOverlay.classList.remove('active');
+        }
+
+        if (dictHamburgerBtn) dictHamburgerBtn.addEventListener('click', openDictSidebar);
+        if (dictSidebarClose) dictSidebarClose.addEventListener('click', closeDictSidebar);
+        if (dictSidebarOverlay) dictSidebarOverlay.addEventListener('click', closeDictSidebar);
+
+        // Auto-close categories sidebar when a category is selected (on mobile)
+        const dictCategoryList = document.getElementById('dict-category-list');
+        if (dictCategoryList) {
+            dictCategoryList.addEventListener('click', (e) => {
+                if (e.target.closest('.category-item')) {
+                    if (window.innerWidth < 1024) {
+                        closeDictSidebar();
+                    }
+                }
+            });
+        }
     </script>
     <!-- Global SVG Assets -->
     <svg class="svg-asset-container" aria-hidden="true" focusable="false">

@@ -354,6 +354,11 @@
         if (hamburgerBtn) hamburgerBtn.addEventListener('click', openSidebar);
         if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
         if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Auto-close sidebar when links are clicked
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', closeSidebar);
+        });
     </script>
     <script type="module" src="src/js/form-manager.js"></script>
     <!-- Global SVG Assets -->

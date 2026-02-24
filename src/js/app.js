@@ -11,13 +11,22 @@ import { GlobalParamsService } from './globalParamsService.js';
 import { TemplateService } from './services/templateService.js';
 import { TemplateUI } from './templateUI.js';
 
+
 // Global access for services needed in callbacks
 window.CryptoUtils = CryptoUtils;
 window.AnalyticsService = AnalyticsService;
 // Initialize global services that don't need UI wait
 window.historyService = new HistoryService();
+window.llmService = new LLMService();
 
-document.addEventListener('DOMContentLoaded', () => {
+
+document.addEventListener('DOMContentLoaded', async () => {
+    // Initialize LLM configuration (async)
+    try {
+        await window.llmService.init();
+    } catch (e) {
+        console.error('LLMService Init Error:', e);
+    }
 
     // Initialize Core UI-dependent Services
     try {
@@ -110,12 +119,921 @@ document.addEventListener('DOMContentLoaded', () => {
     const outputArea = document.getElementById('output-json');
 
     /* ============================
+        AI Mode Announcement Logic
+       ============================ */
+    const aiAnnounceModal = document.getElementById('ai-announcement-modal');
+    if (aiAnnounceModal && !localStorage.getItem('ai_announce_seen')) {
+        // slight delay to let the app render first
+        setTimeout(() => {
+            aiAnnounceModal.classList.remove('hidden');
+
+            // Mark as seen
+            localStorage.setItem('ai_announce_seen', 'true');
+            if (window.gaTracker) window.gaTracker.trackEvent('ai_announce_shown');
+        }, 1200);
+
+        const closeAnnounceBtn = document.getElementById('ai-announce-close-btn');
+        const exploreAnnounceBtn = document.getElementById('ai-announce-explore-btn');
+
+        if (closeAnnounceBtn) {
+            closeAnnounceBtn.addEventListener('click', () => {
+                aiAnnounceModal.classList.add('hidden');
+                if (window.gaTracker) window.gaTracker.trackEvent('ai_announce_dismissed');
+            });
+        }
+
+        if (exploreAnnounceBtn) {
+            exploreAnnounceBtn.addEventListener('click', () => {
+                aiAnnounceModal.classList.add('hidden');
+                if (window.gaTracker) window.gaTracker.trackEvent('ai_announce_explored');
+
+                // Switch to AI mode
+                const aiModeRadio = document.getElementById('mode-ai');
+                if (aiModeRadio) {
+                    aiModeRadio.checked = true;
+                    aiModeRadio.dispatchEvent(new Event('change'));
+                }
+            });
+        }
+    }
+
+    /* ============================
+        Mode Switcher Logic
+       ============================ */
+    const modeInputs = document.querySelectorAll('input[name="gen-mode"]');
+    const jsonModeContainer = document.getElementById('json-mode-container');
+    const aiModeContainer = document.getElementById('ai-mode-container');
+
+    // Initial Check
+    const currentMode = document.querySelector('input[name="gen-mode"]:checked')?.value || 'json';
+    const headerResetBtn = document.getElementById('reset-btn');
+    const headerGenerateBtn = document.getElementById('generate-btn');
+    const globalParamsSection = document.getElementById('global-params-section');
+
+    if (currentMode === 'ai') {
+        if (jsonModeContainer) jsonModeContainer.classList.add('hidden');
+        if (aiModeContainer) aiModeContainer.classList.remove('hidden');
+        if (headerResetBtn) headerResetBtn.classList.add('hidden');
+        if (headerGenerateBtn) headerGenerateBtn.classList.add('hidden');
+        if (globalParamsSection) globalParamsSection.classList.add('hidden');
+        initAiModeMockup();
+    } else {
+        if (jsonModeContainer) jsonModeContainer.classList.remove('hidden');
+        if (aiModeContainer) aiModeContainer.classList.add('hidden');
+        if (headerResetBtn) headerResetBtn.classList.remove('hidden');
+        if (headerGenerateBtn) headerGenerateBtn.classList.remove('hidden');
+        if (globalParamsSection) globalParamsSection.classList.remove('hidden');
+    }
+
+    // Add Event Listeners
+    modeInputs.forEach(input => {
+        input.addEventListener('change', (e) => {
+            if (e.target.value === 'ai') {
+                jsonModeContainer.classList.add('hidden');
+                aiModeContainer.classList.remove('hidden');
+                if (headerResetBtn) headerResetBtn.classList.add('hidden');
+                if (headerGenerateBtn) headerGenerateBtn.classList.add('hidden');
+                if (globalParamsSection) globalParamsSection.classList.add('hidden');
+                gaTracker?.trackEvent('mode_switch', { mode: 'ai' });
+                // Initialize AI Mode UI state if not already done
+                initAiModeMockup();
+            } else {
+                jsonModeContainer.classList.remove('hidden');
+                aiModeContainer.classList.add('hidden');
+                if (headerResetBtn) headerResetBtn.classList.remove('hidden');
+                if (headerGenerateBtn) headerGenerateBtn.classList.remove('hidden');
+                if (globalParamsSection) globalParamsSection.classList.remove('hidden');
+                gaTracker?.trackEvent('mode_switch', { mode: 'json' });
+            }
+        });
+    });
+
+    // AI Session Management Constants
+    const AI_HISTORY_KEY = 'ai_chat_history_v1';
+
+    // Simple mockup for AI Mode UI Flow
+    function initAiModeMockup() {
+        const messagesArea = document.getElementById('ai-messages-area');
+        if (!messagesArea) return;
+
+        window.aiModeState = window.aiModeState || {
+            sessionId: 'ai-session-' + Date.now(),
+            modality: null,
+            expertise: null,
+            industry: null,
+            platform: null
+        };
+
+        if (messagesArea.children.length === 0) {
+            showAiWelcome();
+        }
+
+        // Session Control Listeners
+        const newChatBtn = document.getElementById('ai-new-chat-btn');
+        if (newChatBtn) newChatBtn.onclick = () => window.resetAiChat();
+    }
+
+    function showAiWelcome() {
+        const messagesArea = document.getElementById('ai-messages-area');
+        if (!messagesArea) return;
+
+        const welcomeHtml = `
+            <div class="chat-message ai-message">
+                <div class="message-content">
+                    <p>Hello! I am your Universal AI Prompt Engineer. What type of content would you like to create today?</p>
+                    <div class="modality-grid">
+                        <button class="modality-card" data-modality="image">
+                            <div class="modality-icon">🖼️</div>
+                            <div class="modality-name">Image</div>
+                        </button>
+                        <button class="modality-card" data-modality="video">
+                            <div class="modality-icon">🎥</div>
+                            <div class="modality-name">Video</div>
+                        </button>
+                        <button class="modality-card" data-modality="music">
+                            <div class="modality-icon">🎵</div>
+                            <div class="modality-name">Music</div>
+                        </button>
+                        <button class="modality-card" data-modality="3d">
+                            <div class="modality-icon">🧊</div>
+                            <div class="modality-name">3D Model</div>
+                        </button>
+                        <button class="modality-card" data-modality="text">
+                            <div class="modality-icon">📝</div>
+                            <div class="modality-name">Text</div>
+                        </button>
+                        <button class="modality-card" data-modality="audio">
+                            <div class="modality-icon">🔊</div>
+                            <div class="modality-name">Audio/SFX</div>
+                        </button>
+                        <button class="modality-card" data-modality="animation">
+                            <div class="modality-icon">✨</div>
+                            <div class="modality-name">Animation</div>
+                        </button>
+                        <button class="modality-card" data-modality="vrar">
+                            <div class="modality-icon">🥽</div>
+                            <div class="modality-name">VR/AR</div>
+                        </button>
+                        <button class="modality-card" data-modality="motion">
+                            <div class="modality-icon">🎬</div>
+                            <div class="modality-name">Motion Graphics</div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        messagesArea.innerHTML = welcomeHtml;
+
+        // Add listeners to modalities
+        setTimeout(() => {
+            document.querySelectorAll('.modality-card').forEach(card => {
+                card.addEventListener('click', function () {
+                    const modality = this.dataset.modality;
+                    const modName = this.querySelector('.modality-name').textContent;
+                    window.aiModeState.modality = modName;
+
+                    // User message
+                    const userHtml = `
+                        <div class="chat-message user-message">
+                            <div class="message-content">
+                                <p>I want to create a ${modName} prompt.</p>
+                            </div>
+                        </div>
+                    `;
+                    messagesArea.insertAdjacentHTML('beforeend', userHtml);
+                    saveAiSession();
+
+                    // Disable the buttons
+                    document.querySelectorAll('.modality-card').forEach(c => {
+                        c.style.pointerEvents = 'none';
+                        c.style.opacity = '0.5';
+                    });
+                    this.style.opacity = '1';
+                    this.style.borderColor = 'var(--accent-primary)';
+
+                    // Update progress
+                    const progressFill = document.getElementById('ai-progress-fill');
+                    if (progressFill) progressFill.style.width = '16%';
+                    const steps = document.querySelectorAll('#ai-progress-steps li');
+                    if (steps.length > 1) {
+                        steps[0].classList.replace('active', 'completed');
+                        steps[1].classList.add('active');
+                    }
+
+                    // AI Response
+                    setTimeout(() => {
+                        const aiResponseHtml = `
+                            <div class="chat-message ai-message">
+                                <div class="message-content">
+                                    <p>Excellent choice! Let's assess your technical expertise level to tailor the parameters accordingly. Please select one:</p>
+                                    <div class="mcq-options-container">
+                                        <div class="mcq-option" onclick="handleAiOptionSelection(this, 'Beginner')">
+                                            <div class="mcq-option-title">Beginner</div>
+                                            <div class="mcq-option-desc">Need assistance with all technical parameters.</div>
+                                        </div>
+                                        <div class="mcq-option" onclick="handleAiOptionSelection(this, 'Intermediate')">
+                                            <div class="mcq-option-title">Intermediate</div>
+                                            <div class="mcq-option-desc">Familiar with some concepts, but happy for suggestions.</div>
+                                        </div>
+                                        <div class="mcq-option" onclick="handleAiOptionSelection(this, 'Professional')">
+                                            <div class="mcq-option-title">Professional</div>
+                                            <div class="mcq-option-desc">I know exactly what I want (camera, lenses, lighting).</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        messagesArea.insertAdjacentHTML('beforeend', aiResponseHtml);
+                        messagesArea.scrollTop = messagesArea.scrollHeight;
+                        saveAiSession();
+                    }, 800);
+
+                    messagesArea.scrollTop = messagesArea.scrollHeight;
+                });
+            });
+        }, 100);
+    }
+
+    /**
+     * Custom in-page confirmation — replaces native confirm() which Chrome
+     * can suppress inside module scripts. Resolves a Promise<boolean>.
+     */
+    function aiConfirm(message) {
+        return new Promise(resolve => {
+            const existing = document.getElementById('ai-confirm-overlay');
+            if (existing) existing.remove();
+
+            const overlay = document.createElement('div');
+            overlay.id = 'ai-confirm-overlay';
+            overlay.style.cssText = [
+                'position:fixed', 'inset:0', 'z-index:9999',
+                'display:flex', 'align-items:center', 'justify-content:center',
+                'background:rgba(0,0,0,0.6)', 'backdrop-filter:blur(4px)'
+            ].join(';');
+
+            overlay.innerHTML = `
+                <div style="background:var(--bg-elevated);border:1px solid rgba(255,255,255,0.12);
+                    border-radius:16px;padding:28px 32px;max-width:380px;width:90%;text-align:center;
+                    box-shadow:0 24px 60px rgba(0,0,0,0.6);">
+                    <p style="color:var(--text-primary);font-size:1rem;margin:0 0 24px;line-height:1.5;">${message}</p>
+                    <div style="display:flex;gap:12px;justify-content:center;">
+                        <button id="ai-confirm-cancel" class="btn btn-secondary" style="min-width:100px;">Cancel</button>
+                        <button id="ai-confirm-ok" class="btn btn-primary" style="min-width:100px;">Confirm</button>
+                    </div>
+                </div>`;
+
+            document.body.appendChild(overlay);
+
+            const cleanup = (result) => {
+                overlay.remove();
+                resolve(result);
+            };
+
+            document.getElementById('ai-confirm-ok').onclick = () => cleanup(true);
+            document.getElementById('ai-confirm-cancel').onclick = () => cleanup(false);
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) cleanup(false); });
+        });
+    }
+
+    window.resetAiChat = async function () {
+        const confirmed = await aiConfirm('Clear current conversation and start a new chat?');
+        if (!confirmed) return;
+
+        // Save the current session BEFORE clearing it
+        saveAiSession();
+
+        const messagesArea = document.getElementById('ai-messages-area');
+        if (messagesArea) messagesArea.innerHTML = '';
+
+        window.aiModeState = {
+            sessionId: 'ai-session-' + Date.now(),
+            modality: null,
+            expertise: null,
+            industry: null,
+            platform: null
+        };
+
+        const progressFill = document.getElementById('ai-progress-fill');
+        if (progressFill) progressFill.style.width = '0%';
+
+        const steps = document.querySelectorAll('#ai-progress-steps li');
+        steps.forEach(step => step.classList.remove('active', 'completed'));
+        if (steps.length > 0) steps[0].classList.add('active');
+
+        showAiWelcome();
+        if (window.showToast) window.showToast('New Chat', 'Previous session saved. Starting a fresh AI conversation.', 'info');
+    };
+
+    function saveAiSession() {
+        if (!window.aiModeState?.modality) return; // Don't save empty states
+
+        const messagesArea = document.getElementById('ai-messages-area');
+        const progressFill = document.getElementById('ai-progress-fill');
+        const stepsContainer = document.getElementById('ai-progress-steps');
+
+        const outputJson = document.getElementById('output-json');
+
+        const session = {
+            id: window.aiModeState.sessionId,
+            date: new Date().toLocaleString(),
+            modality: window.aiModeState.modality,
+            state: window.aiModeState,
+            history: messagesArea.innerHTML,
+            progress: progressFill ? progressFill.style.width : '0%',
+            steps: stepsContainer ? stepsContainer.innerHTML : '',
+            lastJson: outputJson ? outputJson.value : null
+        };
+
+        let history = JSON.parse(localStorage.getItem(AI_HISTORY_KEY) || '[]');
+        const existingIndex = history.findIndex(s => s.id === session.id);
+
+        if (existingIndex !== -1) {
+            history[existingIndex] = session;
+        } else {
+            history.unshift(session);
+        }
+
+        localStorage.setItem(AI_HISTORY_KEY, JSON.stringify(history.slice(0, 15))); // Keep last 15
+    }
+
+    function openAiHistory() {
+        const list = document.getElementById('ai-history-section-list');
+        if (!list) return;
+
+        const history = JSON.parse(localStorage.getItem(AI_HISTORY_KEY) || '[]');
+
+        if (history.length === 0) {
+            list.innerHTML = '<div class="empty-state" style="padding: 20px; font-size: 0.85rem;">No AI sessions found.</div>';
+            return;
+        }
+
+        list.innerHTML = '';
+        history.forEach(session => {
+            const el = document.createElement('div');
+            el.className = 'history-item';
+            el.dataset.id = session.id;
+
+            // Simple modality icons
+            let icon = '💬';
+            if (session.modality === 'Image') icon = '🖼️';
+            if (session.modality === 'Video') icon = '🎬';
+            if (session.modality === 'Music') icon = '🎵';
+
+            el.innerHTML = `
+                <div class="history-item-top">
+                    <div class="history-summary" style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 1.1rem;">${icon}</span>
+                        <span>${session.modality} Session</span>
+                    </div>
+                    <span class="history-badge badge-ai">AI</span>
+                </div>
+                <div class="history-item-bottom">
+                    <div class="history-date" style="font-size: 0.75rem; opacity: 0.7;">${session.date}</div>
+                    <button class="history-delete-btn" title="Delete Session">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    </button>
+                </div>
+            `;
+
+
+            const deleteBtn = el.querySelector('.history-delete-btn');
+            deleteBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                deleteAiSession(session.id);
+            });
+
+            el.addEventListener('click', () => selectAiHistoryItem(session, el));
+            list.appendChild(el);
+        });
+    }
+
+    // Expose globally so sidebar button and history nav can trigger it
+    window.renderAiHistoryInSection = function () {
+        document.querySelectorAll('.history-tab').forEach(t => t.classList.remove('active'));
+        const aiTab = document.getElementById('history-tab-ai');
+        if (aiTab) {
+            aiTab.classList.add('active');
+            aiTab.parentElement.setAttribute('data-active-tab', 'ai');
+        }
+        document.getElementById('history-panel-json')?.classList.add('hidden');
+        document.getElementById('history-panel-ai')?.classList.remove('hidden');
+        openAiHistory();
+
+        // Clear preview area when switching to AI tab
+        const preview = document.getElementById('ai-history-preview-area');
+        if (preview) preview.innerHTML = '<div class="placeholder-content">Select an AI session from the sidebar...</div>';
+        document.getElementById('ai-history-preview-actions')?.classList.add('hidden');
+    };
+
+    /** AI History Sidebar Controls (Managed by history-sidebar.js) */
+
+    let selectedAiSession = null;
+
+    function selectAiHistoryItem(session, el) {
+        selectedAiSession = session;
+
+        // Update UI selection
+        document.querySelectorAll('#ai-history-section-list .history-item').forEach(item => item.classList.remove('active'));
+        el.classList.add('active');
+
+        // Render preview
+        const preview = document.getElementById('ai-history-preview-area');
+        if (!preview) return;
+
+        preview.innerHTML = `
+            <div style="display: flex; flex-direction: column; height: 100%;">
+                <div class="session-preview-header" style="padding: 16px 24px; background: rgba(0,0,0,0.2); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                       <span style="color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.2px; font-weight: 700; display: block; margin-bottom: 4px;">Saved Session</span>
+                       <div style="color: var(--text-primary); font-size: 1.1rem; font-weight: 600; font-family: 'Outfit', sans-serif;">${session.modality} Production</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="color: rgba(255,255,255,0.7); font-size: 0.9rem; font-weight: 500;">${session.date}</div>
+                        <div style="color: var(--accent-primary); font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; opacity: 0.5; margin-top: 2px;">${session.id}</div>
+                    </div>
+                </div>
+                <div class="ai-messages-area" style="flex: 1; padding: 30px; background: transparent; border: none; overflow-y: auto; display: flex; flex-direction: column; gap: 20px;">
+                    ${session.history}
+                </div>
+            </div>
+        `;
+
+        // Show actions
+        document.getElementById('ai-history-preview-actions')?.classList.remove('hidden');
+
+        // Close sidebar when an item is selected to allow immediate viewing of content
+        if (window.historySidebarController) {
+            setTimeout(() => window.historySidebarController.closeAi(), 150);
+        }
+    }
+
+    const restoreAiHistoryItem = () => {
+        if (selectedAiSession) {
+            loadAiSession(selectedAiSession.id);
+        }
+    };
+    document.getElementById('ai-history-restore-btn')?.addEventListener('click', restoreAiHistoryItem);
+
+    window.loadAiSession = function (sessionId) {
+        const historyData = JSON.parse(localStorage.getItem(AI_HISTORY_KEY) || '[]');
+        const session = historyData.find(s => s.id === sessionId);
+        if (!session) return;
+
+        // 1. Navigate to generator section first (synchronously shows the panel)
+        if (window.switchSection) {
+            window.switchSection('generator-section');
+        }
+
+        // 2. Restore state & chat history after a brief delay so DOM is ready
+        setTimeout(() => {
+            // Restore aiModeState
+            window.aiModeState = { ...(session.state || {}) };
+            window.aiModeState.sessionId = session.id;
+
+            // Restore chat messages
+            const messagesArea = document.getElementById('ai-messages-area');
+            if (messagesArea) {
+                messagesArea.innerHTML = session.history || '';
+                messagesArea.scrollTop = messagesArea.scrollHeight;
+            }
+
+            // Restore progress bar
+            const progressFill = document.getElementById('ai-progress-fill');
+            if (progressFill) progressFill.style.width = session.progress || '0%';
+
+            // Restore progress steps
+            const stepsContainer = document.getElementById('ai-progress-steps');
+            if (stepsContainer && session.steps) stepsContainer.innerHTML = session.steps;
+
+            // Restore Output JSON
+            const outputJson = document.getElementById('output-json');
+            if (outputJson && session.lastJson) {
+                outputJson.value = session.lastJson;
+            } else if (outputJson) {
+                outputJson.value = JSON.stringify({ platform: "veo", prompt: "Waiting for input...", parameters: {} }, null, 2);
+            }
+
+            // Switch to AI mode
+            const aiRadio = document.querySelector('input[name="gen-mode"][value="ai"]');
+            if (aiRadio) {
+                aiRadio.checked = true;
+                aiRadio.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+
+            if (window.showToast) window.showToast('Session Restored', 'The AI chat has been restored.', 'success');
+        }, 80);
+    };
+
+    window.deleteAiSession = async function (sessionId) {
+        const confirmed = await aiConfirm('Delete this saved session?');
+        if (!confirmed) return;
+        let history = JSON.parse(localStorage.getItem(AI_HISTORY_KEY) || '[]');
+        history = history.filter(s => s.id !== sessionId);
+        localStorage.setItem(AI_HISTORY_KEY, JSON.stringify(history));
+
+        // Refresh list
+        openAiHistory();
+
+        // Clear preview if deleted item was selected
+        if (selectedAiSession && selectedAiSession.id === sessionId) {
+            selectedAiSession = null;
+            const preview = document.getElementById('ai-history-preview-area');
+            if (preview) preview.innerHTML = '<div class="placeholder-content">Select an AI session from the sidebar...</div>';
+            document.getElementById('ai-history-preview-actions')?.classList.add('hidden');
+        }
+
+        if (window.showToast) window.showToast('Session Deleted', 'Item removed from history.', 'info');
+    };
+
+    // Global function for mock chat interaction
+    window.handleAiOptionSelection = function (el, selectionType) {
+        const messagesArea = document.getElementById('ai-messages-area');
+        window.aiModeState.expertise = selectionType;
+
+        // Disable current options
+        el.parentElement.querySelectorAll('.mcq-option').forEach(c => {
+            c.style.pointerEvents = 'none';
+            c.style.opacity = '0.5';
+        });
+        el.style.opacity = '1';
+        el.style.borderColor = 'var(--accent-primary)';
+
+        // User message
+        const userHtml = `
+            <div class="chat-message user-message">
+                <div class="message-content">
+                    <p>I consider my expertise level as: ${selectionType}.</p>
+                </div>
+            </div>
+        `;
+        messagesArea.insertAdjacentHTML('beforeend', userHtml);
+        saveAiSession();
+
+        // Update progress
+        const progressFill = document.getElementById('ai-progress-fill');
+        if (progressFill) progressFill.style.width = '28%';
+        const steps = document.querySelectorAll('#ai-progress-steps li');
+        if (steps.length > 2) {
+            steps[1].classList.replace('active', 'completed');
+            steps[2].classList.add('active');
+        }
+
+        // Final AI response for this mockup step
+        setTimeout(() => {
+            const aiResponseHtml = `
+                <div class="chat-message ai-message">
+                    <div class="message-content">
+                        <p>Got it. Finally, which industry are you creating this for? This helps me apply professional templates and standards.</p>
+                        <div class="mcq-options-container">
+                            <div class="mcq-option" onclick="handleAiIndustrySelection(this, 'commercial')">
+                                <div class="mcq-option-title">Commercial / Ads</div>
+                                <div class="mcq-option-desc">Product focus, clean lighting.</div>
+                            </div>
+                            <div class="mcq-option" onclick="handleAiIndustrySelection(this, 'film')">
+                                <div class="mcq-option-title">Film & TV</div>
+                                <div class="mcq-option-desc">Cinematic, narrative storytelling.</div>
+                            </div>
+                            <div class="mcq-option" onclick="handleAiIndustrySelection(this, 'gaming')">
+                                <div class="mcq-option-title">Gaming</div>
+                                <div class="mcq-option-desc">Real-time engine, VFX heavy.</div>
+                            </div>
+                            <div class="mcq-option" onclick="handleAiIndustrySelection(this, 'architecture')">
+                                <div class="mcq-option-title">Architecture</div>
+                                <div class="mcq-option-desc">Photorealistic materials, spatial flow.</div>
+                            </div>
+                            <div class="mcq-option" onclick="handleAiIndustrySelection(this, 'music')">
+                                <div class="mcq-option-title">Music Industry</div>
+                                <div class="mcq-option-desc">Rhythmic, surreal, high contrast.</div>
+                            </div>
+                            <div class="mcq-option" onclick="handleAiIndustrySelection(this, 'publishing')">
+                                <div class="mcq-option-title">Publishing</div>
+                                <div class="mcq-option-desc">Editorial layout, storytelling.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            messagesArea.insertAdjacentHTML('beforeend', aiResponseHtml);
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+            saveAiSession();
+        }, 800);
+
+        messagesArea.scrollTop = messagesArea.scrollHeight;
+    };
+
+    window.handleAiIndustrySelection = function (el, industryId) {
+        const messagesArea = document.getElementById('ai-messages-area');
+        window.aiModeState.industry = industryId;
+
+        // Disable current options
+        el.parentElement.querySelectorAll('.mcq-option').forEach(c => {
+            c.style.pointerEvents = 'none';
+            c.style.opacity = '0.5';
+        });
+        el.style.opacity = '1';
+        el.style.borderColor = 'var(--accent-primary)';
+
+        // User message
+        const industryName = el.querySelector('.mcq-option-title').textContent;
+        const userHtml = `
+            <div class="chat-message user-message">
+                <div class="message-content">
+                    <p>I'm creating content for: ${industryName}.</p>
+                </div>
+            </div>
+        `;
+        messagesArea.insertAdjacentHTML('beforeend', userHtml);
+        saveAiSession();
+
+        // Update progress
+        const progressFill = document.getElementById('ai-progress-fill');
+        if (progressFill) progressFill.style.width = '42%';
+        const steps = document.querySelectorAll('#ai-progress-steps li');
+        if (steps.length > 3) {
+            steps[2].classList.replace('active', 'completed');
+            steps[3].classList.add('active');
+        }
+
+        // Final AI response to accept platform
+        setTimeout(() => {
+            const aiResponseHtml = `
+                <div class="chat-message ai-message">
+                    <div class="message-content">
+                        <p>Perfect. I've configured the parameters for the ${industryName} industry. Now, which AI platform are you targeting for <strong>${window.aiModeState.modality}</strong> generation? Each platform has specific technical limits and styles.</p>
+                        <div class="mcq-options-container">
+                            ${buildPlatformOptions(window.aiModeState.modality)}
+                        </div>
+                    </div>
+                </div>
+            `;
+            messagesArea.insertAdjacentHTML('beforeend', aiResponseHtml);
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+            saveAiSession();
+        }, 800);
+
+        messagesArea.scrollTop = messagesArea.scrollHeight;
+    };
+
+    window.handleAiPlatformSelection = function (el, platformId) {
+        const messagesArea = document.getElementById('ai-messages-area');
+        window.aiModeState.platform = platformId;
+
+        // Disable current options
+        el.parentElement.querySelectorAll('.mcq-option').forEach(c => {
+            c.style.pointerEvents = 'none';
+            c.style.opacity = '0.5';
+        });
+        el.style.opacity = '1';
+        el.style.borderColor = 'var(--accent-primary)';
+
+        // User message
+        const platformName = el.querySelector('.mcq-option-title').textContent;
+        const userHtml = `
+            <div class="chat-message user-message">
+                <div class="message-content">
+                    <p>I'm targeting the ${platformName} platform.</p>
+                </div>
+            </div>
+        `;
+        messagesArea.insertAdjacentHTML('beforeend', userHtml);
+        saveAiSession();
+
+        // Update progress
+        const progressFill = document.getElementById('ai-progress-fill');
+        if (progressFill) progressFill.style.width = '57%';
+        const steps = document.querySelectorAll('#ai-progress-steps li');
+        if (steps.length > 4) {
+            steps[3].classList.replace('active', 'completed');
+            steps[4].classList.add('active');
+        }
+
+        // Final AI response to accept prompt
+        setTimeout(() => {
+            const aiResponseHtml = `
+                <div class="chat-message ai-message">
+                    <div class="message-content">
+                        <p>Excellent. I've tailored the optimization logic for ${platformName}. Now, briefly describe the subject and setting of your scene in the input box below.</p>
+                    </div>
+                </div>
+            `;
+            messagesArea.insertAdjacentHTML('beforeend', aiResponseHtml);
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+            document.getElementById('ai-chat-input').focus();
+            saveAiSession();
+        }, 800);
+
+        messagesArea.scrollTop = messagesArea.scrollHeight;
+    };
+
+    // Platform options per modality (latest models as of 2026)
+    const MODALITY_PLATFORMS = {
+        'Video': [
+            { id: 'veo', name: 'Google Veo 3', desc: 'Cinematic quality, 60s generation, native audio sync.' },
+            { id: 'sora', name: 'OpenAI Sora', desc: 'Highly realistic, complex scene physics.' },
+            { id: 'runway', name: 'Runway Gen-4', desc: 'Artistic control, reference image support.' },
+            { id: 'luma', name: 'Luma Ray 2', desc: 'Rapid generation, high motion fidelity.' },
+            { id: 'kling', name: 'Kling 2.0', desc: 'Superior character physics and lip-sync.' }
+        ],
+        'Image': [
+            { id: 'midjourney', name: 'Midjourney v7', desc: 'Best overall quality, rich aesthetic styles.' },
+            { id: 'flux', name: 'FLUX 1.1 Pro Ultra', desc: 'Photorealistic, exceptional detail and realism.' },
+            { id: 'ideogram', name: 'Ideogram 3.0', desc: 'Best-in-class text rendering in images.' },
+            { id: 'dalle', name: 'DALL-E 3', desc: 'OpenAI multimodal, strong prompt adherence.' },
+            { id: 'stable', name: 'Stable Diffusion 3.5', desc: 'Open-source, full local control.' }
+        ],
+        'Music': [
+            { id: 'suno', name: 'Suno v4', desc: 'Full song generation with vocals and custom lyrics.' },
+            { id: 'udio', name: 'Udio v2', desc: 'High-fidelity music with fine-grained style control.' },
+            { id: 'musicgen', name: 'MusicGen Large', desc: 'Meta open-source, melody-conditioned generation.' },
+            { id: 'stable_audio', name: 'Stable Audio 2.0', desc: 'Long-form audio with timed generation.' },
+            { id: 'mmaudio', name: 'MMAudio', desc: 'Synchronized audio generation for video clips.' }
+        ],
+        '3D Model': [
+            { id: 'tripo3d', name: 'TripoAI Tripo3D', desc: 'Fast, high-quality 3D mesh from text or image.' },
+            { id: 'meshy', name: 'Meshy 4', desc: 'Game-ready assets with automatic UV texture generation.' },
+            { id: 'rodin', name: 'Hyper3D Rodin Gen-2', desc: 'Studio-grade 3D characters and complex assets.' },
+            { id: 'shap_e', name: 'OpenAI Shap-E', desc: 'Open-source implicit 3D representations.' },
+            { id: 'trellis', name: 'TRELLIS (Microsoft)', desc: '3D Gaussian and mesh from single image.' }
+        ],
+        'Text': [
+            { id: 'gpt4o', name: 'GPT-4o', desc: 'OpenAI flagship, versatile creative and technical writing.' },
+            { id: 'claude', name: 'Claude 3.7 Sonnet', desc: 'Best for long-form, nuanced creative writing.' },
+            { id: 'gemini', name: 'Gemini 2.0 Flash', desc: 'Speed-optimized with native multimodal context.' },
+            { id: 'llama', name: 'Llama 3.3 70B', desc: 'Powerful open-source, fully local capable.' },
+            { id: 'mistral', name: 'Mistral Large 2', desc: 'Strong instruction following for structured prompts.' }
+        ],
+        'Audio/SFX': [
+            { id: 'elevenlabs', name: 'ElevenLabs v3', desc: 'Ultra-realistic voice cloning and sound effects.' },
+            { id: 'audioldm', name: 'AudioLDM 2', desc: 'Text-to-audio for sound effects and ambience.' },
+            { id: 'audiogen', name: 'AudioGen XL', desc: 'Meta model for general audio from text descriptions.' },
+            { id: 'aero', name: 'Aero (Stability AI)', desc: 'High-quality short sound effect generation.' },
+            { id: 'bark', name: 'Bark v2', desc: 'Open-source voice, music, and ambient audio.' }
+        ],
+        'Animation': [
+            { id: 'adobe_firefly', name: 'Adobe Firefly Video', desc: 'Professional animation tools, IP-safe content.' },
+            { id: 'pika', name: 'Pika 2.2', desc: 'Character animation with cinematic scene transitions.' },
+            { id: 'viggle', name: 'Viggle AI', desc: 'Physics-based character motion and animation.' },
+            { id: 'haiper', name: 'Haiper 2.0', desc: 'Cinematic animation with consistent motion coherence.' },
+            { id: 'minimax', name: 'MiniMax Video-01', desc: 'Long consistent animated sequence generation.' }
+        ],
+        'VR/AR': [
+            { id: 'unity', name: 'Unity AI (Muse)', desc: 'Generative AI for real-time 3D and XR experiences.' },
+            { id: 'nvidia_omniverse', name: 'NVIDIA Omniverse', desc: 'Professional XR simulation and scene generation.' },
+            { id: 'meta_xr', name: 'Meta AI (XR Suite)', desc: 'Optimized for Quest VR social experiences.' },
+            { id: 'apple_create', name: 'Apple RealityKit AI', desc: 'Best for Apple Vision Pro AR scenes.' },
+            { id: 'polycam', name: 'Polycam AI', desc: 'Real-world to 3D scan for precise AR placement.' }
+        ],
+        'Motion Graphics': [
+            { id: 'runway', name: 'Runway Gen-4', desc: 'Motion graphics generation with keyframe control.' },
+            { id: 'pika_effects', name: 'Pika 2.2 Effects', desc: 'Rapid motion effects and animated transitions.' },
+            { id: 'krea', name: 'Krea AI Realtime', desc: 'Live motion design with real-time canvas.' },
+            { id: 'jitter', name: 'Jitter AI', desc: 'Animated UI components and micro-animation loops.' },
+            { id: 'spline', name: 'Spline AI', desc: '3D motion graphics with interactive web export.' }
+        ]
+    };
+
+    function buildPlatformOptions(modality) {
+        const platforms = MODALITY_PLATFORMS[modality] || MODALITY_PLATFORMS['Video'];
+        return platforms.map(p => `
+            <div class="mcq-option" onclick="handleAiPlatformSelection(this, '${p.id}')">
+                <div class="mcq-option-title">${p.name}</div>
+                <div class="mcq-option-desc">${p.desc}</div>
+            </div>
+        `).join('');
+    }
+
+    // AI Chat Input Submission Logic
+    const aiChatInput = document.getElementById('ai-chat-input');
+    const aiChatSend = document.getElementById('ai-chat-send');
+
+    if (aiChatSend && aiChatInput) {
+        aiChatSend.addEventListener('click', async () => {
+            const text = aiChatInput.value.trim();
+            if (!text) return;
+
+            // Ensure modality, expertise, industry and platform are set
+            if (!window.aiModeState?.modality || !window.aiModeState?.expertise || !window.aiModeState?.industry || !window.aiModeState?.platform) {
+                if (window.showToast) window.showToast('Incomplete Setup', 'Please complete the setup steps first.', 'warning');
+                return;
+            }
+
+            const messagesArea = document.getElementById('ai-messages-area');
+
+            // Append user message
+            const userHtml = `
+                <div class="chat-message user-message">
+                    <div class="message-content">
+                        <p>${text}</p>
+                    </div>
+                </div>
+            `;
+            messagesArea.insertAdjacentHTML('beforeend', userHtml);
+            aiChatInput.value = '';
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+            saveAiSession();
+
+            // Add AI Loading Bubble
+            const loadingId = 'ai-loading-' + Date.now();
+            const loadingHtml = `
+                <div class="chat-message ai-message" id="${loadingId}">
+                    <div class="message-content">
+                        <p class="typing-indicator">Working...</p>
+                    </div>
+                </div>
+            `;
+            messagesArea.insertAdjacentHTML('beforeend', loadingHtml);
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+            aiChatSend.disabled = true;
+
+            try {
+                // Call LLM
+                const responseStr = await window.llmService.generateAiModePrompt(
+                    window.aiModeState.modality,
+                    window.aiModeState.expertise,
+                    window.aiModeState.industry,
+                    window.aiModeState.platform,
+                    text
+                );
+
+                // Parse JSON response safely
+                let responseData;
+                try {
+                    responseData = JSON.parse(responseStr);
+                } catch (parseErr) {
+                    console.error('Failed to parse AI JSON', responseStr);
+                    throw new Error("AI returned malformed data. Please try again.");
+                }
+
+                // Format output
+                const aiResponseHtml = `
+                    <div class="chat-message ai-message">
+                        <div class="message-content">
+                            <p>${responseData.message}</p>
+                            <pre><code class="language-json" style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px; font-size: 0.85rem; overflow-x: auto; display: block; margin-top: 10px; color: #a1e261;">${JSON.stringify(responseData.prompt_data, null, 2)}</code></pre>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById(loadingId).remove();
+                messagesArea.insertAdjacentHTML('beforeend', aiResponseHtml);
+
+                // Populate the Output JSON section automatically
+                const outputJson = document.getElementById('output-json');
+                if (outputJson && responseData.prompt_data) {
+                    outputJson.value = JSON.stringify(responseData.prompt_data, null, 2);
+                    // Highlight or pulse effect to show update? Optional, but professional
+                    outputJson.classList.add('pulse-effect');
+                    setTimeout(() => outputJson.classList.remove('pulse-effect'), 2000);
+                }
+
+                saveAiSession();
+
+                // Update Progress bar to 100%
+                const progressFill = document.getElementById('ai-progress-fill');
+                if (progressFill) progressFill.style.width = '100%';
+                const steps = document.querySelectorAll('#ai-progress-steps li');
+                if (steps.length > 5) {
+                    steps[3].classList.replace('active', 'completed');
+                    steps[4].classList.add('completed');
+                    steps[5].classList.add('completed');
+                }
+
+            } catch (error) {
+                const el = document.getElementById(loadingId);
+                if (el) el.remove();
+
+                const errHtml = `
+                    <div class="chat-message ai-message">
+                        <div class="message-content" style="border-color: #ff3b3b;">
+                            <p style="color: #ff3b3b;">Error: ${error.message}</p>
+                        </div>
+                    </div>
+                `;
+                messagesArea.insertAdjacentHTML('beforeend', errHtml);
+            } finally {
+                aiChatSend.disabled = false;
+                messagesArea.scrollTop = messagesArea.scrollHeight;
+            }
+        });
+
+        // Allow Enter to send
+        aiChatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                aiChatSend.click();
+            }
+        });
+    }
+
+
+
+
+    /* ============================
         Sidebar Menu Logic
        ============================ */
     const sidebar = document.getElementById('sidebar');
     const sidebarOverlay = document.getElementById('sidebar-overlay');
     const hamburgerBtn = document.getElementById('hamburger-btn');
-    const sidebarClose = document.getElementById('sidebar-close');
     const sidebarLinks = document.querySelectorAll('.sidebar-link');
     const sidebarResetBtn = document.getElementById('sidebar-reset-btn');
     const sidebarExportBtn = document.getElementById('sidebar-export-btn');
@@ -132,9 +1050,9 @@ document.addEventListener('DOMContentLoaded', () => {
         sidebarOverlay.classList.remove('active');
         document.body.style.overflow = '';
     }
+    window.closeSidebar = closeSidebar;
 
     hamburgerBtn.addEventListener('click', openSidebar);
-    sidebarClose.addEventListener('click', closeSidebar);
     sidebarOverlay.addEventListener('click', closeSidebar);
 
     sidebarLinks.forEach(link => {
@@ -143,8 +1061,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (sectionId) {
                 e.preventDefault();
                 switchSection(sectionId);
-                closeSidebar();
             }
+            // Always close sidebar when a link is clicked
+            closeSidebar();
         });
     });
 
@@ -2360,14 +3279,8 @@ document.addEventListener('DOMContentLoaded', () => {
         History & Diff Logic
        ============================ */
     // historyService is already initialized at the top
-    const historyModal = document.getElementById('history-modal');
 
-    // Selectors for Modal
-    const modalList = document.getElementById('history-list');
-    const modalPreview = document.getElementById('history-preview-code');
-    const modalActions = document.getElementById('history-preview-actions');
-
-    // Selectors for Section
+    // Selectors for Section (the only history view now)
     const sectionList = document.getElementById('history-section-list');
     const sectionPreview = document.getElementById('history-section-preview-code');
     const sectionActions = document.getElementById('history-section-preview-actions');
@@ -2376,48 +3289,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // History Sidebar is managed by history-sidebar.js
 
-    // Trigger Modal Open
-    document.getElementById('history-trigger-btn')?.addEventListener('click', () => {
-        renderHistoryView('modal');
-        historyModal?.classList.remove('hidden');
+    // ── Tab Switcher ────────────────────────────────
+    document.querySelectorAll('.history-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.history-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const target = tab.dataset.tab;
+            tab.parentElement.setAttribute('data-active-tab', target);
+
+            document.getElementById('history-panel-json')?.classList.toggle('hidden', target !== 'json');
+            document.getElementById('history-panel-ai')?.classList.toggle('hidden', target !== 'ai');
+            if (target === 'json') renderHistoryView('section');
+            if (target === 'ai') openAiHistory?.();
+
+            // Ensure any open history sidebars are closed when switching tabs
+            if (window.historySidebarController) {
+                window.historySidebarController.closeSection();
+                window.historySidebarController.closeAi();
+            }
+        });
     });
 
-    // Close Modal
-    document.getElementById('history-close-btn')?.addEventListener('click', () => {
-        historyModal?.classList.add('hidden');
+    // Render JSON versions whenever History section is shown
+    document.querySelector('[data-section="history-section"]')?.addEventListener('click', () => {
+        renderHistoryView('section');
     });
 
+    // Trigger section render on header nav History click is handled above
     // Clear History
     const clearAllHistory = () => {
-        if (confirm('Are you sure you want to clear all history?')) {
+        if (window.confirm('Are you sure you want to clear all history?')) {
             historyService.clear();
             gaTracker.trackEvent('history_clear_all');
-            renderHistoryView('modal');
             renderHistoryView('section');
-            if (modalPreview) modalPreview.textContent = "History cleared.";
-            if (sectionPreview) sectionPreview.textContent = "History cleared.";
-            if (modalActions) modalActions.classList.add('hidden');
+            if (sectionPreview) sectionPreview.textContent = 'History cleared.';
             if (sectionActions) sectionActions.classList.add('hidden');
             showToast('History Cleared', 'All recorded versions have been removed.', 'info');
         }
     };
 
-    document.getElementById('history-clear-btn')?.addEventListener('click', clearAllHistory);
     document.getElementById('history-section-clear-btn')?.addEventListener('click', clearAllHistory);
 
     // Restore Version
     const restoreHistoryItem = () => {
         if (selectedHistoryItem) {
             outputArea.value = JSON.stringify(selectedHistoryItem.content, null, 2);
-            historyModal?.classList.add('hidden');
             gaTracker.trackEvent('history_restore_item', { item_id: selectedHistoryItem.id });
 
-            // If in section view, return to generator
-            const activeNav = document.querySelector('.main-nav a.active');
-            if (activeNav?.textContent.trim() === 'History') {
-                const genLink = Array.from(document.querySelectorAll('.main-nav a')).find(a => a.textContent.trim() === 'JSON Generator');
-                genLink?.click();
-            }
+            // Return to generator section from History
+            document.querySelector('[data-section="generator-section"]')?.click();
 
             document.getElementById('output-section').classList.remove('hidden');
             document.getElementById('output-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -2425,13 +3345,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    document.getElementById('history-restore-btn')?.addEventListener('click', restoreHistoryItem);
     document.getElementById('history-section-restore-btn')?.addEventListener('click', restoreHistoryItem);
 
     // Render Sidebar
     function renderHistoryView(view) {
         const items = historyService.getAll();
-        const container = view === 'modal' ? modalList : sectionList;
+        const container = sectionList; // Single canonical history view now
 
         if (!container) return;
         container.innerHTML = '';
@@ -2504,8 +3423,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (previewArea) previewArea.textContent = JSON.stringify(item.content, null, 2);
 
         // Close sidebar on select (using global controller from history-sidebar.js)
-        if (view === 'modal' && window.historysSidebarController) {
-            window.historysSidebarController.close();
+        if (window.historySidebarController) {
+            if (view === 'modal') {
+                window.historySidebarController.close();
+            } else {
+                window.historySidebarController.closeSection();
+            }
         }
     }
 

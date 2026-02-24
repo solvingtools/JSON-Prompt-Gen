@@ -2,6 +2,8 @@
  * LLM Service - BYOK Integration for OpenAI, Anthropic, and Gemini
  * Local-first PWA implementation with secure key management
  */
+import { IndustryTemplateService } from './industryTemplateService.js';
+import { DictionaryService } from './dictionaryService.js';
 
 export class LLMService {
     constructor() {
@@ -41,14 +43,64 @@ export class LLMService {
         };
         this.activeProvider = null;
         this.config = {};
+        this.industryService = new IndustryTemplateService();
+        this.dictionaryService = new DictionaryService();
     }
 
+
     /**
-     * Initialize service and load saved configuration
+     * Initialize service and load saved configuration.
+     * Also migrates any legacy keys from the old KeyManager storage (prompt_gen_api_keys).
      */
     async init() {
         await this.loadConfig();
+        await this.dictionaryService.init();
+        await this._migrateLegacyKeys();
     }
+
+    /**
+     * One-time migration: import any keys that were previously saved by the
+     * old KeyManager class (storage key: 'prompt_gen_api_keys') into this
+     * service's own vault, then remove the old entry to avoid drift.
+     */
+    async _migrateLegacyKeys() {
+        const LEGACY_KEY = 'prompt_gen_api_keys';
+        const stored = localStorage.getItem(LEGACY_KEY);
+        if (!stored) return;
+
+        try {
+            const fingerprint = await CryptoUtils.getDeviceFingerprint();
+            const decrypted = await CryptoUtils.decrypt(stored, fingerprint);
+            const keys = JSON.parse(decrypted); // { openai: '...', anthropic: '...', gemini: '...' }
+            let migrated = false;
+
+            for (const [provider, apiKey] of Object.entries(keys)) {
+                if (apiKey && this.providers[provider]) {
+                    // Only write if we don't already have a richer entry
+                    if (!this.config[provider]?.key) {
+                        this.config[provider] = {
+                            key: apiKey,
+                            model: this.providers[provider].models[0].id,
+                            lastUsed: null,
+                            requestCount: 0
+                        };
+                        migrated = true;
+                    }
+                }
+            }
+
+            if (migrated) {
+                await this.saveConfig();
+                console.info('LLMService: Migrated legacy API keys to unified vault.');
+            }
+            // Remove the old siloed storage regardless
+            localStorage.removeItem(LEGACY_KEY);
+        } catch (e) {
+            console.warn('LLMService: Could not migrate legacy keys.', e.message);
+        }
+    }
+
+
 
     /**
      * Load encrypted configuration from localStorage
@@ -236,6 +288,122 @@ export class LLMService {
     }
 
     /**
+     * Determine best provider dynamically based on task
+     * @param {string} modality 
+     * @param {string} expertise 
+     * @returns {string} providerId
+     */
+    determineBestProvider(modality, expertise) {
+        const configured = this.getConfiguredProviders();
+        if (configured.length === 0) throw new Error("No API keys configured. Please add one in settings.");
+
+        let preferred = 'openai';
+        // Anthropic for technical precision
+        if (expertise === 'Professional' || modality === 'text') preferred = 'anthropic';
+        // Gemini for specific platforms / multimodal
+        if (modality === 'vrar' || modality === '3d' || modality === 'animation') preferred = 'gemini';
+
+        if (configured.includes(preferred)) return preferred;
+        return configured[0]; // Fallback
+    }
+
+    /**
+     * Generate prompt for the interactive AI Mode
+     * @param {string} modality 
+     * @param {string} expertise 
+     * @param {string} industry 
+     * @param {string} userInput 
+     */
+    async generateAiModePrompt(modality, expertise, industry, platform, userInput) {
+        let providerId = this.determineBestProvider(modality, expertise);
+        const providerConfig = this.config[providerId];
+
+        let industryContext = '';
+        if (industry) {
+            industryContext = this.industryService.getIndustryPromptContext(industry);
+        }
+
+        let platformContext = '';
+        if (platform) {
+            platformContext = `\n[TARGET PLATFORM: ${platform.toUpperCase()}]\nOptimize the technical parameters, aspect ratios, and cinematic tags specifically for the ${platform} video generation platform.`;
+        }
+
+        let dictContext = '';
+        const cats = this.dictionaryService.getAllCategories();
+        if (cats && cats.length > 0) {
+            let sampleTerms = [];
+            cats.forEach(c => c.terms.forEach(t => sampleTerms.push(t.name + ": " + t.definition)));
+            // Pick a handful of random terms to guide the AI's vocabulary without overloading context window
+            sampleTerms = sampleTerms.sort(() => 0.5 - Math.random()).slice(0, 15);
+            dictContext = `\n[CINEMATIC DICTIONARY - PROFESSIONAL TERMINOLOGY]\nIncorporate professional terminology where applicable. Examples:\n- ` + sampleTerms.join('\n- ') + `\n`;
+        }
+
+        const systemPrompt = `You are a Universal AI Prompt Engineer specializing in generating prompts for ${modality} generation.
+The user's expertise level is ${expertise}.
+If the user is a Beginner, create a highly detailed and optimized prompt explaining technical terms simply.
+If the user is a Professional, focus on advanced technical parameters, specific camera/lighting/render engines without hand-holding.
+${industryContext}
+${platformContext}
+${dictContext}
+
+Your output MUST be formatted as a structured JSON object representing the prompt parameters, wrapped in a single message explaining the rationale. Provide actionable Best Practices in the message based on their expertise.
+Format:
+{
+  "message": "A brief explanation of how you optimized their prompt with professional best practices...",
+  "prompt_data": {
+    "subject": "Detailed subject...",
+    "style": "Visual style...",
+    "technical_params": "Camera, resolution, fps, etc..."
+  }
+}
+Output raw JSON only. Do not wrap in markdown \`\`\` codeblocks.`;
+
+        const userMsg = `I want to create a ${modality}. Here is my idea: ${userInput}`;
+
+        // Fallback Retry Loop
+        let attempts = 0;
+        const maxAttempts = 2;
+        let lastError = null;
+
+        while (attempts < maxAttempts) {
+            try {
+                let result;
+                if (providerId === 'openai') {
+                    result = await this._callOpenAI(providerConfig.key, providerConfig.model, systemPrompt, userMsg, { maxTokens: 800 });
+                } else if (providerId === 'anthropic') {
+                    result = await this._callAnthropic(providerConfig.key, providerConfig.model, systemPrompt, userMsg, { maxTokens: 800 });
+                } else if (providerId === 'gemini') {
+                    result = await this._callGemini(providerConfig.key, providerConfig.model, systemPrompt, userMsg, { maxTokens: 800 });
+                }
+
+                providerConfig.lastUsed = new Date().toISOString();
+                providerConfig.requestCount = (providerConfig.requestCount || 0) + 1;
+                this.saveConfig();
+
+                return this._cleanResponse(result);
+            } catch (error) {
+                lastError = error;
+                attempts++;
+                console.warn(`Provider ${providerId} failed (Attempt ${attempts}): ${error.message}`);
+
+                // Exponential backoff or Switch provider
+                const configured = this.getConfiguredProviders();
+                const alternatives = configured.filter(p => p !== providerId);
+
+                if (alternatives.length > 0) {
+                    console.log(`Falling back to ${alternatives[0]}...`);
+                    providerId = alternatives[0];
+                } else {
+                    // Backoff delay before retry on same provider
+                    await new Promise(r => setTimeout(r, 1000 * attempts));
+                }
+            }
+        }
+
+        throw new Error(`LLM Generation Failed after retries. Last error: ${lastError?.message}`);
+    }
+
+    /**
      * Clean LLM responses from common unprofessional prefixes and formatting
      * @param {string} text - Raw LLM output
      * @returns {string} - Cleaned text
@@ -248,6 +416,10 @@ export class LLMService {
             .replace(/^(Prompt|Enhanced Prompt|Result|Response|Scene \d+|Output|Description):?\s*/i, '')
             // Remove wrapping quotes if they exist
             .replace(/^["'](.*)["']$/s, '$1')
+            // Clean markdown blocks
+            .replace(/^```json\s*/i, '')
+            .replace(/^```\s*/i, '')
+            .replace(/\s*```$/i, '')
             // Trim whitespace
             .trim();
     }

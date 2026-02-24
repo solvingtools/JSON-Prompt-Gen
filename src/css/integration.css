@@ -259,3 +259,14 @@
         opacity: 1;
     }
 }
+
+/* Modal Utility for LLM Integration */
+.modal-w-500 {
+    max-width: 500px !important;
+}
+
+.modal-p-secondary {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
