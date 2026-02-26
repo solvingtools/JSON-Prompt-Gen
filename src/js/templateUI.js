@@ -1,3 +1,5 @@
+import { IndustryTemplateService } from './services/IndustryTemplateService.js';
+
 /*
  * TemplateUI - Manages the user interface for Prompt Templates
  * Handles Modals, Rendering, and User Interactions.
@@ -183,9 +185,23 @@ export class TemplateUI {
             const templates = await this.services.getAllTemplates();
             this.galleryGrid.innerHTML = '';
 
+            // 1. Render Industry Presets
+            const presets = IndustryTemplateService.getTemplates();
+            this.galleryGrid.insertAdjacentHTML('beforeend', '<h4 class="gallery-section-title">Industry Presets</h4><div class="template-grid preset-grid" id="preset-grid"></div>');
+            const presetGrid = document.getElementById('preset-grid');
+
+            presets.forEach(preset => {
+                const card = this.createPresetCard(preset);
+                presetGrid.appendChild(card);
+            });
+
+            // 2. Render User Templates
+            this.galleryGrid.insertAdjacentHTML('beforeend', '<h4 class="gallery-section-title mt-4">My Templates</h4><div class="template-grid user-grid" id="user-template-grid"></div>');
+            const userGrid = document.getElementById('user-template-grid');
+
             if (templates.length === 0) {
-                this.galleryGrid.innerHTML = `
-                    <div class="template-empty-state">
+                userGrid.innerHTML = `
+                    <div class="template-empty-state" style="grid-column: 1 / -1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
                         <p>No templates found. Create your first template from the generator!</p>
                     </div>
@@ -195,13 +211,53 @@ export class TemplateUI {
 
             templates.forEach(template => {
                 const card = this.createTemplateCard(template);
-                this.galleryGrid.appendChild(card);
+                userGrid.appendChild(card);
             });
 
         } catch (error) {
             console.error('Error rendering gallery:', error);
             this.galleryGrid.innerHTML = '<div class="template-error">Failed to load templates.</div>';
         }
+    }
+
+    createPresetCard(preset) {
+        const div = document.createElement('div');
+        div.className = 'template-card preset-card';
+        div.onclick = (e) => {
+            this.applyPreset(preset);
+        };
+
+        div.innerHTML = `
+            <div class="template-card-header">
+                <h4 class="template-name" title="${preset.name}">${preset.icon} ${preset.name}</h4>
+                <div class="template-actions">
+                    <span class="preset-badge">PRESET</span>
+                </div>
+            </div>
+            <p class="template-desc">${preset.description}</p>
+        `;
+        return div;
+    }
+
+    applyPreset(preset) {
+        // Industry templates only affect one scene natively, but we can apply its defaults
+        // to a 'dummy' template structure so it behaves like a user template.
+        const templateData = {
+            id: preset.id,
+            name: preset.name,
+            content: {
+                // Apply defaults to the first scene
+                scenes: [
+                    preset.defaults
+                ]
+            }
+        };
+
+        const event = new CustomEvent('apply-template', { detail: templateData.content });
+        window.dispatchEvent(event);
+
+        this.closeModal('template-gallery-modal');
+        if (window.showToast) window.showToast('Preset Applied', `"${preset.name}" preset loaded successfully.`, 'success');
     }
 
     createTemplateCard(template) {

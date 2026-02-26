@@ -1,0 +1,5 @@
+[    6717ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[   43571ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://icons.plot.dev/brand/openrouter.svg:0
+[   45571ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:5173/app.html:0

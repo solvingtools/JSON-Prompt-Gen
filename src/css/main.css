@@ -449,6 +449,128 @@ textarea:hover {
     background: transparent;
 }
 
+/* =========================================
+   SCENE CONTROL EXPANSION: Layout & Accordions
+   ========================================= */
+
+/* Refined Section Labels - Restored Original Style */
+.scene-item .section-label {
+    color: var(--text-secondary) !important;
+    font-weight: 500;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Base Form Grid — hidden by default, shown when accordion is active */
+.scene-params-grid {
+    display: none;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    padding: 16px 8px;
+}
+
+/* Full Width overrides */
+.f-width-100 {
+    grid-column: 1 / -1;
+}
+
+/* Accordion Button Container */
+.scene-group {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+}
+
+/* Style the button itself */
+.scene-group-accordion-btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 18px;
+    background: rgba(0, 0, 0, 0.25);
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scene-group-accordion-btn span {
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: linear-gradient(135deg, #af59ff, #ff5cff, #ff5d9b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+.scene-group-accordion-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.scene-group-accordion-btn:hover span {
+    filter: brightness(1.2);
+}
+
+.accordion-chevron {
+    transition: transform 0.3s ease;
+    opacity: 0.6;
+    color: var(--text-primary);
+    /* Ensure it's visible on dark background */
+}
+
+/* Active Accordion State */
+.scene-group.active {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.scene-group.active .scene-group-accordion-btn {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.scene-group.active .accordion-chevron {
+    transform: rotate(180deg);
+}
+
+.scene-group.active .scene-params-grid {
+    display: grid;
+}
+
+/* Tier Selector Dropdown — scoped override so it matches
+   the 30px icon buttons (Enhance + Delete) in the scene header */
+.tier-selector-dropdown {
+    position: relative;
+}
+
+.tier-selector-dropdown .dropdown-trigger {
+    height: 30px !important;
+    min-height: 30px !important;
+    padding: 0 10px !important;
+    border-radius: 6px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 4px;
+    font-size: 0.75rem;
+}
+
+.tier-selector-dropdown .dropdown-menu {
+    min-width: 110px;
+    font-size: 0.8rem;
+    top: calc(100% + 4px);
+    left: 0;
+    right: auto;
+}
+
+
 /* Smart Pills / Chips UI */
 .pills-container {
     display: flex;
@@ -835,9 +957,8 @@ textarea:hover {
     background: rgba(255, 255, 255, 0.03);
 }
 
-/* Scene Parameters Grid Layout */
+/* Scene Parameters Grid Layout — layout props only, visibility controlled by accordion */
 .scene-params-grid {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0 25px;
     width: 100%;
@@ -875,13 +996,16 @@ textarea:hover {
     border: 1px solid rgba(255, 255, 255, 0.219);
     cursor: pointer;
     font-size: 0.8rem;
-    padding: 5px;
-    border-radius: 6px;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0.7;
+    flex-shrink: 0;
 }
 
 .remove-scene-btn:hover {
@@ -1210,6 +1334,55 @@ textarea:hover {
     padding-bottom: 24px;
 }
 
+/* Tooltips */
+.info-tooltip {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 6px;
+    margin-top: -2px;
+    cursor: help;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    transition: all 0.2s ease;
+}
+
+.info-tooltip:hover {
+    color: var(--accent-primary);
+    opacity: 1;
+}
+
+.tier-badge {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 6px;
+    padding: 0;
+    border-radius: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1;
+    background: none;
+    color: none;
+    -webkit-text-fill-color: none;
+}
+
+.tier-badge.tier-2 {
+    background: none;
+    color: #1482ff !important;
+    -webkit-text-fill-color: #1482ff !important;
+}
+
+.tier-badge.tier-3 {
+    background: none;
+    color: #ffe02e !important;
+    -webkit-text-fill-color: #ffe02e !important;
+}
+
+.tier-badge.tier-4 {
+    background: none;
+    color: #8e2bff !important;
+    -webkit-text-fill-color: #8e2bff !important;
+}
+
 /* AI Elements */
 #ai-enhance-btn {
     display: none;
@@ -1219,7 +1392,42 @@ textarea:hover {
     display: flex;
     align-items: center;
     gap: 6px;
+    flex-shrink: 0;
 }
+
+/* Ensure control mode dropdown sits flush and perfectly aligned with the enhance/delete buttons */
+.scene-actions .custom-dropdown {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    min-width: 95px;
+}
+
+.scene-actions .custom-dropdown .dropdown-trigger {
+    height: 30px !important;
+    min-height: 30px !important;
+    padding: 0 10px !important;
+    line-height: 1.2 !important;
+    /* Slight line-height for text centering */
+    box-sizing: border-box;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    border-radius: 8px !important;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.scene-actions .custom-dropdown .dropdown-value {
+    font-size: 0.82rem;
+    line-height: 1 !important;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
 
 .scene-undo-btn,
 .scene-redo-btn {

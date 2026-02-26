@@ -12,10 +12,10 @@ export class LLMService {
             openai: {
                 name: 'OpenAI',
                 models: [
-                    { id: 'gpt-5.2-pro', name: 'GPT-5.2 Pro (Recommended)', maxTokens: 4096 },
-                    { id: 'o4-mini', name: 'o4-mini', maxTokens: 4096 },
-                    { id: 'gpt-4.1-mini', name: 'GPT-4.1 mini', maxTokens: 4096 },
-                    { id: 'gpt-4.5', name: 'GPT-4.5', maxTokens: 4096 }
+                    { id: 'gpt-5.3-codex', name: 'GPT-5.3 Codex (Recommended)', maxTokens: 8192 },
+                    { id: 'gpt-5.2-instant', name: 'GPT-5.2 Instant', maxTokens: 8192 },
+                    { id: 'gpt-5.2-thinking', name: 'GPT-5.2 Thinking', maxTokens: 8192 },
+                    { id: 'gpt-5-codex-max', name: 'GPT-5 Codex Max', maxTokens: 8192 }
                 ],
                 endpoint: 'https://api.openai.com/v1/chat/completions',
                 validateEndpoint: 'https://api.openai.com/v1/models'
@@ -23,22 +23,88 @@ export class LLMService {
             anthropic: {
                 name: 'Anthropic',
                 models: [
-                    { id: 'claude-opus-4.5', name: 'Claude Opus 4.5 (Recommended)', maxTokens: 4096 },
-                    { id: 'claude-sonnet-4.5', name: 'Claude Sonnet 4.5', maxTokens: 4096 },
-                    { id: 'claude-opus-4.1', name: 'Claude Opus 4.1', maxTokens: 4096 },
-                    { id: 'claude-haiku-4.5', name: 'Claude Haiku 4.5', maxTokens: 4096 }
+                    { id: 'claude-sonnet-4.6', name: 'Claude Sonnet 4.6 (Recommended)', maxTokens: 4096 },
+                    { id: 'claude-opus-4.6', name: 'Claude Opus 4.6', maxTokens: 4096 },
+                    { id: 'claude-sonnet-3.7', name: 'Claude 3.7 Sonnet', maxTokens: 4096 },
+                    { id: 'claude-haiku-3.5', name: 'Claude 3.5 Haiku', maxTokens: 4096 }
                 ],
                 endpoint: 'https://api.anthropic.com/v1/messages'
             },
             gemini: {
                 name: 'Gemini',
                 models: [
-                    { id: 'gemini-3-pro', name: 'Gemini 3 Pro (Recommended)', maxTokens: 8192 },
-                    { id: 'gemini-2.5-pro', name: 'Gemini 2.5 Pro', maxTokens: 8192 },
-                    { id: 'gemini-3-flash', name: 'Gemini 3 Flash', maxTokens: 8192 },
-                    { id: 'gemini-2.5-flash-lite', name: 'Gemini 2.5 Flash-Lite', maxTokens: 8192 }
+                    { id: 'gemini-3.1-pro', name: 'Gemini 3.1 Pro (Recommended)', maxTokens: 8192 },
+                    { id: 'gemini-3.0-pro', name: 'Gemini 3.0 Pro', maxTokens: 8192 },
+                    { id: 'gemini-3.0-flash', name: 'Gemini 3.0 Flash', maxTokens: 8192 },
+                    { id: 'gemini-3.0-nano', name: 'Gemini 3.0 Nano', maxTokens: 8192 }
                 ],
                 endpoint: 'https://generativelanguage.googleapis.com/v1beta/models'
+            },
+            kimi: {
+                name: 'Kimi',
+                models: [
+                    { id: 'kimi-k2.5', name: 'Kimi K2.5 (Recommended)', maxTokens: 4096 },
+                    { id: 'kimi-k1.6', name: 'Kimi K1.6', maxTokens: 4096 },
+                    { id: 'kimi-k0-math', name: 'Kimi k0-math', maxTokens: 4096 },
+                    { id: 'kimi-vision', name: 'Kimi Vision', maxTokens: 4096 }
+                ],
+                endpoint: 'https://api.moonshot.cn/v1/chat/completions',
+                validateEndpoint: 'https://api.moonshot.cn/v1/models'
+            },
+            grok: {
+                name: 'Grok',
+                models: [
+                    { id: 'grok-4.2-beta', name: 'Grok 4.2 Beta (Recommended)', maxTokens: 4096 },
+                    { id: 'grok-4', name: 'Grok 4', maxTokens: 4096 },
+                    { id: 'grok-3.5', name: 'Grok 3.5', maxTokens: 4096 },
+                    { id: 'grok-3-mini', name: 'Grok 3 Mini', maxTokens: 4096 }
+                ],
+                endpoint: 'https://api.x.ai/v1/chat/completions',
+                validateEndpoint: 'https://api.x.ai/v1/models'
+            },
+            qwen: {
+                name: 'Qwen',
+                models: [
+                    { id: 'qwen3.5-plus', name: 'Qwen3.5-Plus (Recommended)', maxTokens: 4096 },
+                    { id: 'qwen3-max', name: 'Qwen3-Max', maxTokens: 4096 },
+                    { id: 'qwen3-turbo', name: 'Qwen3-Turbo', maxTokens: 4096 },
+                    { id: 'qwen3-vision', name: 'Qwen3-Vision', maxTokens: 4096 }
+                ],
+                endpoint: 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions',
+                validateEndpoint: 'https://dashscope.aliyuncs.com/api/v1/models'
+            },
+            deepseek: {
+                name: 'DeepSeek',
+                models: [
+                    { id: 'deepseek-v3.2', name: 'DeepSeek V3.2 (Recommended)', maxTokens: 4096 },
+                    { id: 'deepseek-r1', name: 'DeepSeek R1', maxTokens: 4096 },
+                    { id: 'deepseek-v3', name: 'DeepSeek V3', maxTokens: 4096 },
+                    { id: 'deepseek-coder-v3', name: 'DeepSeek Coder V3', maxTokens: 4096 }
+                ],
+                endpoint: 'https://api.deepseek.com/v1/chat/completions',
+                validateEndpoint: 'https://api.deepseek.com/v1/models'
+            },
+            glm: {
+                name: 'GLM',
+                models: [
+                    { id: 'glm-5', name: 'GLM-5 (Recommended)', maxTokens: 4096 },
+                    { id: 'glm-4.7', name: 'GLM-4.7', maxTokens: 4096 },
+                    { id: 'glm-4.6', name: 'GLM-4.6', maxTokens: 4096 },
+                    { id: 'glm-4.6v', name: 'GLM-4.6V', maxTokens: 4096 }
+                ],
+                endpoint: 'https://open.bigmodel.cn/api/paas/v4/chat/completions',
+                validateEndpoint: 'https://open.bigmodel.cn/api/paas/v4/models'
+            },
+            openrouter: {
+                name: 'OpenRouter',
+                models: [
+                    { id: 'openrouter/auto', name: 'Auto (Recommended)', maxTokens: 4096 },
+                    { id: 'openrouter/openai/gpt-5.3-codex', name: 'GPT-5.3 Codex', maxTokens: 8192 },
+                    { id: 'openrouter/anthropic/claude-sonnet-4.6', name: 'Claude Sonnet 4.6', maxTokens: 4096 },
+                    { id: 'openrouter/google/gemini-3.1-pro', name: 'Gemini 3.1 Pro', maxTokens: 8192 }
+                ],
+                endpoint: 'https://openrouter.ai/api/v1/chat/completions',
+                validateEndpoint: 'https://openrouter.ai/api/v1/models'
             }
         };
         this.activeProvider = null;
@@ -194,6 +260,16 @@ export class LLMService {
                     return await this._validateAnthropic(apiKey);
                 case 'gemini':
                     return await this._validateGemini(apiKey);
+                case 'kimi':
+                    return await this._validateKimi(apiKey);
+                case 'grok':
+                    return await this._validateGrok(apiKey);
+                case 'qwen':
+                    return await this._validateQwen(apiKey);
+                case 'deepseek':
+                    return await this._validateDeepSeek(apiKey);
+                case 'glm':
+                    return await this._validateGLM(apiKey);
                 default:
                     return { valid: false, message: 'Unknown provider' };
             }
@@ -240,6 +316,106 @@ export class LLMService {
     async _validateGemini(apiKey) {
         const url = `${this.providers.gemini.endpoint}?key=${apiKey}`;
         const response = await fetch(url);
+        if (response.ok) {
+            return { valid: true, message: 'API key is valid!' };
+        }
+        const error = await response.json();
+        return { valid: false, message: error.error?.message || 'Invalid API key' };
+    }
+
+    async _validateKimi(apiKey) {
+        const response = await fetch(this.providers.kimi.endpoint, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                model: 'kimi-k1',
+                messages: [{ role: 'user', content: 'Hi' }],
+                max_tokens: 10
+            })
+        });
+        if (response.ok) {
+            return { valid: true, message: 'API key is valid!' };
+        }
+        const error = await response.json();
+        return { valid: false, message: error.error?.message || 'Invalid API key' };
+    }
+
+    async _validateGrok(apiKey) {
+        const response = await fetch(this.providers.grok.endpoint, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                model: 'grok-2',
+                messages: [{ role: 'user', content: 'Hi' }],
+                max_tokens: 10
+            })
+        });
+        if (response.ok) {
+            return { valid: true, message: 'API key is valid!' };
+        }
+        const error = await response.json();
+        return { valid: false, message: error.error?.message || 'Invalid API key' };
+    }
+
+    async _validateQwen(apiKey) {
+        const response = await fetch(this.providers.qwen.endpoint, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                model: 'qwen-turbo',
+                messages: [{ role: 'user', content: 'Hi' }],
+                max_tokens: 10
+            })
+        });
+        if (response.ok) {
+            return { valid: true, message: 'API key is valid!' };
+        }
+        const error = await response.json();
+        return { valid: false, message: error.error?.message || 'Invalid API key' };
+    }
+
+    async _validateDeepSeek(apiKey) {
+        const response = await fetch(this.providers.deepseek.endpoint, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                model: 'deepseek-chat',
+                messages: [{ role: 'user', content: 'Hi' }],
+                max_tokens: 10
+            })
+        });
+        if (response.ok) {
+            return { valid: true, message: 'API key is valid!' };
+        }
+        const error = await response.json();
+        return { valid: false, message: error.error?.message || 'Invalid API key' };
+    }
+
+    async _validateGLM(apiKey) {
+        const response = await fetch(this.providers.glm.endpoint, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                model: 'glm-3-turbo',
+                messages: [{ role: 'user', content: 'Hi' }],
+                max_tokens: 10
+            })
+        });
         if (response.ok) {
             return { valid: true, message: 'API key is valid!' };
         }

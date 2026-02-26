@@ -1,0 +1,167 @@
+[   35780ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://icons.plot.dev/brand/openrouter.svg:0
+[   35793ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:5173/app.html:0
+[  222973ms] [WARNING] Sentry Event (Placeholder): {message: Uncaught TypeError: Cannot read properties of null (reading 'querySelector'), source: http://localhost:5173/src/js/components/SceneControlPanel.js, lineno: 263, colno: 39, error: TypeError: Cannot read properties of null (reading 'querySelector')
+    at HTMLDivElement.<anonymou…} @ http://localhost:5173/app.html:72
+[  222987ms] TypeError: Cannot read properties of null (reading 'querySelector')
+    at HTMLDivElement.<anonymous> (http://localhost:5173/src/js/components/SceneControlPanel.js:263:39)
+[  259172ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[  317165ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://icons.plot.dev/brand/openrouter.svg:0
+[  317183ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:5173/app.html:0
+[  341952ms] [WARNING] Sentry Event (Placeholder): {message: Uncaught TypeError: Cannot read properties of null (reading 'querySelector'), source: http://localhost:5173/src/js/components/SceneControlPanel.js, lineno: 263, colno: 39, error: TypeError: Cannot read properties of null (reading 'querySelector')
+    at HTMLDivElement.<anonymou…} @ http://localhost:5173/app.html:72
+[  341955ms] TypeError: Cannot read properties of null (reading 'querySelector')
+    at HTMLDivElement.<anonymous> (http://localhost:5173/src/js/components/SceneControlPanel.js:263:39)
+    at eval (eval at evaluate (:301:30), <anonymous>:6:20)
+    at UtilityScript.evaluate (<anonymous>:303:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+[  365243ms] [WARNING] Sentry Event (Placeholder): {message: Uncaught TypeError: Cannot read properties of null (reading 'querySelector'), source: http://localhost:5173/src/js/components/SceneControlPanel.js, lineno: 263, colno: 39, error: TypeError: Cannot read properties of null (reading 'querySelector')
+    at HTMLDivElement.<anonymou…} @ http://localhost:5173/app.html:72
+[  365248ms] TypeError: Cannot read properties of null (reading 'querySelector')
+    at HTMLDivElement.<anonymous> (http://localhost:5173/src/js/components/SceneControlPanel.js:263:39)
+    at eval (eval at evaluate (:301:30), <anonymous>:5:15)
+    at UtilityScript.evaluate (<anonymous>:303:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+[  373574ms] [WARNING] Sentry Event (Placeholder): {message: Uncaught TypeError: Cannot read properties of null (reading 'querySelector'), source: http://localhost:5173/src/js/components/SceneControlPanel.js, lineno: 263, colno: 39, error: TypeError: Cannot read properties of null (reading 'querySelector')
+    at HTMLDivElement.<anonymou…} @ http://localhost:5173/app.html:72
+[  373576ms] TypeError: Cannot read properties of null (reading 'querySelector')
+    at HTMLDivElement.<anonymous> (http://localhost:5173/src/js/components/SceneControlPanel.js:263:39)
+    at eval (eval at evaluate (:301:30), <anonymous>:5:18)
+    at UtilityScript.evaluate (<anonymous>:303:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+[ 1183405ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 1189377ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 1226043ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 1236057ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://icons.plot.dev/brand/openrouter.svg:0
+[ 1236091ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:5173/app.html:0
+[ 1289828ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 1333978ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://icons.plot.dev/brand/openrouter.svg:0
+[ 1334299ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:5173/app.html:0
+[ 1380235ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 1382378ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 1430373ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://icons.plot.dev/brand/openrouter.svg:0
+[ 1430694ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:5173/app.html:0
+[ 1471549ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 1473886ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 1498861ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://icons.plot.dev/brand/openrouter.svg:0
+[ 1499006ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:5173/app.html:0
+[ 1874392ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 1878406ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 1900969ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://icons.plot.dev/brand/openrouter.svg:0
+[ 1901005ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:5173/app.html:0
+[ 1902556ms] [WARNING] Sentry Event (Placeholder): {message: Uncaught TypeError: this.getTierLabelForControl is not a function, source: http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772141486688, lineno: 138, colno: 142, error: TypeError: this.getTierLabelForControl is not a function
+    at http://localhost:5173/src/js/compon…} @ http://localhost:5173/app.html:72
+[ 1902574ms] TypeError: this.getTierLabelForControl is not a function
+    at http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772141486688:138:142
+    at Array.forEach (<anonymous>)
+    at http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772141486688:132:29
+    at Array.forEach (<anonymous>)
+    at SceneControlPanel.render (http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772141486688:113:28)
+    at SceneControlPanel.setTier (http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772141486688:43:14)
+    at HTMLDivElement.<anonymous> (http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772141486688:210:22)
+    at eval (eval at evaluate (:301:30), <anonymous>:3:20)
+    at UtilityScript.evaluate (<anonymous>:303:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+[ 1902565ms] [WARNING] Sentry Event (Placeholder): {message: Uncaught TypeError: Cannot read properties of null (reading 'querySelector'), source: http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772141486688, lineno: 253, colno: 39, error: TypeError: Cannot read properties of null (reading 'querySelector')
+    at HTMLDivElement.<anonymou…} @ http://localhost:5173/app.html:72
+[ 1902575ms] TypeError: Cannot read properties of null (reading 'querySelector')
+    at HTMLDivElement.<anonymous> (http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772141486688:253:39)
+    at eval (eval at evaluate (:301:30), <anonymous>:3:20)
+    at UtilityScript.evaluate (<anonymous>:303:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+[ 1928141ms] [WARNING] Sentry Event (Placeholder): {message: Uncaught TypeError: this.getTierLabelForControl is not a function, source: http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772141486688, lineno: 138, colno: 142, error: TypeError: this.getTierLabelForControl is not a function
+    at http://localhost:5173/src/js/compon…} @ http://localhost:5173/app.html:72
+[ 1928142ms] TypeError: this.getTierLabelForControl is not a function
+    at http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772141486688:138:142
+    at Array.forEach (<anonymous>)
+    at http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772141486688:132:29
+    at Array.forEach (<anonymous>)
+    at SceneControlPanel.render (http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772141486688:113:28)
+    at SceneControlPanel.setTier (http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772141486688:43:14)
+    at HTMLDivElement.<anonymous> (http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772141486688:210:22)
+    at eval (eval at evaluate (:301:30), <anonymous>:3:36)
+    at NodeList.forEach (<anonymous>)
+    at eval (eval at evaluate (:301:30), <anonymous>:2:73)
+[ 1928142ms] [WARNING] Sentry Event (Placeholder): {message: Uncaught TypeError: Cannot read properties of null (reading 'querySelector'), source: http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772141486688, lineno: 253, colno: 39, error: TypeError: Cannot read properties of null (reading 'querySelector')
+    at HTMLDivElement.<anonymou…} @ http://localhost:5173/app.html:72
+[ 1928145ms] TypeError: Cannot read properties of null (reading 'querySelector')
+    at HTMLDivElement.<anonymous> (http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772141486688:253:39)
+    at eval (eval at evaluate (:301:30), <anonymous>:3:36)
+    at NodeList.forEach (<anonymous>)
+    at eval (eval at evaluate (:301:30), <anonymous>:2:73)
+    at UtilityScript.evaluate (<anonymous>:303:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+[ 2005809ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 2012216ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 2029881ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://icons.plot.dev/brand/openrouter.svg:0
+[ 2029916ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:5173/app.html:0
+[ 2145738ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 2188775ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://icons.plot.dev/brand/openrouter.svg:0
+[ 2188900ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:5173/app.html:0
+[ 2354050ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 2418209ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 2426766ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://icons.plot.dev/brand/openrouter.svg:0
+[ 2426798ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:5173/app.html:0
+[ 2606905ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 2630673ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://icons.plot.dev/brand/openrouter.svg:0
+[ 2630831ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:5173/app.html:0
+[ 2743830ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 2782257ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://icons.plot.dev/brand/openrouter.svg:0
+[ 2782279ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:5173/app.html:0
+[ 2932903ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 2970802ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://icons.plot.dev/brand/openrouter.svg:0
+[ 2970917ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:5173/app.html:0
+[ 3023570ms] [WARNING] Sentry Event (Placeholder): {message: Uncaught TypeError: Cannot read properties of null (reading 'querySelector'), source: http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772142224350, lineno: 264, colno: 39, error: TypeError: Cannot read properties of null (reading 'querySelector')
+    at HTMLDivElement.<anonymou…} @ http://localhost:5173/app.html:72
+[ 3023661ms] TypeError: Cannot read properties of null (reading 'querySelector')
+    at HTMLDivElement.<anonymous> (http://localhost:5173/src/js/components/SceneControlPanel.js?t=1772142224350:264:39)
+[ 3110461ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 3157255ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://icons.plot.dev/brand/openrouter.svg:0
+[ 3157325ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:5173/app.html:0
+[ 3221062ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476
+[ 3241678ms] [ERROR] Failed to load resource: net::ERR_NAME_NOT_RESOLVED @ https://icons.plot.dev/brand/openrouter.svg:0
+[ 3241701ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ http://localhost:5173/app.html:0
+[ 3287930ms] [ERROR] Failed to restore work: ReferenceError: showToast is not defined
+    at restoreWork (http://localhost:5173/src/js/app.js:1474:17)
+    at HTMLDocument.<anonymous> (http://localhost:5173/src/js/app.js:1495:5) @ http://localhost:5173/src/js/app.js:1476

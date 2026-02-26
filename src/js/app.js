@@ -10,6 +10,7 @@ import { GlobalParamsService } from './globalParamsService.js';
 
 import { TemplateService } from './services/templateService.js';
 import { TemplateUI } from './templateUI.js';
+import './components/SceneControlPanel.js';
 
 
 // Global access for services needed in callbacks
@@ -1282,7 +1283,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Comprehensive selector to find the Negative Prompt group
         // We look for both the input class and a potential container class for robustness
-        document.querySelectorAll('.scene-negative-prompt').forEach(el => {
+        document.querySelectorAll('.scene-input[data-id="negative_prompt"]').forEach(el => {
             const container = el.closest('.form-group');
             if (container) {
                 const prevSibling = container.previousElementSibling;
@@ -1298,9 +1299,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
-        // 2. Camera Controls
         const supportsCam = service.supports(modelId, 'supportsCameraControls');
-        document.querySelectorAll('.scene-camera-input').forEach(el => {
+        document.querySelectorAll('.scene-input[data-id="camera"]').forEach(el => {
             const container = el.closest('.form-group');
             if (container) {
                 if (supportsCam) {
@@ -1355,370 +1355,23 @@ document.addEventListener('DOMContentLoaded', async () => {
             scene_id: sceneId
         });
 
-        const sceneHtml = `
-            <div class="scene-item" data-scene-id="${sceneId}">
-                <div class="scene-header">
-                    <h4 class="scene-title" style="margin: 0; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Scene ${sceneId}</h4>
-                    <div class="scene-actions">
-                        <button class="scene-undo-btn hidden" title="Undo AI Enhancement">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h10a5 5 0 0 1 5 5v2"/><path d="m3 10 6 6"/><path d="m3 10 6-6"/></svg>
-                        </button>
-                        <button class="scene-redo-btn hidden" title="Redo AI Enhancement">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10H11a5 5 0 0 0-5 5v2"/><path d="m21 10-6 6"/><path d="m21 10-6-6"/></svg>
-                        </button>
-                        <button class="scene-enhance-btn" title="Enhance with AI">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" class="enhance-stars-icon">
-                                <path d="M15.5 5.5 L16.8 10.2 L21.5 11.5 L16.8 12.8 L15.5 17.5 L14.2 12.8 L9.5 11.5 L14.2 10.2 Z" />
-                                <path d="M5.5 2.5 L6.2 4.8 L8.5 5.5 L6.2 6.2 L5.5 8.5 L4.8 6.2 L2.5 5.5 L4.8 4.8 Z" />
-                                <path d="M6.5 15.5 L7.2 17.8 L9.5 18.5 L7.2 19.2 L6.5 21.5 L5.8 19.2 L3.5 18.5 L5.8 17.8 Z" />
-                            </svg>
-                        </button>
-                        <button class="remove-scene-btn" onclick="removeScene(this)" title="Remove Scene">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="section-label">Scene Description</label>
-                    <textarea class="scene-description" placeholder="Describe your scene in detail..." style="min-height: 100px;"></textarea>
-                </div>
-                <div class="scene-params-grid">
-                <div class="form-group">
-                    <label class="section-label">Camera Angle</label>
-                    <div class="input-with-dropdown">
-                        <input type="text" class="scene-camera-input" 
-                            placeholder="Select angle or type custom..."
-                            aria-label="Camera Angle">
-                        <div class="input-dropdown-wrapper">
-                            <button type="button" class="input-dropdown-trigger" aria-label="Open camera presets">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </button>
-                            <div class="input-dropdown-menu">
-                                <div class="dropdown-item" data-value="pan_left">Pan Left</div>
-                                <div class="dropdown-item" data-value="pan_right">Pan Right</div>
-                                <div class="dropdown-item" data-value="zoom_in">Zoom In</div>
-                                <div class="dropdown-item" data-value="zoom_out">Zoom Out</div>
-                                <div class="dropdown-item" data-value="dolly_zoom">Dolly Zoom</div>
-                                <div class="dropdown-item" data-value="tracking_shot">Track</div>
-                                <div class="dropdown-item" data-value="eye_level">Eye Level</div>
-                                <div class="dropdown-item" data-value="low_angle">Low Angle</div>
-                                <div class="dropdown-item" data-value="high_angle">High Angle</div>
-                                <div class="dropdown-item" data-value="aerial_view">Aerial View</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="section-label">Lighting Style</label>
-                    <div class="input-with-dropdown">
-                        <input type="text" class="scene-lighting-input" 
-                            placeholder="Select lighting or type custom..."
-                            aria-label="Lighting Style">
-                        <div class="input-dropdown-wrapper">
-                            <button type="button" class="input-dropdown-trigger" aria-label="Open lighting presets">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </button>
-                            <div class="input-dropdown-menu">
-                                <div class="dropdown-item" data-value="natural">Natural</div>
-                                <div class="dropdown-item" data-value="golden_hour">Golden Hour</div>
-                                <div class="dropdown-item" data-value="blue_hour">Blue Hour</div>
-                                <div class="dropdown-item" data-value="neon">Neon Cyberpunk</div>
-                                <div class="dropdown-item" data-value="studio">Studio</div>
-                                <div class="dropdown-item" data-value="dramatic">Dramatic</div>
-                                <div class="dropdown-item" data-value="cinematic">Cinematic</div>
-                                <div class="dropdown-item" data-value="softbox">Softbox</div>
-                                <div class="dropdown-item" data-value="backlit">Backlit</div>
-                                <div class="dropdown-item" data-value="rim_light">Rim Light</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="section-label">Color Palettes</label>
-                    <div class="input-with-dropdown">
-                        <input type="text" class="scene-color-input" placeholder="Select palette or type custom..." aria-label="Color Palette">
-                        <div class="input-dropdown-wrapper">
-                            <button type="button" class="input-dropdown-trigger" aria-label="Open color presets">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </button>
-                            <div class="input-dropdown-menu">
-                                <div class="dropdown-item" data-value="monochromatic">Monochromatic</div>
-                                <div class="dropdown-item" data-value="complementary">Complementary</div>
-                                <div class="dropdown-item" data-value="analogous">Analogous</div>
-                                <div class="dropdown-item" data-value="teal_orange">Cinematic Teal & Orange</div>
-                                <div class="dropdown-item" data-value="cyberpunk">Cyberpunk Glow</div>
-                                <div class="dropdown-item" data-value="sepia">Sepia Tone</div>
-                                <div class="dropdown-item" data-value="vibrant">High Saturation</div>
-                                <div class="dropdown-item" data-value="desaturated">Moody Desaturated</div>
-                                <div class="dropdown-item" data-value="pastel">Pastel Tones</div>
-                                <div class="dropdown-item" data-value="bw">Classic B&W</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="section-label">Mood Descriptors</label>
-                    <div class="input-with-dropdown">
-                        <input type="text" class="scene-mood-input" placeholder="Select mood or type custom..." aria-label="Mood Descriptors">
-                        <div class="input-dropdown-wrapper">
-                            <button type="button" class="input-dropdown-trigger" aria-label="Open mood presets">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </button>
-                            <div class="input-dropdown-menu">
-                                <div class="dropdown-item" data-value="ethereal">Ethereal/Dreamy</div>
-                                <div class="dropdown-item" data-value="ominous">Dark/Ominous</div>
-                                <div class="dropdown-item" data-value="energetic">High Energy</div>
-                                <div class="dropdown-item" data-value="calm">Calm/Peaceful</div>
-                                <div class="dropdown-item" data-value="nostalgic">Nostalgic</div>
-                                <div class="dropdown-item" data-value="cyberpunk">Cyberpunk/Neon</div>
-                                <div class="dropdown-item" data-value="epic">Epic/Cinematic</div>
-                                <div class="dropdown-item" data-value="suspenseful">Suspenseful</div>
-                                <div class="dropdown-item" data-value="melancholic">Melancholic</div>
-                                <div class="dropdown-item" data-value="whimsical">Whimsical</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="section-label">Sound Design</label>
-                    <div class="input-with-dropdown">
-                        <input type="text" class="scene-sound-input" placeholder="Describe sound or select presets..." aria-label="Sound Design">
-                        <div class="input-dropdown-wrapper">
-                            <button type="button" class="input-dropdown-trigger" aria-label="Open sound presets">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                            </button>
-                            <div class="input-dropdown-menu">
-                                <div class="dropdown-item" data-value="ambient_wind">Ambient Wind</div>
-                                <div class="dropdown-item" data-value="orchestral">Cinematic Orchestral</div>
-                                <div class="dropdown-item" data-value="low_hum">Low Hum</div>
-                                <div class="dropdown-item" data-value="nature">Nature Sounds</div>
-                                <div class="dropdown-item" data-value="urban_traffic">Urban Traffic</div>
-                                <div class="dropdown-item" data-value="synthwave">80s Synth</div>
-                                <div class="dropdown-item" data-value="industrial">Heavy Industrial</div>
-                                <div class="dropdown-item" data-value="silence">Deep Silence</div>
-                                <div class="dropdown-item" data-value="asmr">ASMR Rustle</div>
-                                <div class="dropdown-item" data-value="glitch">Glitchy Beats</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="section-label">Negative Prompts</label>
-                    <div class="input-with-dropdown">
-                        <input type="text" class="scene-negative-prompt" 
-                            placeholder="Type elements to exclude or select from presets..."
-                            aria-label="Custom negative prompts">
-                        <div class="input-dropdown-wrapper">
-                            <button type="button" class="input-dropdown-trigger" aria-label="Open presets">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </button>
-                            <div class="input-dropdown-menu">
-                                <div class="dropdown-item" data-value="blurry">Blurry</div>
-                                <div class="dropdown-item" data-value="low_res">Low Res</div>
-                                <div class="dropdown-item" data-value="deformed">Deformed</div>
-                                <div class="dropdown-item" data-value="watermark">Watermark</div>
-                                <div class="dropdown-item" data-value="flicker">Flicker</div>
-                                <div class="dropdown-item" data-value="grainy">Grainy</div>
-                                <div class="dropdown-item" data-value="overexposed">Overexposed</div>
-                                <div class="dropdown-item" data-value="extra_limbs">Extra Limbs</div>
-                                <div class="dropdown-item" data-value="distorted">Distorted</div>
-                                <div class="dropdown-item" data-value="unrealistic">Unrealistic</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="section-label">Composition Principles</label>
-                    <div class="input-with-dropdown">
-                        <input type="text" class="scene-composition-input"
-                            placeholder="Select composition or type custom..."
-                            aria-label="Composition Principles">
-                        <div class="input-dropdown-wrapper">
-                            <button type="button" class="input-dropdown-trigger"
-                                aria-label="Open composition presets">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </button>
-                            <div class="input-dropdown-menu">
-                                <div class="dropdown-item" data-value="rule_of_thirds">Rule of Thirds</div>
-                                <div class="dropdown-item" data-value="center_framed">Center Framed</div>
-                                <div class="dropdown-item" data-value="leading_lines">Leading Lines</div>
-                                <div class="dropdown-item" data-value="golden_ratio">Golden Ratio</div>
-                                <div class="dropdown-item" data-value="negative_space">Negative Space</div>
-                                <div class="dropdown-item" data-value="symmetrical">Symmetrical</div>
-                                <div class="dropdown-item" data-value="asymmetrical">Asymmetrical</div>
-                                <div class="dropdown-item" data-value="depth_of_field">Depth of Field</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="section-label">Lens Techniques</label>
-                    <div class="input-with-dropdown">
-                        <input type="text" class="scene-lens-input"
-                            placeholder="Select lens or type custom..." aria-label="Lens Techniques">
-                        <div class="input-dropdown-wrapper">
-                            <button type="button" class="input-dropdown-trigger"
-                                aria-label="Open lens presets">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </button>
-                            <div class="input-dropdown-menu">
-                                <div class="dropdown-item" data-value="macro">Macro</div>
-                                <div class="dropdown-item" data-value="wide_angle">Wide Angle</div>
-                                <div class="dropdown-item" data-value="telephoto">Telephoto</div>
-                                <div class="dropdown-item" data-value="fisheye">Fisheye</div>
-                                <div class="dropdown-item" data-value="bokeh">Bokeh</div>
-                                <div class="dropdown-item" data-value="tilt_shift">Tilt Shift</div>
-                                <div class="dropdown-item" data-value="anamorphic">Anamorphic</div>
-                                <div class="dropdown-item" data-value="prime_lens">Prime Lens</div>
-                                <div class="dropdown-item" data-value="zoom_lens">Zoom Lens</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="section-label">Production Design</label>
-                    <div class="input-with-dropdown">
-                        <input type="text" class="scene-production-input"
-                            placeholder="Select style or type custom..." aria-label="Production Design">
-                        <div class="input-dropdown-wrapper">
-                            <button type="button" class="input-dropdown-trigger"
-                                aria-label="Open production presets">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </button>
-                            <div class="input-dropdown-menu">
-                                <div class="dropdown-item" data-value="minimalist">Minimalist</div>
-                                <div class="dropdown-item" data-value="brutalist">Brutalist</div>
-                                <div class="dropdown-item" data-value="futuristic">Futuristic</div>
-                                <div class="dropdown-item" data-value="retro_vintage">Retro/Vintage</div>
-                                <div class="dropdown-item" data-value="industrial">Industrial</div>
-                                <div class="dropdown-item" data-value="gothic">Gothic</div>
-                                <div class="dropdown-item" data-value="art_deco">Art Deco</div>
-                                <div class="dropdown-item" data-value="cyberpunk">Cyberpunk</div>
-                                <div class="dropdown-item" data-value="steampunk">Steampunk</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="section-label">Editing Techniques</label>
-                    <div class="input-with-dropdown">
-                        <input type="text" class="scene-editing-input"
-                            placeholder="Select technique or type custom..."
-                            aria-label="Editing Techniques">
-                        <div class="input-dropdown-wrapper">
-                            <button type="button" class="input-dropdown-trigger"
-                                aria-label="Open editing presets">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </button>
-                            <div class="input-dropdown-menu">
-                                <div class="dropdown-item" data-value="fast_cut">Fast Cut</div>
-                                <div class="dropdown-item" data-value="slow_motion">Slow Motion</div>
-                                <div class="dropdown-item" data-value="jump_cut">Jump Cut</div>
-                                <div class="dropdown-item" data-value="cross_dissolve">Cross Dissolve</div>
-                                <div class="dropdown-item" data-value="match_cut">Match Cut</div>
-                                <div class="dropdown-item" data-value="fade_to_black">Fade to Black</div>
-                                <div class="dropdown-item" data-value="long_take">Long Take</div>
-                                <div class="dropdown-item" data-value="montage">Montage</div>
-                                <div class="dropdown-item" data-value="time_lapse">Time Lapse</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div> <!-- End scene-params-grid -->
-            </div>
-        `;
-
-        scenesContainer.insertAdjacentHTML('beforeend', sceneHtml);
+        const scenePanel = document.createElement('scene-control-panel');
+        scenePanel.setAttribute('scene-id', sceneId);
+        scenesContainer.appendChild(scenePanel);
 
         // Ensure the new scene respects model capabilities
         updateModelUI();
     });
 
-    // Event Delegation for Pills & Dropdowns
-    scenesContainer.addEventListener('click', (e) => {
-        // --- Dropdown Toggle --- //
-        const dropdownTrigger = e.target.closest('.input-dropdown-trigger');
-        if (dropdownTrigger) {
-            e.stopPropagation();
-            const wrapper = dropdownTrigger.closest('.input-dropdown-wrapper');
-
-            // Close all other dropdowns first
-            document.querySelectorAll('.input-dropdown-wrapper.open').forEach(openWrapper => {
-                if (openWrapper !== wrapper) openWrapper.classList.remove('open');
-            });
-
-            wrapper.classList.toggle('open');
-        }
-
-        // --- Negative Prompt Dropdown Item Selection ---
-        const dropdownItem = e.target.closest('.input-dropdown-menu .dropdown-item');
-        if (dropdownItem) {
-            e.stopPropagation();
-            const wrapper = dropdownItem.closest('.input-dropdown-wrapper');
-            const input = wrapper.closest('.input-with-dropdown').querySelector('input');
-            const value = dropdownItem.textContent.trim();
-
-            let currentVal = input.value.trim();
-            if (currentVal) {
-                // Check if already contains the value
-                const items = currentVal.split(',').map(i => i.trim().toLowerCase());
-                if (!items.includes(value.toLowerCase())) {
-                    input.value = `${currentVal}, ${value}`;
-                }
-            } else {
-                input.value = value;
-            }
-
-            wrapper.classList.remove('open');
-            input.focus();
-
-            // Trigger auto-save by dispatching input event
-            input.dispatchEvent(new Event('input', { bubbles: true }));
-        }
+    document.addEventListener('sceneRemoved', (e) => {
+        updateSceneNumbers();
+        saveWork(); // Auto-save on removal
     });
-
-    // Close all input dropdowns when clicking outside
-    document.addEventListener('click', () => {
-        document.querySelectorAll('.input-dropdown-wrapper.open').forEach(wrapper => {
-            wrapper.classList.remove('open');
-        });
-    });
-
-    // Remove Scene Function (Global wrapper)
-    window.removeScene = function (btn) {
-        const sceneItem = btn.closest('.scene-item');
-        if (sceneItem) {
-            sceneItem.remove();
-            updateSceneNumbers();
-        }
-    };
 
     function updateSceneNumbers() {
-        const scenes = scenesContainer.querySelectorAll('.scene-item');
+        const scenes = scenesContainer.querySelectorAll('scene-control-panel');
         scenes.forEach((scene, index) => {
-            const title = scene.querySelector('h4');
+            const title = scene.querySelector('.scene-title');
             if (title) {
                 title.textContent = `Scene ${index + 1}`;
             }
@@ -1733,26 +1386,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (confirm('Are you sure you want to reset the generator? All current work will be lost.')) {
                 gaTracker.trackEvent('reset_generator');
                 // 1. Clear first scene
-                const firstScene = scenesContainer.querySelector('.scene-item[data-scene-id="1"]');
+                const firstScene = scenesContainer.querySelector('scene-control-panel[scene-id="1"]');
                 if (firstScene) {
-                    firstScene.querySelector('.scene-description').value = '';
-                    firstScene.querySelector('.scene-negative-prompt').value = '';
-                    firstScene.querySelector('.scene-camera-input').value = '';
-                    firstScene.querySelector('.scene-lighting-input').value = '';
-                    firstScene.querySelector('.scene-color-input').value = '';
-                    firstScene.querySelector('.scene-mood-input').value = '';
-                    firstScene.querySelector('.scene-sound-input').value = '';
-                    firstScene.querySelector('.scene-composition-input').value = '';
-                    firstScene.querySelector('.scene-lens-input').value = '';
-                    firstScene.querySelector('.scene-production-input').value = '';
-                    firstScene.querySelector('.scene-editing-input').value = '';
-                    // Hide undo/redo if they were visible
-                    firstScene.querySelector('.scene-undo-btn')?.classList.add('hidden');
-                    firstScene.querySelector('.scene-redo-btn')?.classList.add('hidden');
+                    const emptyValues = {};
+                    Object.keys(firstScene.values).forEach(k => emptyValues[k] = '');
+                    firstScene.setValues(emptyValues);
                 }
 
                 // 2. Remove all other scenes
-                const otherScenes = scenesContainer.querySelectorAll('.scene-item:not([data-scene-id="1"])');
+                const otherScenes = scenesContainer.querySelectorAll('scene-control-panel:not([scene-id="1"])');
                 otherScenes.forEach(s => s.remove());
 
                 // 3. Reset count
@@ -1779,22 +1421,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function saveWork() {
         const scenes = [];
-        const sceneElements = scenesContainer.querySelectorAll('.scene-item');
+        const scenePanels = scenesContainer.querySelectorAll('scene-control-panel');
 
-        sceneElements.forEach(sceneEl => {
-            scenes.push({
-                description: sceneEl.querySelector('.scene-description').value,
-                camera: sceneEl.querySelector('.scene-camera-input')?.value || '',
-                lighting: sceneEl.querySelector('.scene-lighting-input')?.value || '',
-                color: sceneEl.querySelector('.scene-color-input')?.value || '',
-                mood: sceneEl.querySelector('.scene-mood-input')?.value || '',
-                sound: sceneEl.querySelector('.scene-sound-input')?.value || '',
-                negative: sceneEl.querySelector('.scene-negative-prompt')?.value || '',
-                composition: sceneEl.querySelector('.scene-composition-input')?.value || '',
-                lens: sceneEl.querySelector('.scene-lens-input')?.value || '',
-                production: sceneEl.querySelector('.scene-production-input')?.value || '',
-                editing: sceneEl.querySelector('.scene-editing-input')?.value || ''
-            });
+        scenePanels.forEach(panel => {
+            scenes.push(panel.getValues());
         });
 
         const data = {
@@ -1835,17 +1465,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                     addSceneBtn.click();
                     const newScene = scenesContainer.lastElementChild;
 
-                    newScene.querySelector('.scene-description').value = sceneData.description || '';
-                    if (sceneData.camera) newScene.querySelector('.scene-camera-input').value = sceneData.camera;
-                    if (sceneData.lighting) newScene.querySelector('.scene-lighting-input').value = sceneData.lighting;
-                    if (sceneData.color) newScene.querySelector('.scene-color-input').value = sceneData.color;
-                    if (sceneData.mood) newScene.querySelector('.scene-mood-input').value = sceneData.mood;
-                    if (sceneData.sound) newScene.querySelector('.scene-sound-input').value = sceneData.sound;
-                    if (sceneData.negative) newScene.querySelector('.scene-negative-prompt').value = sceneData.negative;
-                    if (sceneData.composition) newScene.querySelector('.scene-composition-input').value = sceneData.composition;
-                    if (sceneData.lens) newScene.querySelector('.scene-lens-input').value = sceneData.lens;
-                    if (sceneData.production) newScene.querySelector('.scene-production-input').value = sceneData.production;
-                    if (sceneData.editing) newScene.querySelector('.scene-editing-input').value = sceneData.editing;
+                    if (newScene && typeof newScene.setValues === 'function') {
+                        // Use the web component's native restore method directly
+                        newScene.setValues(sceneData);
+                    }
                 });
 
                 showToast('Work Restored', 'Your previous session has been restored.', 'success');
@@ -1881,40 +1504,26 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         try {
             const scenes = [];
-            const sceneElements = scenesContainer.querySelectorAll('.scene-item');
+            const sceneElements = scenesContainer.querySelectorAll('scene-control-panel');
 
             sceneElements.forEach(sceneEl => {
-                const description = sceneEl.querySelector('.scene-description').value;
-                // Get values from new input fields
-                const camera = sceneEl.querySelector('.scene-camera-input').value.trim();
-                const lighting = sceneEl.querySelector('.scene-lighting-input').value.trim();
-                const color = sceneEl.querySelector('.scene-color-input').value.trim();
-                const mood = sceneEl.querySelector('.scene-mood-input').value.trim();
-                const sound = sceneEl.querySelector('.scene-sound-input').value.trim();
-                const composition = sceneEl.querySelector('.scene-composition-input')?.value.trim() || '';
-                const lens = sceneEl.querySelector('.scene-lens-input')?.value.trim() || '';
-                const production = sceneEl.querySelector('.scene-production-input')?.value.trim() || '';
-                const editing = sceneEl.querySelector('.scene-editing-input')?.value.trim() || '';
-
-                // Get negative prompt from the input field (which handles both manual and presets)
-                const finalNegative = sceneEl.querySelector('.scene-negative-prompt').value.trim();
+                const values = sceneEl.getValues();
+                const description = values.description || '';
 
                 // Only add if description exists
                 if (description.trim()) {
+                    const params = {};
+                    // Dynamically map all available schema parameters
+                    Object.keys(values).forEach(k => {
+                        if (k !== 'description' && k !== 'negative' && values[k]) {
+                            params[k] = values[k];
+                        }
+                    });
+
                     scenes.push({
                         description: description.trim(),
-                        negative_prompt: finalNegative || null,
-                        parameters: {
-                            camera: camera || null,
-                            lighting: lighting || null,
-                            color_palette: color || null,
-                            mood: mood || null,
-                            sound_design: sound || null,
-                            composition: composition || null,
-                            lens_technique: lens || null,
-                            production_design: production || null,
-                            editing_technique: editing || null
-                        }
+                        negative_prompt: values.negative || null,
+                        parameters: Object.keys(params).length > 0 ? params : undefined
                     });
                 }
             });
@@ -3513,14 +3122,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 addSceneBtn.click();
 
                 const newScene = scenesContainer.lastElementChild;
-                if (newScene) {
-                    newScene.querySelector('.scene-description').value = sceneData.description || '';
-                    newScene.querySelector('.scene-camera-input').value = sceneData.camera || '';
-                    newScene.querySelector('.scene-lighting-input').value = sceneData.lighting || '';
-                    newScene.querySelector('.scene-color-input').value = sceneData.color || '';
-                    newScene.querySelector('.scene-mood-input').value = sceneData.mood || '';
-                    newScene.querySelector('.scene-sound-input').value = sceneData.sound || '';
-                    newScene.querySelector('.scene-negative-prompt').value = sceneData.customNegative || '';
+                if (newScene && typeof newScene.setValues === 'function') {
+                    newScene.setValues(sceneData);
                 }
             });
 
