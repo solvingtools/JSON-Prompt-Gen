@@ -55,7 +55,9 @@
     margin-bottom: 20px;
 }
 
-.provider-badge img {
+.provider-badge img,
+.provider-icon {
+    border-radius: 8px;
     transition: transform 0.3s ease;
 }
 

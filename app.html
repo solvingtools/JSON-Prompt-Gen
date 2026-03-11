@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -63,6 +63,7 @@
     <link rel="icon" type="image/png" sizes="192x192" href="src/assets/icon-192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="src/assets/apple-touch-icon.png">
     <meta name="theme-color" content="#0F0A1F">
+    <meta name="msapplication-TileColor" content="#0F0A1F">
 
 
     <!-- Error Tracking (Sentry Placeholder) -->
@@ -270,12 +271,78 @@
         <main>
             <!-- Hero Section -->
             <section class="hero-section text-center">
-                <h2 class="gradient-text">
-                    Professional JSON Prompt Generator</h2>
-                <div class="section-underline"></div>
-                <p>
-                    Create cinematic AI video prompts for platforms like VEO with precision and ease
-                </p>
+                
+                <!-- Horizontal Announcement Banner -->
+                <div class="hero-announcement-banner card glass-panel fade-in" id="announcement-banner">
+                    <div class="banner-content-wrapper">
+                        <!-- Left Side: Announcement Text -->
+                        <div class="banner-text-section">
+                            <div class="announcement-header">
+                                <span class="status-dot green"></span>
+                                <h4 class="gradient-text">Exciting Updates!</h4>
+                            </div>
+                            <div class="announcement-body">
+                                <p><strong>1. Official Launch:</strong> The free beta period will end soon, but a generous free tier with some limitations will remain available.</p>
+                                <p><strong>2. Infrastructure Upgrade:</strong> Due to rapid growth, we're migrating to premium hosting and will introduce a tier system to cover costs and serve you better.</p>
+                            </div>
+                        </div>
+
+                        <!-- Right Side: Feedback Form -->
+                        <div class="banner-feedback-section">
+                            <h4 class="gradient-text">Quick Feedback</h4>
+                            <form id="announcement-feedback-form" action="https://docs.google.com/forms/d/e/1FAIpQLSebdEM_989ZTyXWrMva-X8O7l_BQgzcKEvuFUhQCCoPWLaALA/formResponse" method="POST" target="hidden_iframe">
+                                <!-- Hidden specific fields for Google Forms integration could go here -->
+                                <div class="feedback-row">
+                                    <!-- Q1: Rating & Review -->
+                                    <div class="poll-question flex-1">
+                                        <label>How helpful is this tool for your workflow?</label>
+                                        <div class="star-rating" id="feedback-star-rating">
+                                            <span class="star" data-val="1">&#9733;</span>
+                                            <span class="star" data-val="2">&#9733;</span>
+                                            <span class="star" data-val="3">&#9733;</span>
+                                            <span class="star" data-val="4">&#9733;</span>
+                                            <span class="star" data-val="5">&#9733;</span>
+                                            <input type="hidden" name="entry.612544380" id="feedback-rating-val" value="0" required>
+                                        </div>
+                                        <textarea name="entry.1633959711" class="code-input custom-review-input mt-8" placeholder="Optional custom review..." rows="1"></textarea>
+                                    </div>
+
+                                    <!-- Q2: Pricing Slider -->
+                                    <div class="poll-question flex-1">
+                                        <div class="slider-header-flex">
+                                            <label>How much would you prefer to pay monthly?</label>
+                                            <div class="slider-value" id="slider-value-box"><span class="gradient-text">$<span id="slider-val-display">5</span>/mo</span></div>
+                                        </div>
+                                        <div class="slider-container-discrete mt-8">
+                                            <input type="range" id="pricing-slider" class="custom-slider-discrete" min="0" max="5" step="1" value="1" title="Monthly price preference" aria-label="Monthly price preference slider">
+                                            <input type="hidden" name="entry.819638022" id="pricing-real-val" value="5">
+                                            <div class="slider-marks">
+                                                <span>$0</span>
+                                                <span>$5</span>
+                                                <span>$9</span>
+                                                <span>$15</span>
+                                                <span>$19</span>
+                                                <span>$25</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="feedback-submit-row">
+                                    <button type="submit" class="btn btn-primary btn-sm rounded-btn">Submit Feedback</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-titles">
+                    <h2 class="gradient-text">
+                        Professional JSON Prompt Generator</h2>
+                    <div class="section-underline"></div>
+                    <p>
+                        Create cinematic AI video prompts for platforms like VEO with precision and ease
+                    </p>
+                </div>
             </section>
 
 
@@ -456,8 +523,7 @@
                     <!-- Grok -->
                     <div class="card provider-card" data-provider="grok">
                         <div class="provider-badge">
-                            <img src="https://grok.com/favicon.ico" alt="Grok"
-                                width="40">
+                            <img src="https://www.google.com/s2/favicons?domain=grok.com&sz=128" alt="Grok" class="provider-icon" width="40">
                         </div>
                         <div class="provider-setup-status">NOT CONFIGURED</div>
                         <p>Grok 4.2 Beta - 500B parameters with real-time learning capabilities from xAI.</p>
@@ -467,8 +533,7 @@
                     <!-- Qwen -->
                     <div class="card provider-card" data-provider="qwen">
                         <div class="provider-badge">
-                            <img src="https://qwen.ai/favicon.ico" alt="Qwen"
-                                width="40">
+                            <img src="https://www.google.com/s2/favicons?domain=qwen.ai&sz=128" alt="Qwen" class="provider-icon" width="40">
                         </div>
                         <div class="provider-setup-status">NOT CONFIGURED</div>
                         <p>Qwen3.5-Plus - 397B MoE architecture with low cost and exceptional performance.</p>
@@ -478,8 +543,7 @@
                     <!-- DeepSeek -->
                     <div class="card provider-card" data-provider="deepseek">
                         <div class="provider-badge">
-                            <img src="https://www.deepseek.com/favicon.ico" alt="DeepSeek"
-                                width="40">
+                            <img src="https://www.google.com/s2/favicons?domain=deepseek.com&sz=128" alt="DeepSeek" class="provider-icon" width="40">
                         </div>
                         <div class="provider-setup-status">NOT CONFIGURED</div>
                         <p>DeepSeek V3.2 - Latest base model with reasoning optimization and coding specialization.</p>
@@ -489,8 +553,7 @@
                     <!-- GLM -->
                     <div class="card provider-card" data-provider="glm">
                         <div class="provider-badge">
-                            <img src="https://www.zhipuai.cn/favicon.ico" alt="GLM"
-                                width="40">
+                            <img src="https://www.google.com/s2/favicons?domain=zhipuai.cn&sz=128" alt="GLM" class="provider-icon" width="40">
                         </div>
                         <div class="provider-setup-status">NOT CONFIGURED</div>
                         <p>GLM-5 - Flagship complex engineering model from Zhipu AI with vision capabilities.</p>
@@ -500,8 +563,7 @@
                     <!-- OpenRouter -->
                     <div class="card provider-card" data-provider="openrouter">
                         <div class="provider-badge">
-                            <img src="https://icons.Plot.dev/brand/openrouter.svg" alt="OpenRouter"
-                                width="40">
+                            <img src="https://www.google.com/s2/favicons?domain=openrouter.ai&sz=128" alt="OpenRouter" class="provider-icon" width="40">
                         </div>
                         <div class="provider-setup-status">NOT CONFIGURED</div>
                         <p>OpenRouter - Unified API aggregator with cost comparison and routing across all major providers.</p>
@@ -1338,6 +1400,8 @@
             }, true);
         })();
     </script>
+    <!-- Hidden iframe for silent feedback form submission to Google Forms -->
+    <iframe name="hidden_iframe" id="hidden_iframe" class="visually-hidden-iframe" aria-hidden="true"></iframe>
 </body>
 
 </html>

@@ -3142,4 +3142,118 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
+    // New Feedback Poll Interactivity
+    const announcementBanner = document.getElementById('announcement-banner');
+    const feedbackForm = document.getElementById('announcement-feedback-form');
+    const starRatingContainer = document.getElementById('feedback-star-rating');
+    const ratingInput = document.getElementById('feedback-rating-val');
+    const priceSlider = document.getElementById('pricing-slider');
+    const sliderDisplay = document.getElementById('slider-val-display');
+
+    // Hide banner permanently if already submitted
+    if (localStorage.getItem('announcement_feedback_submitted') === 'true') {
+        if (announcementBanner) {
+            announcementBanner.style.display = 'none';
+        }
+    }
+
+    // Star Rating Logic
+    if (starRatingContainer) {
+        const stars = starRatingContainer.querySelectorAll('.star');
+        stars.forEach(star => {
+            star.addEventListener('click', (e) => {
+                const val = parseInt(e.target.dataset.val);
+                ratingInput.value = val;
+                
+                // Active up to clicked star
+                stars.forEach(s => {
+                    const sVal = parseInt(s.dataset.val);
+                    if (sVal <= val) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+            });
+        });
+    }
+
+    // Price Slider Logic
+    if (priceSlider && sliderDisplay) {
+        const discreteValues = [0, 5, 9, 15, 19, 25];
+        const realInputVal = document.getElementById('pricing-real-val');
+
+        // Initialize the gradient and real value display
+        const updateSliderStyle = (index) => {
+            const min = parseInt(priceSlider.min) || 0;
+            const max = parseInt(priceSlider.max) || 5;
+            const progress = ((index - min) / (max - min)) * 100;
+            
+            // Set CSS variable for both WebKit & Mozilla to read
+            priceSlider.style.setProperty('--slider-progress', progress + '%');
+            
+            // Map index to real price dollar value
+            const realPrice = discreteValues[index];
+            sliderDisplay.textContent = realPrice;
+            if (realInputVal) {
+                realInputVal.value = realPrice;
+            }
+        };
+        
+        updateSliderStyle(priceSlider.value);
+        
+        priceSlider.addEventListener('input', (e) => {
+            updateSliderStyle(e.target.value);
+        });
+
+        // Clickable marks functionality
+        const marks = document.querySelectorAll('.slider-marks span');
+        marks.forEach((mark, i) => {
+            mark.addEventListener('click', () => {
+                priceSlider.value = i;
+                updateSliderStyle(i);
+            });
+        });
+    }
+
+    // Form Submission Logic
+    if (feedbackForm) {
+        feedbackForm.addEventListener('submit', (e) => {
+            // Validation: Ensure a rating was selected
+            const currentRating = ratingInput ? parseInt(ratingInput.value) : 0;
+            if (currentRating === 0) {
+                e.preventDefault(); // Stop submission completely
+                if (typeof showToast === 'function') {
+                    showToast('Action Required', 'Please select a star rating before submitting.', 'error');
+                }
+                return;
+            }
+
+            // At this point, feedback is VALID — submit to Google Forms via hidden iframe
+            
+            // Log analytics
+            if (typeof gaTracker !== 'undefined' && typeof gaTracker.trackEvent === 'function') {
+                gaTracker.trackEvent('announcement_feedback_submitted', { 
+                    rating: currentRating,
+                    price_preference: priceSlider ? priceSlider.value : 0
+                });
+            }
+
+            // Show confirmation toast
+            if (typeof showToast === 'function') {
+                showToast('Feedback Received', 'Thank you! Your feedback will help shape our future.', 'success');
+            }
+
+            // Hide banner permanently ONLY after valid submission
+            localStorage.setItem('announcement_feedback_submitted', 'true');
+            if (announcementBanner) {
+                announcementBanner.classList.remove('fade-in');
+                announcementBanner.style.opacity = '0';
+                setTimeout(() => {
+                    announcementBanner.style.display = 'none';
+                }, 300); // Wait for transition
+            }
+        });
+    }
+
 }); // End of DOMContentLoaded
