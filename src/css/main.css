@@ -1409,19 +1409,18 @@ textarea:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 25px;
 }
 
 .slider-header-flex label {
     margin-bottom: 0;
-    max-width: 65%;
+    max-width: 64%;
     line-height: 1.3;
 }
 
 .slider-container-discrete {
     position: relative;
     padding: 0 4px;
-    /* compensate for thumb */
 }
 
 .custom-slider-discrete {
@@ -1430,9 +1429,7 @@ textarea:hover {
     -moz-appearance: none;
     appearance: none;
     height: 22px;
-    /* Accommodate thumb height fully */
     background: transparent;
-    /* Use pseudo-tracks for the actual bar */
     outline: none;
     border: none;
     margin: 0;
@@ -1456,9 +1453,8 @@ textarea:hover {
     background: var(--primary-color);
     cursor: pointer;
     border: none;
-    box-shadow: 0 0 0 5px rgba(0, 122, 255, 0.15);
+    box-shadow: 0 0 0 5px rgba(234, 0, 255, 0.178);
     margin-top: -7px;
-    /* Centers thumb over track: (8px - 22px) / 2 */
 }
 
 /* Firefox track */
@@ -1477,7 +1473,7 @@ textarea:hover {
     background: var(--primary-color);
     cursor: pointer;
     border: none;
-    box-shadow: 0 0 0 5px rgba(0, 122, 255, 0.15);
+    box-shadow: 0 0 0 5px rgba(234, 0, 255, 0.178);
 }
 
 /* Firefox removes default progress styling */
@@ -1491,7 +1487,7 @@ textarea:hover {
 .slider-marks {
     display: flex;
     justify-content: space-between;
-    margin-top: 12px;
+    margin-top: 10px;
     padding: 0 2px;
     color: var(--text-secondary);
     font-size: 0.95rem;
